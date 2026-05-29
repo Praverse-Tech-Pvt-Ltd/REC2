@@ -85,13 +85,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Clean fuel for a zero-carbon future",
     sector: "energy",
     overview: [
-      "Hydrogen is the most abundant element in the universe — and the cleanest fuel we can produce at scale. Rec 2 is at the forefront of green hydrogen production, where renewable electricity splits water into hydrogen and oxygen with zero emissions. Our hybrid energy systems combine hydrogen with solar, wind, and battery storage to deliver reliable, dispatchable clean power.",
+      "Hydrogen is the most abundant element in the universe — and the cleanest fuel we can produce at scale. REC 2 is at the forefront of green hydrogen production, where renewable electricity splits water into hydrogen and oxygen with zero emissions. Our hybrid energy systems combine hydrogen with solar, wind, and battery storage to deliver reliable, dispatchable clean power.",
       "The transition from fossil fuels demands energy that can be stored, transported and deployed on demand. Hydrogen uniquely fulfills this requirement. From powering heavy industry and shipping to fuelling next-generation vehicles and aviation, hydrogen is the bridge between intermittent renewables and always-on energy demand.",
-      "Rec 2's hydrogen portfolio encompasses electrolyser technology partnerships, green ammonia production, hydrogen storage innovations, and hybrid microgrids designed for remote industrial operations and data centres.",
+      "REC 2's hydrogen portfolio encompasses electrolyser technology partnerships, green ammonia production, hydrogen storage innovations, and hybrid microgrids designed for remote industrial operations and data centres.",
     ],
     whyRec2: [
       "Global green hydrogen capacity is projected to reach 300 GW by 2030, representing a $500B+ investment opportunity.",
-      "Rec 2 brings together energy policy expertise, engineering partnerships, and strategic capital to accelerate hydrogen deployment at scale.",
+      "REC 2 brings together energy policy expertise, engineering partnerships, and strategic capital to accelerate hydrogen deployment at scale.",
       "Our unique position at the intersection of defence, materials and energy sectors gives us access to dual-use hydrogen applications across military logistics and critical infrastructure.",
     ],
     applications: [
@@ -115,13 +115,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Photovoltaic innovation at utility scale",
     sector: "energy",
     overview: [
-      "Solar photovoltaic technology has become the world's cheapest source of electricity, and Rec 2 is investing across the full solar value chain — from high-efficiency panel manufacturing to large-scale utility farms and distributed rooftop networks.",
+      "Solar photovoltaic technology has become the world's cheapest source of electricity, and REC 2 is investing across the full solar value chain — from high-efficiency panel manufacturing to large-scale utility farms and distributed rooftop networks.",
       "Our solar strategy focuses on next-generation cell technologies including perovskite-silicon tandems that push efficiencies beyond 30%, bifacial panels for higher yield, and agrivoltaic systems that combine food production with energy generation on the same land.",
-      "Rec 2 partners with developers, grid operators and off-takers to structure bankable solar projects across emerging markets in South Asia, the Middle East and Africa — regions with exceptional solar irradiance and rapidly growing energy demand.",
+      "REC 2 partners with developers, grid operators and off-takers to structure bankable solar projects across emerging markets in South Asia, the Middle East and Africa — regions with exceptional solar irradiance and rapidly growing energy demand.",
     ],
     whyRec2: [
       "Solar additions will exceed 500 GW annually by 2026. Early investment in next-gen cell technology creates lasting competitive advantage.",
-      "Rec 2's network across policy, finance and technology enables end-to-end project delivery from land acquisition to grid connection.",
+      "REC 2's network across policy, finance and technology enables end-to-end project delivery from land acquisition to grid connection.",
       "Integration with our battery recycling and energy storage capabilities creates vertically integrated clean energy value chains.",
     ],
     applications: [
@@ -145,13 +145,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Green grids powering sustainable communities",
     sector: "energy",
     overview: [
-      "Renewable solar goes beyond the panel — it encompasses the intelligent grid infrastructure, energy management systems, and community ownership models that make solar power truly transformative. Rec 2 focuses on building green grids that integrate seamlessly with existing energy infrastructure while enabling new decentralised energy models.",
+      "Renewable solar goes beyond the panel — it encompasses the intelligent grid infrastructure, energy management systems, and community ownership models that make solar power truly transformative. REC 2 focuses on building green grids that integrate seamlessly with existing energy infrastructure while enabling new decentralised energy models.",
       "Virtual power plants, peer-to-peer energy trading, and AI-driven demand forecasting are central to our renewable solar thesis. These technologies allow communities, businesses and utilities to optimise solar generation in real time, reducing curtailment and maximising the economic value of each kilowatt-hour generated.",
       "Our work includes greenfield solar parks with integrated storage, solar-powered desalination projects, and community solar programmes that democratise access to clean energy in underserved regions.",
     ],
     whyRec2: [
-      "The renewable energy transition requires not just generation capacity but intelligent grid infrastructure — an area where Rec 2's technology partnerships provide distinct advantage.",
-      "Carbon credit generation from certified renewable projects is a key revenue stream, and Rec 2's expertise in carbon markets enhances project economics significantly.",
+      "The renewable energy transition requires not just generation capacity but intelligent grid infrastructure — an area where REC 2's technology partnerships provide distinct advantage.",
+      "Carbon credit generation from certified renewable projects is a key revenue stream, and REC 2's expertise in carbon markets enhances project economics significantly.",
       "Our robotics and automation capabilities enable cost-effective operations and maintenance at scale.",
     ],
     applications: [
@@ -175,12 +175,12 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Second-life solutions for a circular energy economy",
     sector: "energy",
     overview: [
-      "The electric vehicle revolution is creating an unprecedented wave of end-of-life lithium-ion batteries — and with it, a massive opportunity in battery recycling. Rec 2 is investing in hydrometallurgical and direct recycling technologies that recover lithium, cobalt, nickel and manganese at commercial scale, closing the loop on critical battery materials.",
-      "Second-life battery applications are equally compelling. EV batteries that no longer meet automotive performance standards retain 70-80% of their capacity — making them ideal for stationary energy storage in solar farms, industrial facilities and grid-scale applications. Rec 2 structures second-life projects that extend battery value while reducing waste.",
+      "The electric vehicle revolution is creating an unprecedented wave of end-of-life lithium-ion batteries — and with it, a massive opportunity in battery recycling. REC 2 is investing in hydrometallurgical and direct recycling technologies that recover lithium, cobalt, nickel and manganese at commercial scale, closing the loop on critical battery materials.",
+      "Second-life battery applications are equally compelling. EV batteries that no longer meet automotive performance standards retain 70-80% of their capacity — making them ideal for stationary energy storage in solar farms, industrial facilities and grid-scale applications. REC 2 structures second-life projects that extend battery value while reducing waste.",
       "Our materials expertise in rare metals and metal alloys gives us deep insight into battery chemistry and recycling economics, enabling smarter investment decisions across the entire battery value chain.",
     ],
     whyRec2: [
-      "Global battery recycling market is projected to reach $23B by 2030. Rec 2's early positioning across recycling technology and second-life applications creates compounding advantage.",
+      "Global battery recycling market is projected to reach $23B by 2030. REC 2's early positioning across recycling technology and second-life applications creates compounding advantage.",
       "Regulatory mandates in the EU, US and China are driving mandatory recycling rates, guaranteeing feedstock for recycling operations.",
       "Synergies with our rare metals portfolio ensure recovered materials can be channelled into new battery production, creating circular supply chains.",
     ],
@@ -205,13 +205,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Circular economy principles for energy systems",
     sector: "energy",
     overview: [
-      "Energy recycling encompasses the recovery, repurposing and optimisation of energy flows across industrial and commercial systems. Rec 2 approaches this through waste heat recovery, energy-from-waste technologies, industrial symbiosis networks, and the circular economy principles that minimise energy losses across entire value chains.",
-      "Industrial waste heat represents one of the largest untapped energy sources globally — billions of kilowatt-hours are vented to atmosphere every year from steel mills, cement plants, refineries and data centres. Rec 2 invests in organic Rankine cycle systems, absorption chillers and heat pump technologies that capture and utilise this wasted energy.",
+      "Energy recycling encompasses the recovery, repurposing and optimisation of energy flows across industrial and commercial systems. REC 2 approaches this through waste heat recovery, energy-from-waste technologies, industrial symbiosis networks, and the circular economy principles that minimise energy losses across entire value chains.",
+      "Industrial waste heat represents one of the largest untapped energy sources globally — billions of kilowatt-hours are vented to atmosphere every year from steel mills, cement plants, refineries and data centres. REC 2 invests in organic Rankine cycle systems, absorption chillers and heat pump technologies that capture and utilise this wasted energy.",
       "Our broader recycling thesis extends to the full lifecycle of energy equipment — from solar panel recycling and wind turbine blade repurposing to transformer oil reclamation and power electronics refurbishment — creating a truly circular energy economy.",
     ],
     whyRec2: [
       "Waste heat recovery alone represents a $15B+ annual opportunity in industrial energy efficiency, with short payback periods and strong ESG credentials.",
-      "Rec 2's presence across materials, manufacturing and energy sectors enables cross-sector partnerships that unlock circular economy value chains.",
+      "REC 2's presence across materials, manufacturing and energy sectors enables cross-sector partnerships that unlock circular economy value chains.",
       "Carbon credits generated from energy recycling projects provide additional revenue streams that improve project IRR.",
     ],
     applications: [
@@ -235,13 +235,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Advanced metallurgy for defence and deep tech",
     sector: "materials",
     overview: [
-      "Advanced metal alloys form the backbone of modern defence systems, aerospace structures, and next-generation energy infrastructure. Rec 2 invests in novel alloy development — from titanium-aluminium intermetallics for hypersonic applications to nickel superalloys for jet engines and high-entropy alloys that push the boundaries of strength, temperature resistance and corrosion performance.",
+      "Advanced metal alloys form the backbone of modern defence systems, aerospace structures, and next-generation energy infrastructure. REC 2 invests in novel alloy development — from titanium-aluminium intermetallics for hypersonic applications to nickel superalloys for jet engines and high-entropy alloys that push the boundaries of strength, temperature resistance and corrosion performance.",
       "Our materials portfolio is built around dual-use applications: alloys developed for military platforms often find commercial applications in power generation turbines, oil and gas equipment, and medical implants. This dual-use strategy maximises R&D return on investment while building strategic resilience.",
-      "Rec 2 partners with national laboratories, tier-1 defence contractors and specialist foundries to develop, qualify and commercialise alloys that meet the most demanding specifications in the world.",
+      "REC 2 partners with national laboratories, tier-1 defence contractors and specialist foundries to develop, qualify and commercialise alloys that meet the most demanding specifications in the world.",
     ],
     whyRec2: [
       "Global advanced alloys market exceeds $150B annually, with defence and aerospace segments growing at 6-8% CAGR driven by rearmament programmes worldwide.",
-      "Rec 2's defence connectivity provides privileged access to classified material requirements, enabling development of proprietary alloys with government-guaranteed offtake.",
+      "REC 2's defence connectivity provides privileged access to classified material requirements, enabling development of proprietary alloys with government-guaranteed offtake.",
       "Our rare metals expertise ensures secure supply of critical alloying elements, a strategic advantage as geopolitical tensions tighten global supply chains.",
     ],
     applications: [
@@ -265,9 +265,9 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Strategic minerals for the technology age",
     sector: "materials",
     overview: [
-      "Rare earth elements and critical minerals are the invisible foundation of the modern economy. From the neodymium in EV motors and wind turbine generators to the cobalt in lithium-ion batteries and the indium in solar panels — the clean energy transition is as much a mining challenge as an engineering one. Rec 2 is building strategic positions across rare metal supply chains before mainstream capital arrives.",
-      "China currently controls 60-85% of global rare earth production and processing, creating acute supply chain vulnerabilities for Western nations and their allies. Rec 2 works with allied governments and mining companies to develop alternative supply chains across Africa, Australia, Canada and Central Asia — a mission with both commercial and strategic national importance.",
-      "Beyond mining, Rec 2 invests in rare metal processing and refining technologies, urban mining from electronic waste, and the development of rare-earth-free alternatives for critical applications.",
+      "Rare earth elements and critical minerals are the invisible foundation of the modern economy. From the neodymium in EV motors and wind turbine generators to the cobalt in lithium-ion batteries and the indium in solar panels — the clean energy transition is as much a mining challenge as an engineering one. REC 2 is building strategic positions across rare metal supply chains before mainstream capital arrives.",
+      "China currently controls 60-85% of global rare earth production and processing, creating acute supply chain vulnerabilities for Western nations and their allies. REC 2 works with allied governments and mining companies to develop alternative supply chains across Africa, Australia, Canada and Central Asia — a mission with both commercial and strategic national importance.",
+      "Beyond mining, REC 2 invests in rare metal processing and refining technologies, urban mining from electronic waste, and the development of rare-earth-free alternatives for critical applications.",
     ],
     whyRec2: [
       "Critical mineral supply security is now a national security priority across NATO, the G7 and allied nations — creating substantial government-backed investment and offtake opportunities.",
@@ -295,14 +295,14 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Modular clean energy for the 21st century",
     sector: "materials",
     overview: [
-      "Small Modular Reactors represent the most significant innovation in nuclear energy in decades. Unlike traditional gigawatt-scale nuclear plants that require 15+ years and tens of billions to build, SMRs are factory-manufactured, scalable and deployable in 3-5 years at a fraction of the cost. Rec 2 is positioning at the intersection of advanced materials science and nuclear energy development.",
-      "The materials challenges in SMR development are immense and fascinating: reactor pressure vessels require steels with extraordinary radiation resistance and fracture toughness; fuel cladding demands zirconium alloys with optimised neutron cross-sections; and heat exchangers need nickel alloys that maintain integrity at 700°C for decades. Rec 2's advanced materials expertise makes us a natural partner for SMR developers.",
+      "Small Modular Reactors represent the most significant innovation in nuclear energy in decades. Unlike traditional gigawatt-scale nuclear plants that require 15+ years and tens of billions to build, SMRs are factory-manufactured, scalable and deployable in 3-5 years at a fraction of the cost. REC 2 is positioning at the intersection of advanced materials science and nuclear energy development.",
+      "The materials challenges in SMR development are immense and fascinating: reactor pressure vessels require steels with extraordinary radiation resistance and fracture toughness; fuel cladding demands zirconium alloys with optimised neutron cross-sections; and heat exchangers need nickel alloys that maintain integrity at 700°C for decades. REC 2's advanced materials expertise makes us a natural partner for SMR developers.",
       "Our SMR strategy focuses on materials qualification and supply, strategic investment in SMR developers, and the development of SMR-powered industrial complexes that provide clean baseload power to energy-intensive manufacturing including green hydrogen production and data centres.",
     ],
     whyRec2: [
       "SMR orders are accelerating globally — the UK, Canada, US and Poland have all committed to SMR programmes, with cumulative investment exceeding $20B.",
-      "Materials qualification is the critical path for SMR deployment, and Rec 2's metallurgical expertise positions us as an essential supply chain partner.",
-      "SMR-powered hydrogen production is the most economical pathway to 24/7 green hydrogen — a market Rec 2 is uniquely positioned to capture.",
+      "Materials qualification is the critical path for SMR deployment, and REC 2's metallurgical expertise positions us as an essential supply chain partner.",
+      "SMR-powered hydrogen production is the most economical pathway to 24/7 green hydrogen — a market REC 2 is uniquely positioned to capture.",
     ],
     applications: [
       { icon: "⚛️", label: "Reactor Pressure Vessels" },
@@ -325,13 +325,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Light-speed computing and sensing",
     sector: "chips",
     overview: [
-      "Photonic integrated circuits use light rather than electrons to process and transmit information, enabling speeds and energy efficiencies that silicon electronics cannot match. Rec 2 is investing in photonic chip design, fabrication and integration — targeting applications in AI accelerators, quantum computing interfaces, LiDAR systems and ultra-fast optical communications.",
-      "The convergence of photonics with AI hardware is creating a new paradigm in computing. Optical neural networks can perform matrix multiplications — the fundamental operation in deep learning — at the speed of light with near-zero energy cost. Rec 2's photonics portfolio is built around this convergence, targeting the data centre, defence and automotive markets.",
-      "Defence applications are particularly compelling: photonic chips enable laser-based directed energy weapons, hypersonic vehicle guidance systems, and quantum key distribution networks that are immune to classical computing attacks. Rec 2's dual-use approach maximises the strategic and commercial value of photonic technology investments.",
+      "Photonic integrated circuits use light rather than electrons to process and transmit information, enabling speeds and energy efficiencies that silicon electronics cannot match. REC 2 is investing in photonic chip design, fabrication and integration — targeting applications in AI accelerators, quantum computing interfaces, LiDAR systems and ultra-fast optical communications.",
+      "The convergence of photonics with AI hardware is creating a new paradigm in computing. Optical neural networks can perform matrix multiplications — the fundamental operation in deep learning — at the speed of light with near-zero energy cost. REC 2's photonics portfolio is built around this convergence, targeting the data centre, defence and automotive markets.",
+      "Defence applications are particularly compelling: photonic chips enable laser-based directed energy weapons, hypersonic vehicle guidance systems, and quantum key distribution networks that are immune to classical computing attacks. REC 2's dual-use approach maximises the strategic and commercial value of photonic technology investments.",
     ],
     whyRec2: [
       "Photonic chip market is growing at 25% CAGR, driven by AI infrastructure buildout and defence modernisation programmes.",
-      "Rec 2's position across chips, defence and materials provides unique access to both military and commercial photonics programmes.",
+      "REC 2's position across chips, defence and materials provides unique access to both military and commercial photonics programmes.",
       "Pratham Shrivastav's deep tech expertise in photonic systems enables technical due diligence at the frontier of the field.",
     ],
     applications: [
@@ -355,14 +355,14 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Diagnostics and biosensing at the nanoscale",
     sector: "chips",
     overview: [
-      "Biochips integrate biological molecules with microelectronic substrates to create miniaturised platforms for diagnostics, drug discovery and environmental monitoring. Rec 2 invests in the full biochip ecosystem — from lab-on-chip devices for point-of-care diagnostics to DNA sequencing chips and organ-on-chip systems that replace animal testing in pharmaceutical development.",
+      "Biochips integrate biological molecules with microelectronic substrates to create miniaturised platforms for diagnostics, drug discovery and environmental monitoring. REC 2 invests in the full biochip ecosystem — from lab-on-chip devices for point-of-care diagnostics to DNA sequencing chips and organ-on-chip systems that replace animal testing in pharmaceutical development.",
       "The COVID-19 pandemic demonstrated the global demand for rapid, portable, accurate diagnostics. Biochips are the enabling technology for the next generation of pandemic preparedness: multiplexed assays that detect hundreds of pathogens simultaneously, wearable biosensors for continuous health monitoring, and implantable chips for chronic disease management.",
-      "From a defence perspective, biochips are critical for chemical and biological threat detection, field-deployable medical diagnostics, and the development of medical countermeasures. Rec 2's biochip investments are structured to serve both civilian healthcare and defence readiness markets.",
+      "From a defence perspective, biochips are critical for chemical and biological threat detection, field-deployable medical diagnostics, and the development of medical countermeasures. REC 2's biochip investments are structured to serve both civilian healthcare and defence readiness markets.",
     ],
     whyRec2: [
       "Biochip market is projected to exceed $30B by 2030, with the point-of-care diagnostics segment growing fastest as healthcare decentralises.",
       "Defence and homeland security demand for portable biological threat detection creates guaranteed government procurement for best-in-class biochip technologies.",
-      "Rec 2's chemistry and materials expertise accelerates biochip surface functionalisation — the critical bottleneck in device sensitivity and specificity.",
+      "REC 2's chemistry and materials expertise accelerates biochip surface functionalisation — the critical bottleneck in device sensitivity and specificity.",
     ],
     applications: [
       { icon: "🧬", label: "DNA Sequencing" },
@@ -385,8 +385,8 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Continuous automated chemical synthesis",
     sector: "robotics",
     overview: [
-      "Flow chemistry replaces batch reactors with continuous tubular systems where reagents flow through precisely controlled microreactors, mixing, reacting and separating in a seamless automated process. Rec 2 is investing in flow chemistry systems that dramatically accelerate pharmaceutical synthesis, specialty chemical production and green chemistry — reducing waste, improving safety and enabling chemistries impossible in batch mode.",
-      "The advantages of flow chemistry are profound: reactions can be run at extreme temperatures and pressures safely, hazardous intermediates are consumed immediately rather than accumulated, and scale-up from laboratory to production is achieved simply by running reactors in parallel ('numbering up'). Rec 2 sees flow chemistry as foundational to the future of chemical manufacturing.",
+      "Flow chemistry replaces batch reactors with continuous tubular systems where reagents flow through precisely controlled microreactors, mixing, reacting and separating in a seamless automated process. REC 2 is investing in flow chemistry systems that dramatically accelerate pharmaceutical synthesis, specialty chemical production and green chemistry — reducing waste, improving safety and enabling chemistries impossible in batch mode.",
+      "The advantages of flow chemistry are profound: reactions can be run at extreme temperatures and pressures safely, hazardous intermediates are consumed immediately rather than accumulated, and scale-up from laboratory to production is achieved simply by running reactors in parallel ('numbering up'). REC 2 sees flow chemistry as foundational to the future of chemical manufacturing.",
       "Defence applications include the on-demand synthesis of propellants, explosives and chemical countermeasures — eliminating the need for large munitions stockpiles and enabling just-in-time production near the point of use. Our flow chemistry investments serve both the commercial specialty chemicals market and defence procurement.",
     ],
     whyRec2: [
@@ -415,14 +415,14 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Industrial automation for next-generation manufacturing",
     sector: "robotics",
     overview: [
-      "Automated reactor systems represent the convergence of robotics, process control and artificial intelligence in industrial manufacturing. Rec 2 invests in fully autonomous reactor platforms for hydrogen electrolysis, nuclear fuel processing, advanced materials synthesis and pharmaceutical manufacturing — systems that operate continuously with minimal human intervention.",
-      "The integration of AI-driven process optimisation with robotic handling and advanced sensor arrays creates reactors that self-tune, self-correct and self-maintain. Rec 2 partners with industrial automation companies and research institutions to develop the next generation of autonomous chemical and materials processing plants.",
-      "From automated electrolyser farms that produce green hydrogen to robotic SMR fuel fabrication facilities and AI-optimised metal alloy foundries, Rec 2's automated reactor thesis cuts across every sector in our portfolio — creating operational efficiencies and quality improvements that transform project economics.",
+      "Automated reactor systems represent the convergence of robotics, process control and artificial intelligence in industrial manufacturing. REC 2 invests in fully autonomous reactor platforms for hydrogen electrolysis, nuclear fuel processing, advanced materials synthesis and pharmaceutical manufacturing — systems that operate continuously with minimal human intervention.",
+      "The integration of AI-driven process optimisation with robotic handling and advanced sensor arrays creates reactors that self-tune, self-correct and self-maintain. REC 2 partners with industrial automation companies and research institutions to develop the next generation of autonomous chemical and materials processing plants.",
+      "From automated electrolyser farms that produce green hydrogen to robotic SMR fuel fabrication facilities and AI-optimised metal alloy foundries, REC 2's automated reactor thesis cuts across every sector in our portfolio — creating operational efficiencies and quality improvements that transform project economics.",
     ],
     whyRec2: [
       "Industrial automation in chemical and materials processing is a $60B+ market growing at 8% annually, driven by labour costs, quality requirements and safety imperatives.",
-      "Rec 2's cross-sector presence enables the development of reactor automation solutions with multiple customer segments, reducing commercial risk.",
-      "Automated reactors are central to Rec 2's hydrogen, SMR and flow chemistry strategies — creating internal demand that de-risks early-stage development.",
+      "REC 2's cross-sector presence enables the development of reactor automation solutions with multiple customer segments, reducing commercial risk.",
+      "Automated reactors are central to REC 2's hydrogen, SMR and flow chemistry strategies — creating internal demand that de-risks early-stage development.",
     ],
     applications: [
       { icon: "🤖", label: "Autonomous Process Control" },
@@ -445,13 +445,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "The future of sport is sustainable, global and electric",
     sector: "sports",
     overview: [
-      "Rec 2's sports investment thesis is built around three converging megatrends: the electrification of motorsport, the globalisation of premium sporting events, and the growing demand for ESG-aligned investment in entertainment and media. We target sports properties at the intersection of technology, sustainability and global audience growth — the opposite of traditional asset-heavy sports ownership.",
-      "Our portfolio centres on next-generation racing series that showcase clean technology to global audiences of hundreds of millions. SailGP's French Team, E1 Series electric powerboat racing, and Extreme H hydrogen off-road racing are not just sports investments — they are rolling showcases for Rec 2's energy and propulsion technologies, providing unparalleled brand visibility and technology validation.",
+      "REC 2's sports investment thesis is built around three converging megatrends: the electrification of motorsport, the globalisation of premium sporting events, and the growing demand for ESG-aligned investment in entertainment and media. We target sports properties at the intersection of technology, sustainability and global audience growth — the opposite of traditional asset-heavy sports ownership.",
+      "Our portfolio centres on next-generation racing series that showcase clean technology to global audiences of hundreds of millions. SailGP's French Team, E1 Series electric powerboat racing, and Extreme H hydrogen off-road racing are not just sports investments — they are rolling showcases for REC 2's energy and propulsion technologies, providing unparalleled brand visibility and technology validation.",
       "Beyond motorsport, we build strategic positions in sports that are undergoing digital transformation: sports analytics platforms, athlete performance technology, and the emerging convergence of sport with web3 fan engagement and tokenised ownership models.",
     ],
     whyRec2: [
       "Premium sports rights are among the most resilient asset classes, with global sports media rights growing to $60B+ annually.",
-      "Clean motorsport series provide Rec 2 with direct technology showcasing opportunities — every race is a live demonstration of our hydrogen and electric propulsion investments.",
+      "Clean motorsport series provide REC 2 with direct technology showcasing opportunities — every race is a live demonstration of our hydrogen and electric propulsion investments.",
       "Partner relationships with Oracle, Accor, L'Oréal and Leyton bring corporate hospitality, brand activation and co-investment opportunities that amplify returns.",
     ],
     applications: [
@@ -486,13 +486,13 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Strategic alliances that amplify sustainable sport",
     sector: "sports",
     overview: [
-      "Strategic partnerships are the multiplier force in Rec 2's sports strategy. Beyond ownership stakes, we build commercial partnerships with sports organisations, governing bodies, venues and media companies that create mutually beneficial relationships between Rec 2's technology portfolio and the global sports ecosystem.",
-      "Our partnership model focuses on three value creation levers: technology integration (deploying Rec 2's energy, materials and digital technologies within sports operations), sustainability credentialling (helping sports organisations achieve net-zero commitments using our clean energy solutions), and brand co-activation (linking Rec 2's brand with aspirational sports properties at the highest level of global sport).",
+      "Strategic partnerships are the multiplier force in REC 2's sports strategy. Beyond ownership stakes, we build commercial partnerships with sports organisations, governing bodies, venues and media companies that create mutually beneficial relationships between REC 2's technology portfolio and the global sports ecosystem.",
+      "Our partnership model focuses on three value creation levers: technology integration (deploying REC 2's energy, materials and digital technologies within sports operations), sustainability credentialling (helping sports organisations achieve net-zero commitments using our clean energy solutions), and brand co-activation (linking REC 2's brand with aspirational sports properties at the highest level of global sport).",
       "Key partnership verticals include stadium decarbonisation programmes using our solar and hydrogen technologies, sports apparel and equipment using our advanced materials, data analytics partnerships that leverage AI and chip technologies, and athlete performance monitoring using our biochip innovations.",
     ],
     whyRec2: [
-      "Sports partnerships provide Rec 2 with access to global audiences at a fraction of traditional advertising costs, with significantly higher engagement and brand recall.",
-      "Technology deployment partnerships generate direct commercial revenue while simultaneously validating Rec 2 technologies in highly visible, demanding environments.",
+      "Sports partnerships provide REC 2 with access to global audiences at a fraction of traditional advertising costs, with significantly higher engagement and brand recall.",
+      "Technology deployment partnerships generate direct commercial revenue while simultaneously validating REC 2 technologies in highly visible, demanding environments.",
       "The regulatory push for sports sustainability creates strong demand pull for our clean energy and materials technologies from sports organisations worldwide.",
     ],
     applications: [

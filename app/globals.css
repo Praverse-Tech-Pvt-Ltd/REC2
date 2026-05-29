@@ -4,32 +4,46 @@
 
 @layer base {
   :root {
-    --font-display: "Space Grotesk", sans-serif;
-    --font-body: "DM Sans", sans-serif;
+    /* Typography */
+    --font-display: "DM Serif Display", Georgia, serif;
+    --font-body:    "DM Sans", system-ui, sans-serif;
 
-    /* Core palette */
-    --navy:       #0c1a2e;
-    --navy-mid:   #1a3a5c;
-    --navy-light: #2d5080;
-    --surface:    #f4f6f9;
-    --white:      #ffffff;
-    --muted:      #8492a6;
-    --border:     #dde2ea;
-    --border-strong: #b8c1cc;
+    /* Premium clinical palette — cream warmth */
+    --cream:         #faf8f4;
+    --cream-deep:    #f2ede5;
+    --charcoal:      #1a1a1a;
+    --charcoal-mid:  #2d2d2d;
+    --charcoal-light:#5a5a5a;
+    --white:         #ffffff;
+    --muted:         #7a7878;
+    --border:        #e2ddd6;
+    --border-strong: #c4bdb4;
 
-    /* Sector accents */
-    --energy:    #2e7d32;
-    --materials: #6a1b9a;
-    --chips:     #e65100;
-    --robotics:  #00695c;
-    --sports:    #1565c0;
+    /* Sage accent — primary CTA + highlights */
+    --sage:          #5f8a62;
+    --sage-dark:     #3e6040;
+    --sage-pale:     #e6f0e4;
+    --sage-light:    #f0f6ef;
+
+    /* Sector accents — muted, clinical */
+    --energy:    #5f8a62;
+    --materials: #7260a0;
+    --chips:     #9c6038;
+    --robotics:  #3a7d74;
+    --sports:    #3a6a9c;
+
+    /* Legacy aliases for existing components */
+    --navy:          var(--charcoal);
+    --navy-mid:      var(--charcoal-mid);
+    --navy-light:    var(--charcoal-light);
+    --surface:       var(--cream);
   }
 
   * { box-sizing: border-box; }
 
   body {
-    background-color: var(--surface);
-    color: var(--navy);
+    background-color: var(--cream);
+    color: var(--charcoal);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -37,38 +51,25 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer utilities {
   .font-display { font-family: var(--font-display); }
   .font-body    { font-family: var(--font-body); }
-  .text-navy    { color: var(--navy); }
+  .text-navy    { color: var(--charcoal); }
   .text-muted   { color: var(--muted); }
-  .bg-surface   { background-color: var(--surface); }
-  .bg-navy      { background-color: var(--navy); }
+  .bg-surface   { background-color: var(--cream); }
+  .bg-navy      { background-color: var(--charcoal); }
   .border-edge  { border-color: var(--border); }
+  .bg-sage-pale { background-color: var(--sage-pale); }
 
-  /* Grain overlay — applied via a pseudo-element on .grain-bg */
-  .grain-bg {
-    position: relative;
-  }
-  .grain-bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.035;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Horizontal editorial rule */
-  .rule { border-top: 1px solid var(--border); }
+  .rule        { border-top: 1px solid var(--border); }
   .rule-strong { border-top: 1px solid var(--border-strong); }
 
-  /* Label style */
+  /* Label: small-caps uppercase, wide tracking */
   .label {
     font-family: var(--font-body);
     font-size: 0.6875rem;
@@ -79,4 +80,55 @@
   }
 
   .text-balance { text-wrap: balance; }
+
+  /* ── ReactBits: ShinyText — subtle shimmer pass over text ── */
+  .shiny-text {
+    background: linear-gradient(
+      120deg,
+      var(--charcoal) 30%,
+      #8a8a7a 45%,
+      var(--charcoal) 60%
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shinePass 4s linear infinite;
+  }
+
+  .shiny-text-sage {
+    background: linear-gradient(
+      120deg,
+      var(--sage) 30%,
+      #a8c4a8 48%,
+      var(--sage) 62%
+    );
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shinePass 3.5s linear infinite;
+  }
+
+  @keyframes shinePass {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* ── Scroll-reveal rule: draws in from left ── */
+  .reveal-rule {
+    transform-origin: left;
+    animation: ruleGrow 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes ruleGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* ── Card shimmer border on hover ── */
+  @keyframes borderShimmer {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+  }
 }

@@ -1,4 +1,5 @@
 import PageLayout from "@/components/PageLayout";
+import SportsInitiatives from "@/components/SportsInitiatives";
 import { notFound } from "next/navigation";
 
 const VALID_SLUGS = ["investments", "partnerships"];
@@ -60,7 +61,12 @@ export default function SportsPage({ params }: { params: { slug: string } }) {
         { label: slug, href: `/sports/${slug}` },
       ]}
     >
-      {slug === "investments" && <PartnersSection />}
+      {slug === "investments" && (
+        <>
+          <SportsInitiatives />
+          <PartnersSection />
+        </>
+      )}
     </PageLayout>
   );
 }

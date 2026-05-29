@@ -77,9 +77,10 @@ export default function OrgChart() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             onClick={() => router.push("/")}
-            className="font-display font-semibold text-sm bg-[var(--navy)] text-white px-8 py-3 rounded-full tracking-wide hover:bg-[var(--navy-light)] transition-colors"
+            className="font-display italic text-sm bg-[var(--charcoal)] text-white px-8 py-2.5 hover:bg-[var(--charcoal-mid)] transition-colors"
+            style={{ borderRadius: "2px" }}
           >
-            Rec 2
+            REC 2
           </motion.button>
         </div>
 
@@ -103,19 +104,19 @@ export default function OrgChart() {
             return (
               <motion.div
                 key={node.key}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * i + 0.15, duration: 0.4, ease: "easeOut" }}
                 className="flex flex-col items-center"
               >
-                {/* Drop line from bar */}
+                {/* Drop line */}
                 <div className="w-px h-7 bg-[var(--border-strong)]" />
 
                 {/* Sector pill */}
                 <button
                   onClick={() => router.push(node.href)}
-                  className="text-white text-xs font-semibold px-4 py-2.5 rounded-full w-full text-center hover:opacity-90 transition-opacity shadow-sm"
-                  style={{ backgroundColor: color }}
+                  className="text-white text-[0.75rem] font-medium px-3 py-2 w-full text-center hover:opacity-90 transition-opacity"
+                  style={{ backgroundColor: color, borderRadius: "2px" }}
                 >
                   {node.label}
                 </button>
@@ -127,17 +128,17 @@ export default function OrgChart() {
                     <button
                       key={sub.label}
                       onClick={() => router.push(sub.href)}
-                      className="text-[0.65rem] w-full text-center px-2 py-1.5 rounded-lg border transition-all group"
-                      style={{ borderColor: color + "40", color: "var(--muted)" }}
+                      className="text-[0.65rem] w-full text-center px-2 py-1.5 border transition-all"
+                      style={{ borderColor: color + "35", color: "var(--muted)", borderRadius: "2px" }}
                       onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLElement).style.backgroundColor = color + "12";
+                        (e.currentTarget as HTMLElement).style.backgroundColor = color + "10";
                         (e.currentTarget as HTMLElement).style.color = color;
-                        (e.currentTarget as HTMLElement).style.borderColor = color + "60";
+                        (e.currentTarget as HTMLElement).style.borderColor = color + "55";
                       }}
                       onMouseLeave={(e) => {
                         (e.currentTarget as HTMLElement).style.backgroundColor = "";
                         (e.currentTarget as HTMLElement).style.color = "var(--muted)";
-                        (e.currentTarget as HTMLElement).style.borderColor = color + "40";
+                        (e.currentTarget as HTMLElement).style.borderColor = color + "35";
                       }}
                     >
                       {sub.label}

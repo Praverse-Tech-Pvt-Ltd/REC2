@@ -9,15 +9,25 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        body:    ["var(--font-body)", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
+        body:    ["var(--font-body)", "system-ui", "sans-serif"],
       },
       colors: {
-        navy:     "var(--navy)",
-        "navy-mid": "var(--navy-mid)",
-        surface:  "var(--surface)",
-        muted:    "var(--muted)",
-        border:   "var(--border)",
+        navy:       "var(--charcoal)",
+        "navy-mid": "var(--charcoal-mid)",
+        surface:    "var(--cream)",
+        muted:      "var(--muted)",
+        border:     "var(--border)",
+        sage:       "var(--sage)",
+      },
+      keyframes: {
+        marquee: {
+          "0%":   { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-33.333%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 28s linear infinite",
       },
     },
   },
