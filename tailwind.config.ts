@@ -8,9 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        display: ["var(--font-display)", "sans-serif"],
+        body:    ["var(--font-body)", "sans-serif"],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        navy:     "var(--navy)",
+        "navy-mid": "var(--navy-mid)",
+        surface:  "var(--surface)",
+        muted:    "var(--muted)",
+        border:   "var(--border)",
       },
     },
   },

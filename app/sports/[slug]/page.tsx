@@ -21,26 +21,29 @@ const PARTNERS = [
 
 function PartnersSection() {
   return (
-    <section className="mt-2">
-      <h2 className="text-2xl font-bold text-gray-900 mb-6">Partners & Associates</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+    <div>
+      <p className="label text-[var(--muted)] mb-6">Partners &amp; Associates</p>
+      <div className="h-px bg-[var(--border)] mb-8" />
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {PARTNERS.map((p) => (
           <div
             key={p.name}
-            className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col"
+            className="bg-white border border-[var(--border)] rounded-xl p-4 flex items-start gap-3 hover:border-[var(--border-strong)] hover:shadow-sm transition-all"
           >
             <div
-              className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm mb-3"
+              className="w-9 h-9 rounded-lg flex items-center justify-center text-white font-display font-semibold text-xs flex-shrink-0"
               style={{ backgroundColor: p.color }}
             >
               {p.name.charAt(0)}
             </div>
-            <p className="font-semibold text-gray-900 text-sm">{p.name}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{p.sub}</p>
+            <div>
+              <p className="font-display font-semibold text-[var(--navy)] text-sm leading-tight">{p.name}</p>
+              <p className="text-[0.7rem] text-[var(--muted)] mt-0.5">{p.sub}</p>
+            </div>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }
 

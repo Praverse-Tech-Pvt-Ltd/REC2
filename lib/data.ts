@@ -10,8 +10,7 @@ export type SectorKey =
   | "materials"
   | "chips"
   | "robotics"
-  | "sports"
-  | "defence";
+  | "sports";
 
 export const SECTOR_COLORS: Record<SectorKey, string> = {
   energy: "#2e7d32",
@@ -19,16 +18,14 @@ export const SECTOR_COLORS: Record<SectorKey, string> = {
   chips: "#e65100",
   robotics: "#00695c",
   sports: "#1565c0",
-  defence: "#f57c00",
 };
 
 export const SECTOR_GRADIENTS: Record<SectorKey, string> = {
-  energy: "from-green-800 to-green-600",
-  materials: "from-purple-900 to-purple-700",
-  chips: "from-orange-900 to-orange-600",
-  robotics: "from-teal-900 to-teal-600",
-  sports: "from-blue-900 to-blue-700",
-  defence: "from-amber-700 to-amber-500",
+  energy: "from-green-900 to-green-700",
+  materials: "from-purple-950 to-purple-800",
+  chips: "from-orange-950 to-orange-700",
+  robotics: "from-teal-950 to-teal-700",
+  sports: "from-blue-950 to-blue-800",
 };
 
 export const PEOPLE: Record<string, Person> = {
@@ -109,7 +106,7 @@ export const PAGES: Record<string, PageData> = {
     related: [
       { label: "Solar", href: "/energy/solar" },
       { label: "Battery Recycling", href: "/energy/battery-recycling" },
-      { label: "Defence", href: "/defence" },
+      { label: "Robotics", href: "/robotics/flow-chemistry" },
     ],
   },
 
@@ -259,7 +256,7 @@ export const PAGES: Record<string, PageData> = {
     related: [
       { label: "Rare Metals", href: "/materials/rare-metals" },
       { label: "SMR", href: "/materials/smr" },
-      { label: "Defence", href: "/defence" },
+      { label: "Robotics", href: "/robotics/flow-chemistry" },
     ],
   },
 
@@ -319,7 +316,7 @@ export const PAGES: Record<string, PageData> = {
     related: [
       { label: "Metal Alloys", href: "/materials/metal-alloys" },
       { label: "Hydrogen + Hybrid", href: "/energy/hydrogen-hybrid" },
-      { label: "Defence", href: "/defence" },
+      { label: "Robotics", href: "/robotics/flow-chemistry" },
     ],
   },
 
@@ -348,7 +345,7 @@ export const PAGES: Record<string, PageData> = {
     team: ["vishal", "pratham"],
     related: [
       { label: "Biochips", href: "/chips/biochips" },
-      { label: "Defence", href: "/defence" },
+      { label: "Robotics", href: "/robotics/flow-chemistry" },
       { label: "Robotics", href: "/robotics/automated-reactors" },
     ],
   },
@@ -379,7 +376,7 @@ export const PAGES: Record<string, PageData> = {
     related: [
       { label: "Photonics", href: "/chips/photonics" },
       { label: "Flow Chemistry", href: "/robotics/flow-chemistry" },
-      { label: "Defence", href: "/defence" },
+      { label: "Robotics", href: "/robotics/flow-chemistry" },
     ],
   },
 
@@ -409,7 +406,7 @@ export const PAGES: Record<string, PageData> = {
     related: [
       { label: "Automated Reactors", href: "/robotics/automated-reactors" },
       { label: "Biochips", href: "/chips/biochips" },
-      { label: "Defence", href: "/defence" },
+      { label: "Robotics", href: "/robotics/flow-chemistry" },
     ],
   },
 
@@ -469,7 +466,7 @@ export const PAGES: Record<string, PageData> = {
     related: [
       { label: "Sports Partnerships", href: "/sports/partnerships" },
       { label: "Hydrogen + Hybrid", href: "/energy/hydrogen-hybrid" },
-      { label: "Defence", href: "/defence" },
+      { label: "Solar", href: "/energy/solar" },
     ],
     partners: [
       "SailGP – French Team",
@@ -514,35 +511,6 @@ export const PAGES: Record<string, PageData> = {
     ],
   },
 
-  defence: {
-    title: "Defence",
-    subtitle: "The central hub of deep-tech innovation at Rec 2",
-    sector: "defence",
-    overview: [
-      "Defence sits at the heart of Rec 2's innovation architecture — not as a conventional arms business, but as the strategic connective tissue that links advanced materials, chip technologies and robotic systems into integrated platforms for national security and dual-use commercial applications. Our defence thesis is built on deep-tech, not weapons systems.",
-      "The modern battlefield is defined by information dominance, autonomous systems and advanced materials — precisely the domains where Rec 2's portfolio is concentrated. Photonic chips for electronic warfare, rare metal supply chain security, biochips for field diagnostics, flow chemistry for munitions, and automated reactors for forward-deployed energy production — each of our technology verticals has a clear defence application.",
-      "Rec 2 operates as a dual-use innovation platform: technologies developed for defence requirements find civilian applications in energy, healthcare and industry, while commercial innovations are adapted and hardened for defence use. This bidirectional flow maximises R&D efficiency and creates technology portfolios with multiple revenue streams.",
-    ],
-    whyRec2: [
-      "Global defence spending exceeds $2.2T annually and is growing at its fastest rate since the Cold War, creating unprecedented demand for advanced technologies.",
-      "Dual-use innovation allows Rec 2 to access defence R&D funding while retaining commercial rights to civilian applications — the optimal structure for maximising technology value.",
-      "Our unique combination of materials, chips and robotics expertise mirrors the core technology priorities of all major defence procurement programmes globally.",
-    ],
-    applications: [
-      { icon: "🛡️", label: "Electronic Warfare" },
-      { icon: "🤖", label: "Autonomous Systems" },
-      { icon: "⚛️", label: "Nuclear Propulsion" },
-      { icon: "🧬", label: "Field Diagnostics" },
-      { icon: "🔋", label: "Advanced Power Systems" },
-      { icon: "📡", label: "Communications Security" },
-    ],
-    team: ["vishal"],
-    related: [
-      { label: "Materials", href: "/materials/metal-alloys" },
-      { label: "Chips", href: "/chips/photonics" },
-      { label: "Robotics", href: "/robotics/automated-reactors" },
-    ],
-  },
 };
 
 export const NAV_ITEMS = [
@@ -608,15 +576,20 @@ export const SECTOR_DESCRIPTIONS: Record<SectorKey, string> = {
     "Automated chemical synthesis and industrial robotics — factories that think.",
   sports:
     "Sustainable sports investments and global partnerships — where elite performance meets innovation.",
-  defence:
-    "Deep-tech dual-use innovation hub — connecting materials, chips and robotics for national security.",
+};
+
+export const SECTOR_NUMBERS: Record<SectorKey, string> = {
+  energy: "01",
+  materials: "02",
+  chips: "03",
+  robotics: "04",
+  sports: "05",
 };
 
 export const SECTOR_ICONS: Record<SectorKey, string> = {
   energy: "⚡",
-  materials: "🧪",
-  chips: "💡",
-  robotics: "🤖",
-  sports: "🏆",
-  defence: "🛡️",
+  materials: "◈",
+  chips: "◉",
+  robotics: "⬡",
+  sports: "△",
 };

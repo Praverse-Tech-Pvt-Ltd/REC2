@@ -2,186 +2,151 @@
 
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { SECTOR_COLORS, type SectorKey } from "@/lib/data";
 
-type Node = {
+type NodeDef = {
+  key: SectorKey;
   label: string;
-  sub?: string;
-  color: string;
-  bg: string;
   href: string;
-  icon: string;
+  subs: { label: string; href: string }[];
 };
 
-const REC2_NODE = { label: "Rec 2", color: "#ffffff", bg: "#1a3a5c", href: "/" };
-
-const TOP_NODES: Node[] = [
-  { label: "Energy", icon: "⚡", color: "#ffffff", bg: "#2e7d32", href: "/energy/hydrogen-hybrid" },
-  { label: "Sports", icon: "🏆", color: "#ffffff", bg: "#1565c0", href: "/sports/investments" },
+const NODES: NodeDef[] = [
+  {
+    key: "energy",
+    label: "Energy",
+    href: "/energy/hydrogen-hybrid",
+    subs: [
+      { label: "Hydrogen + Hybrid", href: "/energy/hydrogen-hybrid" },
+      { label: "Solar", href: "/energy/solar" },
+      { label: "Renewable Solar", href: "/energy/renewable-solar" },
+      { label: "Battery Recycling", href: "/energy/battery-recycling" },
+      { label: "Recycling", href: "/energy/recycling" },
+    ],
+  },
+  {
+    key: "materials",
+    label: "Materials",
+    href: "/materials/metal-alloys",
+    subs: [
+      { label: "Metal Alloys", href: "/materials/metal-alloys" },
+      { label: "Rare Metals", href: "/materials/rare-metals" },
+      { label: "SMR", href: "/materials/smr" },
+    ],
+  },
+  {
+    key: "chips",
+    label: "Chips",
+    href: "/chips/photonics",
+    subs: [
+      { label: "Photonics", href: "/chips/photonics" },
+      { label: "Biochips", href: "/chips/biochips" },
+    ],
+  },
+  {
+    key: "robotics",
+    label: "Robotics",
+    href: "/robotics/flow-chemistry",
+    subs: [
+      { label: "Flow Chemistry", href: "/robotics/flow-chemistry" },
+      { label: "Auto Reactors", href: "/robotics/automated-reactors" },
+    ],
+  },
+  {
+    key: "sports",
+    label: "Sports",
+    href: "/sports/investments",
+    subs: [
+      { label: "Investments", href: "/sports/investments" },
+      { label: "Partnerships", href: "/sports/partnerships" },
+    ],
+  },
 ];
-
-const CENTRE_NODE: Node = {
-  label: "Defence", icon: "🛡️", color: "#ffffff", bg: "#f57c00", href: "/defence",
-};
-
-const BOTTOM_NODES: Node[] = [
-  { label: "Materials", icon: "🧪", color: "#ffffff", bg: "#6a1b9a", href: "/materials/metal-alloys" },
-  { label: "Chips", icon: "💡", color: "#ffffff", bg: "#e65100", href: "/chips/photonics" },
-  { label: "Robotics", icon: "🤖", color: "#ffffff", bg: "#00695c", href: "/robotics/flow-chemistry" },
-];
-
-const LEAF_NODES: Record<string, { label: string; href: string }[]> = {
-  Energy: [
-    { label: "Hydrogen", href: "/energy/hydrogen-hybrid" },
-    { label: "Solar", href: "/energy/solar" },
-  ],
-  Sports: [
-    { label: "Investments", href: "/sports/investments" },
-    { label: "Partnerships", href: "/sports/partnerships" },
-  ],
-  Materials: [
-    { label: "Metal Alloys", href: "/materials/metal-alloys" },
-    { label: "Rare Metals", href: "/materials/rare-metals" },
-    { label: "SMR", href: "/materials/smr" },
-  ],
-  Chips: [
-    { label: "Photonics", href: "/chips/photonics" },
-    { label: "Biochips", href: "/chips/biochips" },
-  ],
-  Robotics: [
-    { label: "Flow Chemistry", href: "/robotics/flow-chemistry" },
-    { label: "Auto Reactors", href: "/robotics/automated-reactors" },
-  ],
-};
-
-function OrgNode({
-  node,
-  size = "md",
-  delay = 0,
-}: {
-  node: Node | typeof REC2_NODE;
-  size?: "lg" | "md" | "sm";
-  delay?: number;
-}) {
-  const router = useRouter();
-  const sizeClasses = {
-    lg: "px-8 py-4 text-lg font-bold rounded-2xl min-w-[140px]",
-    md: "px-6 py-3 text-sm font-semibold rounded-xl min-w-[110px]",
-    sm: "px-3 py-1.5 text-xs font-medium rounded-lg",
-  };
-
-  return (
-    <motion.button
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay, duration: 0.4, type: "spring" }}
-      whileHover={{ scale: 1.07, y: -2 }}
-      whileTap={{ scale: 0.97 }}
-      onClick={() => "href" in node && router.push(node.href)}
-      className={`${sizeClasses[size]} text-center cursor-pointer shadow-lg hover:shadow-xl transition-shadow`}
-      style={{ backgroundColor: node.bg, color: node.color }}
-    >
-      {"icon" in node && <span className="mr-1.5">{(node as Node).icon}</span>}
-      {node.label}
-    </motion.button>
-  );
-}
-
-function LeafChip({ label, href, color }: { label: string; href: string; color: string }) {
-  const router = useRouter();
-  return (
-    <motion.button
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.05 }}
-      onClick={() => router.push(href)}
-      className="px-3 py-1.5 text-xs font-medium rounded-lg border-2 cursor-pointer transition-all hover:text-white"
-      style={{ borderColor: color, color }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.backgroundColor = color;
-        (e.currentTarget as HTMLButtonElement).style.color = "#fff";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
-        (e.currentTarget as HTMLButtonElement).style.color = color;
-      }}
-    >
-      {label}
-    </motion.button>
-  );
-}
-
 
 export default function OrgChart() {
+  const router = useRouter();
+
   return (
-    <div className="w-full overflow-x-auto py-8">
-      <div className="min-w-[700px] max-w-4xl mx-auto px-4">
-        {/* Row 1: Rec 2 */}
+    <div className="w-full overflow-x-auto">
+      <div className="min-w-[640px] px-6 py-8">
+
+        {/* Root node */}
+        <div className="flex justify-center mb-0">
+          <motion.button
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            onClick={() => router.push("/")}
+            className="font-display font-semibold text-sm bg-[var(--navy)] text-white px-8 py-3 rounded-full tracking-wide hover:bg-[var(--navy-light)] transition-colors"
+          >
+            Rec 2
+          </motion.button>
+        </div>
+
+        {/* Vertical stem */}
         <div className="flex justify-center">
-          <OrgNode node={REC2_NODE} size="lg" delay={0} />
+          <div className="w-px h-7 bg-[var(--border-strong)]" />
         </div>
 
-        {/* Row 2: Top connectors */}
-        <div className="flex justify-between items-start mt-0 relative">
-          {/* Left branch to Energy */}
-          <div className="flex-1 flex justify-start pl-8">
-            <div className="flex flex-col items-center">
-              <div className="h-8 w-px bg-gray-300" />
-              <OrgNode node={TOP_NODES[0]} size="md" delay={0.1} />
-              <div className="h-4 w-px bg-gray-300" />
-              <div className="flex gap-2 flex-wrap justify-center">
-                {LEAF_NODES["Energy"].map((l) => (
-                  <LeafChip key={l.label} label={l.label} href={l.href} color="#2e7d32" />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Centre branch to Defence */}
-          <div className="flex flex-col items-center">
-            <div className="h-8 w-px bg-gray-300" />
-            <OrgNode node={CENTRE_NODE} size="md" delay={0.2} />
-          </div>
-
-          {/* Right branch to Sports */}
-          <div className="flex-1 flex justify-end pr-8">
-            <div className="flex flex-col items-center">
-              <div className="h-8 w-px bg-gray-300" />
-              <OrgNode node={TOP_NODES[1]} size="md" delay={0.1} />
-              <div className="h-4 w-px bg-gray-300" />
-              <div className="flex gap-2 flex-wrap justify-center">
-                {LEAF_NODES["Sports"].map((l) => (
-                  <LeafChip key={l.label} label={l.label} href={l.href} color="#1565c0" />
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* Horizontal connector bar */}
+        <div className="relative flex justify-center mb-0">
+          <div
+            className="absolute top-0 h-px bg-[var(--border-strong)]"
+            style={{ left: "10%", right: "10%" }}
+          />
         </div>
 
-        {/* Row 3: Bottom nodes from Defence */}
-        <div className="flex justify-center mt-2">
-          <div className="flex flex-col items-center">
-            <div className="h-8 w-px bg-gray-300 ml-0" />
-            {/* horizontal bar */}
-            <div className="flex items-start gap-16">
-              {BOTTOM_NODES.map((node, i) => (
-                <div key={node.label} className="flex flex-col items-center">
-                  <div className="h-6 w-px bg-gray-300" />
-                  <OrgNode node={node} size="md" delay={0.3 + i * 0.1} />
-                  <div className="h-4 w-px bg-gray-300" />
-                  <div className="flex flex-col gap-1.5 items-center">
-                    {LEAF_NODES[node.label]?.map((l) => (
-                      <LeafChip
-                        key={l.label}
-                        label={l.label}
-                        href={l.href}
-                        color={node.bg}
-                      />
-                    ))}
-                  </div>
+        {/* Sector columns */}
+        <div className="grid grid-cols-5 gap-3">
+          {NODES.map((node, i) => {
+            const color = SECTOR_COLORS[node.key];
+            return (
+              <motion.div
+                key={node.key}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * i + 0.15, duration: 0.4, ease: "easeOut" }}
+                className="flex flex-col items-center"
+              >
+                {/* Drop line from bar */}
+                <div className="w-px h-7 bg-[var(--border-strong)]" />
+
+                {/* Sector pill */}
+                <button
+                  onClick={() => router.push(node.href)}
+                  className="text-white text-xs font-semibold px-4 py-2.5 rounded-full w-full text-center hover:opacity-90 transition-opacity shadow-sm"
+                  style={{ backgroundColor: color }}
+                >
+                  {node.label}
+                </button>
+
+                {/* Sub-links */}
+                <div className="w-px h-3 bg-[var(--border)]" />
+                <div className="flex flex-col gap-1 items-center w-full">
+                  {node.subs.map((sub) => (
+                    <button
+                      key={sub.label}
+                      onClick={() => router.push(sub.href)}
+                      className="text-[0.65rem] w-full text-center px-2 py-1.5 rounded-lg border transition-all group"
+                      style={{ borderColor: color + "40", color: "var(--muted)" }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLElement).style.backgroundColor = color + "12";
+                        (e.currentTarget as HTMLElement).style.color = color;
+                        (e.currentTarget as HTMLElement).style.borderColor = color + "60";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLElement).style.backgroundColor = "";
+                        (e.currentTarget as HTMLElement).style.color = "var(--muted)";
+                        (e.currentTarget as HTMLElement).style.borderColor = color + "40";
+                      }}
+                    >
+                      {sub.label}
+                    </button>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>
