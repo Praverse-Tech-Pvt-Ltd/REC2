@@ -58,18 +58,28 @@ function LogoCell({
   alt,
   badgeColor = "#1a1a1a",
   role,
+  size = "normal",
 }: {
   name: string;
   src?: string;
   alt?: string;
   badgeColor?: string;
   role?: string;
+  /** "normal" = 32px | "lg" = 52px for small-text / large logos */
+  size?: "normal" | "lg";
+  /** @deprecated — multiply is now applied to all logos */
+  removeBg?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
+
+  const imgClass = size === "lg"
+    ? "h-13 w-auto max-w-[150px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+    : "h-8 w-auto max-w-[110px] object-contain grayscale hover:grayscale-0 transition-all duration-300";
+
   return (
     <div
       className="flex flex-col items-center justify-between gap-1.5 border border-[var(--border)] bg-white px-3 py-3"
-      style={{ borderRadius: "2px", minHeight: "64px" }}
+      style={{ borderRadius: "2px", minHeight: size === "lg" ? "84px" : "68px" }}
     >
       <div className="flex items-center justify-center flex-1 w-full">
         {src && !failed ? (
@@ -77,7 +87,10 @@ function LogoCell({
             src={src}
             alt={alt ?? name}
             onError={() => setFailed(true)}
-            className="h-7 w-auto max-w-[88px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+            className={imgClass}
+            /* multiply on white bg = any white/light logo bg becomes invisible,
+               giving all logos a clean transparent-looking appearance            */
+            style={{ mixBlendMode: "multiply" }}
           />
         ) : (
           <span
@@ -188,17 +201,17 @@ function SailGPPanel() {
   ];
 
   const logos = [
-    { name: "SailGP",                        src: "/SailGP_logo.jpg",                        alt: "SailGP",                 role: "Championship" },
-    { name: "Oracle",                         src: "/Oracle-Logo.png",                        alt: "Oracle",                 role: "Technology Partner" },
-    { name: "Accor / ALL",                    src: "/Accor_logo.jpg",                         alt: "Accor",                  role: "Title Sponsor" },
-    { name: "L'Oréal Groupe",                 src: "/L%27Or%C3%A9al_logo.png",               alt: "L'Oréal",                role: "Official Sponsor" },
-    { name: "DS Automobiles",                 src: "/DS_Automobiles_logo.png",                alt: "DS Automobiles",         role: "Title Partner",     badgeColor: "#1e2a5e" },
-    { name: "Leyton",                         src: "/leyton-logo.png",                        alt: "Leyton",                 role: "Official Sponsor",  badgeColor: "#003f87" },
-    { name: "K-Way",                          src: "/K-Way_logo.png",                         alt: "K-Way",                  role: "Official Partner",  badgeColor: "#cc0000" },
-    { name: "Ares Management",                src: "/Ares_Management_logo.png",               alt: "Ares Management",        role: "Minority Investor", badgeColor: "#1a1a1a" },
-    { name: "Coalition Capital (K. Mbappé)",  src: "/Kylian%20Mbapp%C3%A9.png",              alt: "Coalition Capital",      role: "Investor",          badgeColor: "#0a1a3a" },
-    { name: "Sportsology Capital Partners",   src: "/Sportsology%20Capital%20Partners.png",  alt: "Sportsology Capital",    role: "Investor",          badgeColor: "#2a2a2a" },
-    { name: "SWATI Spentose",                 src: "/SWATI%20Spentose.png",                   alt: "SWATI Spentose",         role: "Strategic Investor",badgeColor: "#3a6a9c" },
+    { name: "SailGP",                        src: "/SailGP_logo.jpg",                        alt: "SailGP",              role: "Championship" },
+    { name: "Oracle",                         src: "/Oracle-Logo.png",                        alt: "Oracle",              role: "Technology Partner", size: "lg" as const },
+    { name: "Accor / ALL",                    src: "/Accor_logo.png",                         alt: "Accor",               role: "Title Sponsor",      size: "lg" as const },
+    { name: "L'Oréal Groupe",                 src: "/L%27Or%C3%A9al_logo.png",               alt: "L'Oréal",             role: "Official Sponsor",   size: "lg" as const },
+    { name: "DS Automobiles",                 src: "/DS_Automobiles_logo.png",                alt: "DS Automobiles",      role: "Title Partner",      size: "lg" as const, badgeColor: "#1e2a5e" },
+    { name: "Leyton",                         src: "/leyton-logo.png",                        alt: "Leyton",              role: "Official Sponsor",   size: "lg" as const, badgeColor: "#003f87" },
+    { name: "K-Way",                          src: "/K-Way_logo.png",                         alt: "K-Way",               role: "Official Partner",   size: "lg" as const, badgeColor: "#cc0000", removeBg: true as const },
+    { name: "Ares Management",                src: "/Ares_Management_logo.png",               alt: "Ares Management",     role: "Minority Investor",  size: "lg" as const, badgeColor: "#1a1a1a" },
+    { name: "Coalition Capital (K. Mbappé)",  src: "/Kylian%20Mbapp%C3%A9.png",              alt: "Coalition Capital",   role: "Investor",           size: "lg" as const, badgeColor: "#0a1a3a" },
+    { name: "Sportsology Capital Partners",   src: "/Sportsology%20Capital%20Partners.png",  alt: "Sportsology Capital", role: "Investor",           size: "lg" as const, badgeColor: "#2a2a2a" },
+    { name: "SWATI Spentose",                 src: "/SWATI%20Spentose.png",                   alt: "SWATI Spentose",      role: "Strategic Investor", size: "lg" as const, badgeColor: "#3a6a9c" },
   ];
 
   const sustainability = [
@@ -262,7 +275,7 @@ function SailGPPanel() {
       {/* Partners */}
       <SectionLabel>Sponsors, Partners &amp; Investors</SectionLabel>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
-        {logos.map((l) => <LogoCell key={l.name} name={l.name} src={l.src} alt={l.alt} badgeColor={l.badgeColor} role={l.role} />)}
+        {logos.map((l) => <LogoCell key={l.name} {...l} />)}
       </div>
 
       {/* Sustainability */}
@@ -596,10 +609,10 @@ function Rec2Callout() {
 /* ─────────────────────────────────────────────────────────────────────────────
    TAB BAR
 ───────────────────────────────────────────────────────────────────────────── */
-const TABS: { key: string; label: string; sub: string; icon: string; accent: string }[] = [
-  { key: "sailgp",   label: "SailGP",    sub: "France Team",      icon: "⛵", accent: C.sailgp.accent },
-  { key: "e1",       label: "E1 Series", sub: "Electric Racing",  icon: "⚡", accent: C.e1.accent },
-  { key: "extremeh", label: "Extreme H", sub: "Hydrogen Racing",  icon: "🏎️", accent: C.extremeh.accent },
+const TABS: { key: string; label: string; sub: string; code: string; accent: string }[] = [
+  { key: "sailgp",   label: "SailGP",    sub: "France Team",     code: "SG", accent: C.sailgp.accent   },
+  { key: "e1",       label: "E1 Series", sub: "Electric Racing", code: "E1", accent: C.e1.accent       },
+  { key: "extremeh", label: "Extreme H", sub: "Hydrogen Racing", code: "EH", accent: C.extremeh.accent },
 ];
 
 function renderPanel(key: string) {
@@ -614,7 +627,7 @@ function renderPanel(key: string) {
 ───────────────────────────────────────────────────────────────────────────── */
 export default function SportsInitiatives() {
   const [active, setActive] = useState("sailgp");
-  const activeTab = TABS.find((t) => t.key === active)!;
+  const _activeTab = TABS.find((t) => t.key === active)!; void _activeTab;
 
   return (
     <FadeUp>
@@ -635,26 +648,59 @@ export default function SportsInitiatives() {
       {/* ── REC2 mission callout ── */}
       <Rec2Callout />
 
-      {/* ── Tab bar ── */}
-      <div className="mt-9 flex flex-col sm:flex-row gap-0 border-b border-[var(--border)]">
+      {/* ── Tab bar — Segmented pill control ── */}
+      <div
+        className="mt-9 flex w-full rounded-xl p-1 gap-0.5"
+        style={{ backgroundColor: "var(--cream-deep)" }}
+        role="tablist"
+      >
         {TABS.map((tab) => {
           const isActive = tab.key === active;
           return (
             <button
               key={tab.key}
+              role="tab"
+              aria-selected={isActive}
               onClick={() => setActive(tab.key)}
-              className="relative flex items-center gap-3 px-5 py-4 text-left transition-all duration-200 outline-none focus-visible:ring-1"
+              className="relative flex-1 flex items-center gap-2.5 px-4 py-3 rounded-lg text-left outline-none focus-visible:ring-2 focus-visible:ring-offset-0 z-10 transition-colors duration-150"
               style={{
-                color: isActive ? tab.accent : "var(--muted)",
-                backgroundColor: isActive ? tab.accent + "07" : "transparent",
-                borderBottom: isActive ? `2px solid ${tab.accent}` : "2px solid transparent",
-                marginBottom: "-1px",
+                color: isActive ? "var(--charcoal)" : "var(--muted)",
               }}
             >
-              <span className="text-[1.05rem] leading-none">{tab.icon}</span>
-              <span>
-                <span className="block text-[0.8125rem] font-semibold leading-tight">{tab.label}</span>
-                <span className="block text-[0.67rem] opacity-65 mt-0.5">{tab.sub}</span>
+              {/* Sliding white pill — shared layoutId gives the spring */}
+              {isActive && (
+                <motion.div
+                  layoutId="active-pill"
+                  className="absolute inset-0 rounded-lg"
+                  style={{
+                    backgroundColor: "#ffffff",
+                    boxShadow: "0 1px 4px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04)",
+                  }}
+                  transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                />
+              )}
+
+              {/* Sport accent dot */}
+              <span
+                className="relative z-10 flex-shrink-0 w-[7px] h-[7px] rounded-full transition-opacity duration-150"
+                style={{
+                  backgroundColor: tab.accent,
+                  opacity: isActive ? 1 : 0.35,
+                }}
+                aria-hidden="true"
+              />
+
+              {/* Label stack */}
+              <span className="relative z-10 min-w-0">
+                <span className="block text-[0.8125rem] font-semibold leading-tight truncate">
+                  {tab.label}
+                </span>
+                <span
+                  className="block text-[0.65rem] mt-[2px] truncate transition-opacity duration-150"
+                  style={{ opacity: isActive ? 0.55 : 0.45 }}
+                >
+                  {tab.sub}
+                </span>
               </span>
             </button>
           );
@@ -669,10 +715,9 @@ export default function SportsInitiatives() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="border border-t-0 border-[var(--border)] bg-white px-6 md:px-8 pt-7 pb-8"
+          className="mt-2 bg-white px-6 md:px-8 pt-7 pb-8 rounded-xl"
           style={{
-            borderRadius: "0 0 2px 2px",
-            borderTop: `3px solid ${activeTab.accent}`,
+            boxShadow: "0 0 0 1px rgba(0,0,0,0.06)",
           }}
         >
           {renderPanel(active)}

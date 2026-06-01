@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
-  Send, CheckCircle, Mail, Globe, ArrowLeft, User, Building2, MessageSquare, ChevronDown,
+  Send, CheckCircle, Mail, ArrowLeft, User, Building2, MessageSquare, ChevronDown,
 } from "lucide-react";
 import FadeUp from "@/components/FadeUp";
 import RevealLine from "@/components/RevealLine";
@@ -24,10 +24,48 @@ const SUBJECTS = [
 
 type FormState = "idle" | "loading" | "success";
 
+// ── Field must live OUTSIDE ContactPage to avoid remount-on-keystroke ──
+function Field({
+  id, label, required, error, children,
+}: {
+  id: string;
+  label: string;
+  required?: boolean;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="label" style={{ color: "var(--charcoal-light)" }}>
+        {label}
+        {required && <span style={{ color: "var(--sage)" }} className="ml-0.5">*</span>}
+      </label>
+      {children}
+      <AnimatePresence>
+        {error && (
+          <motion.p
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            className="text-[0.75rem] text-red-500/80"
+          >
+            {error}
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// ── Shared input class helper (pure function, no hooks) ──
+function inputCls(error?: string) {
+  return `w-full bg-[var(--white)] border text-[0.875rem] text-[var(--charcoal)] px-4 py-3 outline-none transition-all duration-200 focus:border-[var(--sage)] focus:ring-2 focus:ring-[var(--sage)]/10 placeholder:text-[var(--muted)] ${
+    error ? "border-red-400/60" : "border-[var(--border)]"
+  }`;
+}
+
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    name: "", email: "", company: "", subject: "", message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", company: "", subject: "", message: "" });
   const [state, setState] = useState<FormState>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -46,43 +84,14 @@ export default function ContactPage() {
     e.preventDefault();
     if (!validate()) return;
     setState("loading");
-    // Simulate network delay — swap for real API/Formspree/Resend call
     await new Promise((r) => setTimeout(r, 1600));
     setState("success");
   };
 
-  const Field = ({
-    id, label, required, children,
-  }: { id: string; label: string; required?: boolean; children: React.ReactNode }) => (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="label" style={{ color: "var(--charcoal-light)" }}>
-        {label}{required && <span style={{ color: "var(--sage)" }} className="ml-0.5">*</span>}
-      </label>
-      {children}
-      <AnimatePresence>
-        {errors[id] && (
-          <motion.p
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            className="text-[0.75rem] text-red-500/80"
-          >
-            {errors[id]}
-          </motion.p>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-
-  const inputClass = (id: string) =>
-    `w-full bg-[var(--white)] border text-[0.875rem] text-[var(--charcoal)] px-4 py-3 outline-none transition-all duration-200 focus:border-[var(--sage)] focus:ring-2 focus:ring-[var(--sage)]/10 placeholder:text-[var(--muted)] ${
-      errors[id] ? "border-red-400/60" : "border-[var(--border)]"
-    }`;
-
   return (
     <div className="min-h-screen bg-[var(--cream)] pt-20">
 
-      {/* Header breadcrumb */}
+      {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8 pb-0">
         <Link
           href="/"
@@ -96,7 +105,7 @@ export default function ContactPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid lg:grid-cols-[2fr_3fr] gap-16 items-start">
 
-          {/* ── LEFT: Info panel ── */}
+          {/* ── LEFT ── */}
           <FadeUp>
             <div className="lg:sticky lg:top-24">
               <p className="label text-[var(--muted)] mb-4">Get in touch</p>
@@ -113,12 +122,9 @@ export default function ContactPage() {
                 we&apos;d love to hear from you.
               </p>
 
-              {/* Contact details */}
+              {/* Email only */}
               <div className="space-y-4">
-                <a
-                  href="mailto:V@v-group.in"
-                  className="flex items-center gap-3 group"
-                >
+                <a href="mailto:V@v-group.in" className="flex items-center gap-3 group">
                   <span
                     className="w-9 h-9 rounded-sm flex items-center justify-center flex-shrink-0 transition-colors"
                     style={{ backgroundColor: "var(--sage-pale)" }}
@@ -129,26 +135,9 @@ export default function ContactPage() {
                     V@v-group.in
                   </span>
                 </a>
-
-                <a
-                  href="https://rec2.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 group"
-                >
-                  <span
-                    className="w-9 h-9 rounded-sm flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: "var(--sage-pale)" }}
-                  >
-                    <Globe size={15} strokeWidth={1.6} style={{ color: "var(--sage)" }} />
-                  </span>
-                  <span className="text-[0.875rem] text-[var(--charcoal-light)] group-hover:text-[var(--charcoal)] transition-colors">
-                    rec2.org
-                  </span>
-                </a>
               </div>
 
-              {/* Decorative vertical rule with sector pills */}
+              {/* Sector pills */}
               <div className="mt-12 pt-10 border-t border-[var(--border)]">
                 <p className="label text-[var(--muted)] mb-4">Our sectors</p>
                 <div className="flex flex-wrap gap-2">
@@ -195,7 +184,11 @@ export default function ContactPage() {
                     respond to your enquiry within 2 business days.
                   </p>
                   <button
-                    onClick={() => { setState("idle"); setForm({ name:"", email:"", company:"", subject:"", message:"" }); }}
+                    onClick={() => {
+                      setState("idle");
+                      setForm({ name: "", email: "", company: "", subject: "", message: "" });
+                      setErrors({});
+                    }}
                     className="label text-[var(--sage)] hover:text-[var(--sage-dark)] transition-colors flex items-center gap-1.5"
                   >
                     <ArrowLeft size={12} /> Send another message
@@ -210,33 +203,33 @@ export default function ContactPage() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  {/* Name + Company row */}
+                  {/* Name + Company */}
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <Field id="name" label="Full Name" required>
+                    <Field id="name" label="Full Name" required error={errors.name}>
                       <div className="relative">
                         <User size={14} strokeWidth={1.6} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--muted)] pointer-events-none" />
                         <input
                           id="name"
                           type="text"
                           value={form.name}
-                          onChange={(e) => setForm({ ...form, name: e.target.value })}
-                          placeholder="Vishal Jajodia"
-                          className={inputClass("name") + " pl-9"}
+                          onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                          placeholder="Xyz"
+                          className={inputCls(errors.name) + " pl-9"}
                           autoComplete="name"
                         />
                       </div>
                     </Field>
 
-                    <Field id="company" label="Company">
+                    <Field id="company" label="Company" error={errors.company}>
                       <div className="relative">
                         <Building2 size={14} strokeWidth={1.6} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--muted)] pointer-events-none" />
                         <input
                           id="company"
                           type="text"
                           value={form.company}
-                          onChange={(e) => setForm({ ...form, company: e.target.value })}
-                          placeholder="V Group"
-                          className={inputClass("company") + " pl-9"}
+                          onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
+                          placeholder="REC2"
+                          className={inputCls(errors.company) + " pl-9"}
                           autoComplete="organization"
                         />
                       </div>
@@ -244,29 +237,29 @@ export default function ContactPage() {
                   </div>
 
                   {/* Email */}
-                  <Field id="email" label="Email Address" required>
+                  <Field id="email" label="Email Address" required error={errors.email}>
                     <div className="relative">
                       <Mail size={14} strokeWidth={1.6} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--muted)] pointer-events-none" />
                       <input
                         id="email"
                         type="email"
                         value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                         placeholder="you@company.com"
-                        className={inputClass("email") + " pl-9"}
+                        className={inputCls(errors.email) + " pl-9"}
                         autoComplete="email"
                       />
                     </div>
                   </Field>
 
                   {/* Subject */}
-                  <Field id="subject" label="Subject" required>
+                  <Field id="subject" label="Subject" required error={errors.subject}>
                     <div className="relative">
                       <select
                         id="subject"
                         value={form.subject}
-                        onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                        className={inputClass("subject") + " appearance-none pr-9 cursor-pointer"}
+                        onChange={(e) => setForm((f) => ({ ...f, subject: e.target.value }))}
+                        className={inputCls(errors.subject) + " appearance-none pr-9 cursor-pointer"}
                       >
                         <option value="">Select a topic...</option>
                         {SUBJECTS.map((s) => <option key={s} value={s}>{s}</option>)}
@@ -276,21 +269,20 @@ export default function ContactPage() {
                   </Field>
 
                   {/* Message */}
-                  <Field id="message" label="Message" required>
+                  <Field id="message" label="Message" required error={errors.message}>
                     <div className="relative">
                       <MessageSquare size={14} strokeWidth={1.6} className="absolute left-3.5 top-4 text-[var(--muted)] pointer-events-none" />
                       <textarea
                         id="message"
                         rows={5}
                         value={form.message}
-                        onChange={(e) => setForm({ ...form, message: e.target.value })}
+                        onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                         placeholder="Tell us about your project, interest or question..."
-                        className={inputClass("message") + " pl-9 resize-none leading-relaxed"}
+                        className={inputCls(errors.message) + " pl-9 resize-none leading-relaxed"}
                       />
                     </div>
                   </Field>
 
-                  {/* Privacy note */}
                   <p className="text-[0.75rem] text-[var(--muted)] leading-relaxed">
                     By submitting this form you agree to be contacted by the REC 2 team.
                     We do not share your information with third parties.
@@ -303,10 +295,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
                     className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 text-[0.875rem] font-medium text-white disabled:opacity-70 transition-colors"
-                    style={{
-                      backgroundColor: "var(--sage)",
-                      borderRadius: "2px",
-                    }}
+                    style={{ backgroundColor: "var(--sage)", borderRadius: "2px" }}
                     onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--sage-dark)")}
                     onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--sage)")}
                   >
