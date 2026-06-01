@@ -84,8 +84,8 @@ export default function SectorHero({ title, subtitle, sector, breadcrumb }: Prop
             <Link href="/" className="label text-[var(--muted)] hover:text-[var(--charcoal)] transition-colors">
               Home
             </Link>
-            {breadcrumb.map((b) => (
-              <span key={b.href} className="flex items-center gap-2">
+            {breadcrumb.map((b, i) => (
+              <span key={`${b.label}-${i}`} className="flex items-center gap-2">
                 <span className="label text-[var(--border-strong)]">/</span>
                 <Link href={b.href} className="label text-[var(--muted)] hover:text-[var(--charcoal)] transition-colors capitalize">
                   {b.label}

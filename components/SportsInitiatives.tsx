@@ -72,29 +72,31 @@ function LogoCell({
 }) {
   const [failed, setFailed] = useState(false);
 
+  // Mobile/tablet: fill width, cap height — logo always fills its cell
+  // Desktop (md+): fixed height, auto width — unchanged from before
+  // w-full + max-h at every breakpoint: logo always fills cell width,
+  // aspect ratio preserved by object-contain, never overflows the card.
   const imgClass = size === "lg"
-    ? "h-13 w-auto max-w-[150px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
-    : "h-8 w-auto max-w-[110px] object-contain grayscale hover:grayscale-0 transition-all duration-300";
+    ? "w-full h-auto max-h-[48px] sm:max-h-[54px] md:max-h-[62px] lg:max-h-[70px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
+    : "w-full h-auto max-h-[34px] sm:max-h-[38px] md:max-h-[44px] lg:max-h-[50px] object-contain grayscale hover:grayscale-0 transition-all duration-300";
 
   return (
     <div
-      className="flex flex-col items-center justify-between gap-1.5 border border-[var(--border)] bg-white px-3 py-3"
-      style={{ borderRadius: "2px", minHeight: size === "lg" ? "84px" : "68px" }}
+      className="flex flex-col items-center justify-between gap-1.5 border border-[var(--border)] bg-white px-2.5 py-3 sm:px-3 sm:py-3"
+      style={{ borderRadius: "2px", minHeight: size === "lg" ? "76px" : "62px" }}
     >
-      <div className="flex items-center justify-center flex-1 w-full">
+      <div className="flex items-center justify-center flex-1 w-full px-1">
         {src && !failed ? (
           <img
             src={src}
             alt={alt ?? name}
             onError={() => setFailed(true)}
             className={imgClass}
-            /* multiply on white bg = any white/light logo bg becomes invisible,
-               giving all logos a clean transparent-looking appearance            */
             style={{ mixBlendMode: "multiply" }}
           />
         ) : (
           <span
-            className="text-[0.65rem] font-semibold tracking-wide text-center leading-snug px-1"
+            className="text-[0.62rem] sm:text-[0.65rem] font-semibold tracking-wide text-center leading-snug px-1"
             style={{ color: badgeColor }}
           >
             {name}
@@ -102,7 +104,7 @@ function LogoCell({
         )}
       </div>
       {role && (
-        <span className="text-[0.6rem] text-[var(--muted)] text-center leading-tight block w-full truncate">
+        <span className="text-[0.55rem] sm:text-[0.6rem] text-[var(--muted)] text-center leading-tight block w-full line-clamp-2">
           {role}
         </span>
       )}
@@ -274,7 +276,7 @@ function SailGPPanel() {
 
       {/* Partners */}
       <SectionLabel>Sponsors, Partners &amp; Investors</SectionLabel>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
         {logos.map((l) => <LogoCell key={l.name} {...l} />)}
       </div>
 
@@ -403,7 +405,7 @@ function E1Panel() {
 
       {/* Partners */}
       <SectionLabel>Investors &amp; Partners</SectionLabel>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
         {logos.map((l) => <LogoCell key={l.name} {...l} />)}
       </div>
       <p className="text-[0.7rem] text-[var(--muted)] mt-2 leading-relaxed">
@@ -566,7 +568,7 @@ function ExtremeHPanel() {
 
       {/* Partners */}
       <SectionLabel>Partners &amp; Backers</SectionLabel>
-      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
         {logos.map((l) => <LogoCell key={l.name} {...l} />)}
       </div>
 
