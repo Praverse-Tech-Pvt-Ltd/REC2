@@ -126,12 +126,12 @@ export default function Navbar() {
 
           {/* Right CTAs */}
           <div className="hidden md:flex items-center gap-2">
-            <a
-              href="mailto:V@v-group.in"
+            <Link
+              href="/contact"
               className="text-[0.78rem] font-medium px-4 py-1.5 border border-[var(--border-strong)] text-[var(--charcoal)] hover:bg-[var(--charcoal)] hover:text-white hover:border-[var(--charcoal)] rounded-full transition-all duration-200"
             >
               Contact
-            </a>
+            </Link>
             {/* <Link
               href="/energy/hydrogen-hybrid"
               className="text-[0.78rem] font-medium px-4 py-1.5 bg-[var(--sage)] text-white hover:bg-[var(--sage-dark)] rounded-full transition-all duration-200"

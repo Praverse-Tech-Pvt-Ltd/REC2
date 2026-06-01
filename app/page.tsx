@@ -6,8 +6,10 @@ import FadeUp from "@/components/FadeUp";
 import SplitText from "@/components/SplitText";
 import CountUp from "@/components/CountUp";
 import RevealLine from "@/components/RevealLine";
+import Image from "next/image";
 import SilkBackground from "@/components/SilkBackground";
 import AnimatedDotGrid from "@/components/AnimatedDotGrid";
+import CurvedLoop from "@/components/CurvedLoop";
 import {
   SECTOR_COLORS,
   SECTOR_DESCRIPTIONS,
@@ -16,16 +18,27 @@ import {
 } from "@/lib/data";
 
 const SECTORS: { key: SectorKey; label: string; href: string }[] = [
-  { key: "energy",    label: "Energy",    href: "/energy/hydrogen-hybrid" },
+  { key: "energy",    label: "Energy",    href: "/energy/solar" },
+  { key: "recycle",   label: "Recycle",   href: "/recycle/battery-recycling" },
   { key: "materials", label: "Materials", href: "/materials/metal-alloys" },
   { key: "chips",     label: "Chips",     href: "/chips/photonics" },
   { key: "robotics",  label: "Robotics",  href: "/robotics/flow-chemistry" },
   { key: "sports",    label: "Sports",    href: "/sports/investments" },
 ];
 
+// Photos in /public — watermark lives bottom-right, so object-contain preserves it fully
+const SECTOR_IMAGES: Record<SectorKey, string> = {
+  energy:    "/solar.png",
+  recycle:   "/recycle.png",
+  materials: "/materials.png",
+  chips:     "/chips.png",
+  robotics:  "/robotics.png",
+  sports:    "/sports final.png",
+};
+
 const STATS = [
-  { n: 5,    suffix: "",  label: "Sectors" },
-  { n: 15,   suffix: "",  label: "Verticals" },
+  { n: 6,    suffix: "",  label: "Sectors" },
+  { n: 17,   suffix: "",  label: "Verticals" },
   { n: 2030, suffix: "",  label: "Horizon" },
   { n: 6,    suffix: "",  label: "Team Members" },
 ];
@@ -163,20 +176,33 @@ export default function HomePage() {
               <FadeUp key={sector.key} delay={i * 0.06}>
                 <Link href={sector.href} className="block h-full">
                   <motion.div
-                    whileHover={{ y: -3, boxShadow: `0 8px 32px ${color}18` }}
+                    whileHover={{ y: -3, boxShadow: `0 10px 36px ${color}1a` }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="relative bg-[var(--white)] border border-[var(--border)] p-6 overflow-hidden cursor-pointer h-full group"
-                    style={{ borderRadius: "2px", borderLeft: `3px solid ${color}45` }}
+                    className="relative bg-[var(--white)] border border-[var(--border)] overflow-hidden cursor-pointer h-full group flex flex-col"
+                    style={{ borderRadius: "2px" }}
                   >
-                    {/* Ghost number */}
-                    <span
-                      className="absolute top-4 right-5 font-display italic leading-none select-none pointer-events-none transition-opacity duration-300 group-hover:opacity-15"
-                      style={{ fontSize: "3.5rem", color, opacity: 0.07 }}
+                    {/* Sector photo — object-contain keeps watermark fully visible */}
+                    <div
+                      className="relative w-full overflow-hidden border-b border-[var(--border)]"
+                      style={{ height: "172px", backgroundColor: color + "08" }}
                     >
-                      {num}
-                    </span>
+                      <Image
+                        src={SECTOR_IMAGES[sector.key]}
+                        alt={`${sector.label} sector`}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      {/* Subtle sector number overlay — top-right */}
+                      <span
+                        className="absolute top-2.5 right-3 font-display italic leading-none select-none pointer-events-none z-10"
+                        style={{ fontSize: "1.8rem", color, opacity: 0.18 }}
+                      >
+                        {num}
+                      </span>
+                    </div>
 
-                    {/* Sector color accent line — animates in on hover */}
+                    {/* Bottom accent line draws on hover */}
                     <motion.div
                       className="absolute bottom-0 left-0 right-0 h-[2px]"
                       style={{ backgroundColor: color }}
@@ -185,15 +211,15 @@ export default function HomePage() {
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     />
 
-                    <div className="relative z-10">
-                      <p className="label mb-4" style={{ color }}>
+                    <div className="relative z-10 p-5 flex flex-col flex-1">
+                      <p className="label mb-3" style={{ color }}>
                         {num} — {sector.label}
                       </p>
-                      <p className="font-display text-[1.05rem] text-[var(--charcoal)] leading-snug mb-5">
+                      <p className="font-display text-[0.975rem] text-[var(--charcoal)] leading-snug mb-4 flex-1">
                         {SECTOR_DESCRIPTIONS[sector.key]}
                       </p>
                       <span
-                        className="inline-flex items-center gap-1 text-[0.8rem] font-medium group-hover:gap-2.5 transition-all duration-200"
+                        className="inline-flex items-center gap-1 text-[0.8rem] font-medium group-hover:gap-2 transition-all duration-200"
                         style={{ color }}
                       >
                         Explore →
@@ -207,20 +233,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── MARQUEE — ReactBits inspired scrolling ticker ── */}
-      <section className="bg-[var(--charcoal)] py-3.5 overflow-hidden">
-        <div
-          className="flex gap-10 whitespace-nowrap"
-          style={{ animation: "marquee 32s linear infinite" }}
-        >
-          {[...Array(4)].flatMap((_, rep) =>
-            ["Renewable Energy","Carbon Credits","Innovation","Sustainable Future","Deep Tech","Hydrogen","Photonics","Biochips","Rare Metals","Automated Reactors","Sports Investments"].map((item) => (
-              <span key={`${rep}-${item}`} className="label text-white/20 flex-shrink-0 tracking-[0.14em]">
-                {item}<span className="mx-4 text-white/10">·</span>
-              </span>
-            ))
-          )}
-        </div>
+      {/* ── CURVED LOOP — ReactBits CurvedLoop marquee ── */}
+      <section
+        className="overflow-hidden"
+        style={{ backgroundColor: "var(--charcoal)" }}
+      >
+        <CurvedLoop
+          marqueeText="Carbon Credits ✦ Innovation ✦ Sustainable Future ✦ Deep Tech ✦ Hydrogen ✦ Photonics ✦ Biochips ✦ Rare Metals ✦ Automated Reactors ✦ "
+          speed={1.4}
+          curveAmount={90}
+          direction="left"
+          interactive={true}
+          className="curved-loop-text"
+        />
+        {/* Scoped fill + font for the SVG text */}
+        <style>{`
+          .curved-loop-text {
+            font-size: 1.9rem;
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-style: italic;
+            fill: rgba(255,255,255,0.22);
+            text-transform: none;
+            letter-spacing: 0.01em;
+          }
+          .curved-loop-text:hover {
+            fill: rgba(255,255,255,0.32);
+            transition: fill 0.3s ease;
+          }
+          @media (max-width: 640px) {
+            .curved-loop-text {
+              font-size: 2.8rem;
+            }
+          }
+        `}</style>
       </section>
 
       {/* ── FOOTER ── */}
