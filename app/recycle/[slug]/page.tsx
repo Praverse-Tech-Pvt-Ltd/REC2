@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const titles: Record<string, string> = {
     "battery-recycling": "Battery Recycling — REC 2",
     "solar-recycling":   "Solar Recycling — REC 2",
-    "aswm":              "Advanced Solid Waste Management — REC 2",
+    "aswm":              "Alibaugh Solid Waste Management — REC 2",
   };
   return { title: titles[params.slug] ?? "Recycle — REC 2" };
 }

@@ -56,6 +56,14 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-0">
+            {/* Mechatronics — first item, anchor link to homepage section */}
+            <Link
+              href="/#mechatronics"
+              className="relative px-4 py-[18px] text-[0.8rem] font-medium transition-colors text-[var(--charcoal-light)] hover:text-[var(--charcoal)]"
+            >
+              Mechatronics
+            </Link>
+
             {NAV_ITEMS.map((nav) => {
               const active = isActive(`/${nav.label.toLowerCase()}`);
               return (
@@ -162,6 +170,13 @@ export default function Navbar() {
             className="md:hidden border-t border-[var(--border)] bg-[var(--cream)] overflow-hidden"
           >
             <div className="px-6 py-4 space-y-0.5">
+              <Link
+                href="/#mechatronics"
+                className="block py-3 text-[0.875rem] font-medium text-[var(--charcoal)] border-b border-[var(--border)] mb-1"
+              >
+                Mechatronics
+              </Link>
+
               {NAV_ITEMS.map((nav) => (
                 <div key={nav.label}>
                   <button

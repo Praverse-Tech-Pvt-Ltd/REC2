@@ -16,7 +16,7 @@ import {
   Wrench, TrendingUp, Shield, Rocket, Settings, Monitor, Cpu,
   Lightbulb, Eye, Lock, Target, Microscope, Pill, Heart, AlertTriangle,
   Bot, Flame, BarChart2, Droplets, Atom, Wind, Car, Gamepad2, Users,
-  Magnet, Database, Layers,
+  Magnet, Database, Layers, Flag,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -34,7 +34,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   "⛵": Wind,        "🏎️": Car,         "🎮": Gamepad2,    "🤝": Users,
   "🌍": Globe,      "🌱": Leaf,        "🏟️": Building2,  "👟": Layers,
   "🔩": Wrench,     "♨️": Thermometer, "🧪": FlaskConical,"⚗️": FlaskConical,
-  "🔄": RefreshCw,  "📦": Database,    "🏥": Cpu,
+  "🔄": RefreshCw,  "📦": Database,    "🏥": Cpu,        "🏁": Flag,
 };
 
 type Application = { icon: string; label: string };

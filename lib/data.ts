@@ -14,21 +14,21 @@ export type SectorKey =
   | "sports";
 
 export const SECTOR_COLORS: Record<SectorKey, string> = {
-  energy:    "#5f8a62",
-  recycle:   "#6b8a3e",
+  energy: "#5f8a62",
+  recycle: "#6b8a3e",
   materials: "#7260a0",
-  chips:     "#9c6038",
-  robotics:  "#3a7d74",
-  sports:    "#3a6a9c",
+  chips: "#9c6038",
+  robotics: "#3a7d74",
+  sports: "#3a6a9c",
 };
 
 export const SECTOR_GRADIENTS: Record<SectorKey, string> = {
-  energy:    "from-green-900 to-green-700",
-  recycle:   "from-lime-900 to-lime-700",
+  energy: "from-green-900 to-green-700",
+  recycle: "from-lime-900 to-lime-700",
   materials: "from-purple-950 to-purple-800",
-  chips:     "from-orange-950 to-orange-700",
-  robotics:  "from-teal-950 to-teal-700",
-  sports:    "from-blue-950 to-blue-800",
+  chips: "from-orange-950 to-orange-700",
+  robotics: "from-teal-950 to-teal-700",
+  sports: "from-blue-950 to-blue-800",
 };
 
 export const PEOPLE: Record<string, Person> = {
@@ -41,7 +41,7 @@ export const PEOPLE: Record<string, Person> = {
   fraser: {
     name: "Fraser Castellino",
     email: "fraser.castellino@v-group.in",
-    role: "Sports Director",
+    role: "CEO",
     initials: "FC",
   },
   vivek: {
@@ -53,8 +53,14 @@ export const PEOPLE: Record<string, Person> = {
   rishi: {
     name: "Rishi Tailor",
     email: "rishi.tailor@swatispentose.com",
-    role: "Materials & Robotics Lead",
+    role: "Robotics Lead",
     initials: "RT",
+  },
+  mukesh: {
+    name: "Mukesh Sharma",
+    email: "mukesh.sharma@swatispentose.com",
+    role: "Materials Lead",
+    initials: "MS",
   },
   rushabh: {
     name: "Rushabh Jain",
@@ -65,7 +71,7 @@ export const PEOPLE: Record<string, Person> = {
   pratham: {
     name: "Pratham Shrivastav",
     email: "pratham.shrivastav@v-group.in",
-    role: "Deep Tech Lead",
+    role: "TECHNICAL DIRECTOR",
     initials: "PS",
   },
 };
@@ -108,11 +114,11 @@ export const PAGES: Record<string, PageData> = {
       { icon: "📊", label: "Carbon Credit Generation" },
       { icon: "💱", label: "Peer-to-Peer Trading" },
     ],
-    team: ["vishal"],
+    team: ["vishal", "fraser", "vivek"],
     related: [
-      { label: "Hydrogen",          href: "/energy/hydrogen" },
-      { label: "Hybrid",            href: "/energy/hybrid" },
-      { label: "Solar Recycling",   href: "/recycle/solar-recycling" },
+      { label: "Hydrogen", href: "/energy/hydrogen" },
+      { label: "Hybrid", href: "/energy/hybrid" },
+      { label: "Solar Recycling", href: "/recycle/solar-recycling" },
     ],
   },
 
@@ -140,8 +146,8 @@ export const PAGES: Record<string, PageData> = {
     ],
     team: ["vishal"],
     related: [
-      { label: "Solar",             href: "/energy/solar" },
-      { label: "Hybrid",            href: "/energy/hybrid" },
+      { label: "Solar", href: "/energy/solar" },
+      { label: "Hybrid", href: "/energy/hybrid" },
       { label: "Battery Recycling", href: "/recycle/battery-recycling" },
     ],
   },
@@ -170,9 +176,9 @@ export const PAGES: Record<string, PageData> = {
     ],
     team: ["vishal"],
     related: [
-      { label: "Solar",    href: "/energy/solar" },
+      { label: "Solar", href: "/energy/solar" },
       { label: "Hydrogen", href: "/energy/hydrogen" },
-      { label: "SMR",      href: "/materials/smr" },
+      { label: "SMR", href: "/materials/smr" },
     ],
   },
 
@@ -200,11 +206,11 @@ export const PAGES: Record<string, PageData> = {
       { icon: "🌱", label: "Carbon Footprint Reduction" },
       { icon: "📦", label: "Battery Logistics" },
     ],
-    team: ["vishal"],
+    team: ["vishal", "fraser", "vivek"],
     related: [
       { label: "Solar Recycling", href: "/recycle/solar-recycling" },
-      { label: "ASWM",            href: "/recycle/aswm" },
-      { label: "Rare Metals",     href: "/materials/rare-metals" },
+      { label: "ASWM", href: "/recycle/aswm" },
+      { label: "Rare Metals", href: "/materials/rare-metals" },
     ],
   },
 
@@ -233,19 +239,19 @@ export const PAGES: Record<string, PageData> = {
     team: ["vishal"],
     related: [
       { label: "Battery Recycling", href: "/recycle/battery-recycling" },
-      { label: "ASWM",             href: "/recycle/aswm" },
-      { label: "Solar Energy",     href: "/energy/solar" },
+      { label: "ASWM", href: "/recycle/aswm" },
+      { label: "Solar Energy", href: "/energy/solar" },
     ],
   },
 
   "recycle/aswm": {
-    title: "Advanced Solid Waste Management",
+    title: "Alibaugh Solid Waste Management",
     subtitle: "Converting waste streams into energy, materials and value",
     sector: "recycle",
     overview: [
-      "Advanced Solid Waste Management (ASWM) encompasses the systematic collection, processing, valorisation and safe disposal of solid waste streams from municipal, industrial and construction sources. REC 2 approaches ASWM through a hierarchy of intervention — reduce, reuse, recover, recycle — deploying technologies that extract maximum value from waste before any residual material reaches landfill.",
+      "Alibaugh Solid Waste Management (ASWM) encompasses the systematic collection, processing, valorisation and safe disposal of solid waste streams from municipal, industrial and construction sources. Anchored by REC 2's flagship facility in Alibaugh, Maharashtra, ASWM approaches waste through a hierarchy of intervention — reduce, reuse, recover, recycle — deploying technologies that extract maximum value from waste before any residual material reaches landfill.",
       "REC 2's ASWM thesis centres on three converging technologies: Mechanical Biological Treatment (MBT) for sorting and stabilising mixed municipal waste; thermal conversion — including pyrolysis and gasification — for energy recovery from non-recyclable fractions; and anaerobic digestion for organic waste, producing biogas for power and heat alongside nutrient-rich digestate for agriculture. Together these pathways can divert over 90% of incoming waste from landfill while generating clean energy and recovered materials.",
-      "Policy is a critical driver of ASWM economics. Extended Producer Responsibility (EPR) schemes are spreading across Asia, Africa and Latin America — shifting the cost of waste management to producers and creating guaranteed revenue streams for compliant recyclers. REC 2's policy engagement across these markets positions us ahead of regulatory mandates, securing first-mover advantage in waste infrastructure concessions.",
+      "Policy is a critical driver of ASWM economics. Extended Producer Responsibility (EPR) schemes are spreading across Asia, Africa and Latin America — shifting the cost of waste management to producers and creating guaranteed revenue streams for compliant recyclers. REC 2's policy engagement across these markets, anchored by the Alibaugh facility's operating track record, positions us ahead of regulatory mandates, securing first-mover advantage in waste infrastructure concessions.",
     ],
     whyRec2: [
       "Global solid waste generation will reach 3.4 billion tonnes annually by 2050. Waste-to-energy and materials recovery from ASWM is a $530B+ market growing at 6% CAGR, with the highest growth in emerging markets where REC 2 is already active.",
@@ -263,8 +269,8 @@ export const PAGES: Record<string, PageData> = {
     team: ["vishal"],
     related: [
       { label: "Battery Recycling", href: "/recycle/battery-recycling" },
-      { label: "Solar Recycling",   href: "/recycle/solar-recycling" },
-      { label: "Flow Chemistry",    href: "/robotics/flow-chemistry" },
+      { label: "Solar Recycling", href: "/recycle/solar-recycling" },
+      { label: "Flow Chemistry", href: "/robotics/flow-chemistry" },
     ],
   },
 
@@ -322,7 +328,7 @@ export const PAGES: Record<string, PageData> = {
       { icon: "🏥", label: "Medical Implants" },
       { icon: "⚡", label: "Energy Equipment" },
     ],
-    team: ["vishal", "rishi", "rushabh"],
+    team: ["vishal", "mukesh", "rushabh"],
     related: [
       { label: "Rare Metals", href: "/materials/rare-metals" },
       { label: "SMR", href: "/materials/smr" },
@@ -352,7 +358,7 @@ export const PAGES: Record<string, PageData> = {
       { icon: "📡", label: "Defence Electronics" },
       { icon: "🌍", label: "Urban Mining" },
     ],
-    team: ["vishal", "rishi", "rushabh"],
+    team: ["vishal", "mukesh", "rushabh"],
     related: [
       { label: "Metal Alloys", href: "/materials/metal-alloys" },
       { label: "SMR", href: "/materials/smr" },
@@ -361,7 +367,7 @@ export const PAGES: Record<string, PageData> = {
   },
 
   "materials/smr": {
-    title: "Small Nuclear Reactors",
+    title: "Small Modular Reactors",
     subtitle: "Modular clean energy for the 21st century",
     sector: "materials",
     overview: [
@@ -382,7 +388,7 @@ export const PAGES: Record<string, PageData> = {
       { icon: "💧", label: "SMR-Hydrogen Integration" },
       { icon: "🛡️", label: "Nuclear Waste Management" },
     ],
-    team: ["vishal", "rishi", "rushabh"],
+    team: ["vishal", "mukesh", "rushabh"],
     related: [
       { label: "Metal Alloys", href: "/materials/metal-alloys" },
       { label: "Hydrogen + Hybrid", href: "/energy/hydrogen-hybrid" },
@@ -442,7 +448,7 @@ export const PAGES: Record<string, PageData> = {
       { icon: "⚠️", label: "Biodefence Detection" },
       { icon: "🌿", label: "Environmental Biosensing" },
     ],
-    team: ["vishal"],
+    team: ["vishal", "pratham"],
     related: [
       { label: "Photonics", href: "/chips/photonics" },
       { label: "Flow Chemistry", href: "/robotics/flow-chemistry" },
@@ -528,7 +534,7 @@ export const PAGES: Record<string, PageData> = {
       { icon: "⛵", label: "SailGP – French Team" },
       { icon: "⚡", label: "E1 Electric Racing" },
       { icon: "🏎️", label: "Extreme H Racing" },
-      { icon: "📊", label: "Sports Analytics" },
+      { icon: "🏁", label: "Formula E" },
       { icon: "🌍", label: "Emerging Market Sports" },
       { icon: "🎮", label: "Fan Engagement Tech" },
     ],
@@ -589,9 +595,9 @@ export const NAV_ITEMS = [
     color: "#5f8a62",
     href: "/energy/solar",
     items: [
-      { label: "Solar",    href: "/energy/solar" },
+      { label: "Solar", href: "/energy/solar" },
       { label: "Hydrogen", href: "/energy/hydrogen" },
-      { label: "Hybrid",   href: "/energy/hybrid" },
+      { label: "Hybrid", href: "/energy/hybrid" },
     ],
   },
   {
@@ -600,8 +606,8 @@ export const NAV_ITEMS = [
     href: "/recycle/battery-recycling",
     items: [
       { label: "Battery Recycling", href: "/recycle/battery-recycling" },
-      { label: "Solar Recycling",   href: "/recycle/solar-recycling" },
-      { label: "ASWM",              href: "/recycle/aswm" },
+      { label: "Solar Recycling", href: "/recycle/solar-recycling" },
+      { label: "Solid Waste", href: "/recycle/aswm" },
     ],
   },
   {
@@ -610,8 +616,8 @@ export const NAV_ITEMS = [
     href: "/materials/metal-alloys",
     items: [
       { label: "Metal Alloys", href: "/materials/metal-alloys" },
-      { label: "Rare Metals",  href: "/materials/rare-metals" },
-      { label: "SMR",          href: "/materials/smr" },
+      { label: "Rare Metals", href: "/materials/rare-metals" },
+      { label: "SMR", href: "/materials/smr" },
     ],
   },
   {
@@ -620,7 +626,7 @@ export const NAV_ITEMS = [
     href: "/chips/photonics",
     items: [
       { label: "Photonics", href: "/chips/photonics" },
-      { label: "Biochips",  href: "/chips/biochips" },
+      { label: "Biochips", href: "/chips/biochips" },
     ],
   },
   {
@@ -628,7 +634,7 @@ export const NAV_ITEMS = [
     color: "#3a7d74",
     href: "/robotics/flow-chemistry",
     items: [
-      { label: "Flow Chemistry",     href: "/robotics/flow-chemistry" },
+      { label: "Flow Chemistry", href: "/robotics/flow-chemistry" },
       { label: "Automated Reactors", href: "/robotics/automated-reactors" },
     ],
   },
@@ -637,7 +643,7 @@ export const NAV_ITEMS = [
     color: "#3a6a9c",
     href: "/sports/investments",
     items: [
-      { label: "Sports Investments",  href: "/sports/investments" },
+      { label: "Sports Investments", href: "/sports/investments" },
       { label: "Sports Partnerships", href: "/sports/partnerships" },
     ],
   },
@@ -659,19 +665,19 @@ export const SECTOR_DESCRIPTIONS: Record<SectorKey, string> = {
 };
 
 export const SECTOR_NUMBERS: Record<SectorKey, string> = {
-  energy:    "01",
-  recycle:   "02",
+  energy: "01",
+  recycle: "02",
   materials: "03",
-  chips:     "04",
-  robotics:  "05",
-  sports:    "06",
+  chips: "04",
+  robotics: "05",
+  sports: "06",
 };
 
 export const SECTOR_ICONS: Record<SectorKey, string> = {
-  energy:    "⚡",
-  recycle:   "♻",
+  energy: "⚡",
+  recycle: "♻",
   materials: "◈",
-  chips:     "◉",
-  robotics:  "⬡",
-  sports:    "△",
+  chips: "◉",
+  robotics: "⬡",
+  sports: "△",
 };

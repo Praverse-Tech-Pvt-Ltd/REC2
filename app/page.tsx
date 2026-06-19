@@ -10,6 +10,7 @@ import Image from "next/image";
 import SilkBackground from "@/components/SilkBackground";
 import AnimatedDotGrid from "@/components/AnimatedDotGrid";
 import CurvedLoop from "@/components/CurvedLoop";
+import MechatronicsSection from "@/components/MechatronicsSection";
 import {
   SECTOR_COLORS,
   SECTOR_DESCRIPTIONS,
@@ -154,6 +155,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── MECHATRONICS ── */}
+      <MechatronicsSection />
 
       {/* ── SECTOR CARDS ── */}
       <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-24">
