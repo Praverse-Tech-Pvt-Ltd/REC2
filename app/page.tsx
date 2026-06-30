@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SECTOR_COLORS, SECTOR_DESCRIPTIONS, SECTOR_NUMBERS, type SectorKey } from "@/lib/data";
 
-const SECTORS: { key: SectorKey; label: string; href: string }[] = [
-  { key: "energy",    label: "Energy",    href: "/energy/solar" },
-  { key: "recycle",   label: "Recycle",   href: "/recycle/battery-recycling" },
-  { key: "materials", label: "Materials", href: "/materials/metal-alloys" },
-  { key: "chips",     label: "Chips",     href: "/chips/photonics" },
-  { key: "robotics",  label: "Robotics",  href: "/robotics/flow-chemistry" },
-  { key: "sports",    label: "Sports",    href: "/sports/investments" },
+const SECTORS: { key: SectorKey; label: string; href: string; image: string; alt: string }[] = [
+  { key: "energy",    label: "Energy",    href: "/energy/solar",              image: "/solar.png",        alt: "Solar energy infrastructure" },
+  { key: "recycle",   label: "Recycle",   href: "/recycle/battery-recycling", image: "/recycle.png",      alt: "Industrial recycling systems" },
+  { key: "materials", label: "Materials", href: "/materials/metal-alloys",    image: "/materials.png",    alt: "Advanced materials and alloys" },
+  { key: "chips",     label: "Chips",     href: "/chips/photonics",           image: "/chips.png",        alt: "Semiconductor and photonics technology" },
+  { key: "robotics",  label: "Robotics",  href: "/robotics/flow-chemistry",   image: "/robotics.png",     alt: "Robotics and automated reactor systems" },
+  { key: "sports",    label: "Sports",    href: "/sports/investments",        image: "/sports final.png", alt: "Sustainable motorsport technology" },
 ];
 
 const TICKER_ITEMS = [
@@ -215,12 +215,22 @@ export default function HomePage() {
                   key={s.key}
                   initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={fadeUp} transition={{ duration: 0.72, delay: i * 0.06 }}
                 >
-                  <Link href={s.href} className="sector-card relative flex flex-col gap-4.5 p-9 px-9 pb-10 min-h-[320px]" style={{ backgroundColor: "var(--cream)" }}>
-                    <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ backgroundColor: color }} />
+                  <Link href={s.href} className="sector-card group relative flex h-full min-h-[430px] flex-col overflow-hidden" style={{ backgroundColor: "var(--cream)" }}>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--cream-deep)]">
+                      <img
+                        src={s.image}
+                        alt={s.alt}
+                        className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.035]"
+                      />
+                      <div className="absolute inset-0 transition-colors duration-300 group-hover:bg-transparent" style={{ backgroundColor: "rgba(250,250,248,0.12)" }} />
+                      <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ backgroundColor: color }} />
+                    </div>
+                    <div className="flex flex-1 flex-col gap-4.5 p-7 sm:p-8">
                     <span className="text-[9px] tracking-[0.16em] font-bold" style={{ color }}>{SECTOR_NUMBERS[s.key]}</span>
                     <h3 className="font-display leading-[1.05]" style={{ fontSize: 42, fontWeight: 300, color: "var(--charcoal)" }}>{s.label}</h3>
                     <p className="text-[13px] leading-[1.78] font-light flex-1" style={{ color: "var(--muted)" }}>{SECTOR_DESCRIPTIONS[s.key]}</p>
                     <div className="text-[9px] tracking-[0.14em] uppercase font-bold" style={{ color }}>Explore →</div>
+                    </div>
                   </Link>
                 </motion.div>
               );
