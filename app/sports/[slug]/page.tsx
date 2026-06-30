@@ -37,7 +37,7 @@ const PARTNER_GROUPS = [
 
 function PartnerRow({ name, sub }: { name: string; sub: string }) {
   return (
-    <div className="group flex items-center gap-4 px-4 py-3 -mx-4 rounded-lg transition-colors duration-150 hover:bg-[var(--cream-deep)] cursor-default">
+    <div className="group flex items-center gap-4 px-3 sm:px-4 py-3 rounded-lg transition-colors duration-150 hover:bg-[var(--cream-deep)] cursor-default">
       {/* Large italic serif monogram */}
       <span
         className="font-display italic text-4xl leading-none select-none w-9 text-center flex-shrink-0 transition-colors duration-150"
@@ -127,10 +127,12 @@ export default function SportsPage({ params }: { params: { slug: string } }) {
       ]}
     >
       {slug === "investments" && (
-        <>
-          <SportsInitiatives />
-          <PartnersSection />
-        </>
+        <section className="py-20 px-6 lg:px-[56px] border-b" style={{ borderColor: "var(--border)" }}>
+          <div className="max-w-[1100px] mx-auto">
+            <SportsInitiatives />
+            <PartnersSection />
+          </div>
+        </section>
       )}
     </PageLayout>
   );

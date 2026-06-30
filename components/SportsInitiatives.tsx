@@ -19,7 +19,7 @@ const C = {
 ───────────────────────────────────────────────────────────────────────────── */
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <p className="label text-[var(--muted)] mt-7 mb-2.5">{children}</p>;
+  return <p className="label font-body text-[var(--muted)] mt-7 mb-2.5">{children}</p>;
 }
 
 function Divider() {
@@ -29,7 +29,7 @@ function Divider() {
 function StatPill({ label, accent }: { label: string; accent: string }) {
   return (
     <span
-      className="inline-flex items-center px-2.5 py-1 text-[0.7rem] font-medium border"
+      className="inline-flex items-center px-2.5 py-1 font-body text-[0.7rem] font-medium border"
       style={{
         borderRadius: "2px",
         borderColor: accent + "40",
@@ -44,7 +44,7 @@ function StatPill({ label, accent }: { label: string; accent: string }) {
 
 function BulletItem({ text, color }: { text: string; color: string }) {
   return (
-    <li className="flex items-start gap-2 text-[0.825rem] text-[var(--charcoal-light)] leading-relaxed">
+    <li className="flex items-start gap-2 font-body text-[0.825rem] text-[var(--charcoal-light)] leading-relaxed">
       <span className="flex-shrink-0 mt-[3px] text-[0.55rem]" style={{ color }}>◆</span>
       <span>{text}</span>
     </li>
@@ -52,24 +52,23 @@ function BulletItem({ text, color }: { text: string; color: string }) {
 }
 
 /* Logo cell: <img> with hidden <span> fallback that shows on error */
-function LogoCell({
-  name,
-  src,
-  alt,
-  badgeColor = "#1a1a1a",
-  role,
-  size = "normal",
-}: {
+type LogoEntry = {
   name: string;
   src?: string;
   alt?: string;
   badgeColor?: string;
   role?: string;
-  /** "normal" = 32px | "lg" = 52px for small-text / large logos */
   size?: "normal" | "lg";
-  /** @deprecated — multiply is now applied to all logos */
   removeBg?: boolean;
-}) {
+};
+
+function LogoCell({
+  name,
+  src,
+  alt,
+  role,
+  size = "normal",
+}: LogoEntry & { src: string }) {
   const [failed, setFailed] = useState(false);
 
   // Mobile/tablet: fill width, cap height — logo always fills its cell
@@ -80,33 +79,66 @@ function LogoCell({
     ? "w-full h-auto max-h-[48px] sm:max-h-[54px] md:max-h-[62px] lg:max-h-[70px] object-contain grayscale hover:grayscale-0 transition-all duration-300"
     : "w-full h-auto max-h-[34px] sm:max-h-[38px] md:max-h-[44px] lg:max-h-[50px] object-contain grayscale hover:grayscale-0 transition-all duration-300";
 
+  if (failed) return null;
+
   return (
     <div
       className="flex flex-col items-center justify-between gap-1.5 border border-[var(--border)] bg-white px-2.5 py-3 sm:px-3 sm:py-3"
       style={{ borderRadius: "2px", minHeight: size === "lg" ? "76px" : "62px" }}
     >
       <div className="flex items-center justify-center flex-1 w-full px-1">
-        {src && !failed ? (
-          <img
-            src={src}
-            alt={alt ?? name}
-            onError={() => setFailed(true)}
-            className={imgClass}
-            style={{ mixBlendMode: "multiply" }}
-          />
-        ) : (
-          <span
-            className="text-[0.62rem] sm:text-[0.65rem] font-semibold tracking-wide text-center leading-snug px-1"
-            style={{ color: badgeColor }}
-          >
-            {name}
-          </span>
-        )}
+        <img
+          src={src}
+          alt={alt ?? name}
+          onError={() => setFailed(true)}
+          className={imgClass}
+          style={{ mixBlendMode: "multiply" }}
+        />
       </div>
       {role && (
-        <span className="text-[0.55rem] sm:text-[0.6rem] text-[var(--muted)] text-center leading-tight block w-full line-clamp-2">
+        <span className="font-body text-[0.55rem] sm:text-[0.6rem] text-[var(--muted)] text-center leading-tight block w-full line-clamp-2">
           {role}
         </span>
+      )}
+    </div>
+  );
+}
+
+function PartnerAssetBlock({
+  logos,
+  columns = "lg:grid-cols-6",
+}: {
+  logos: LogoEntry[];
+  columns?: string;
+}) {
+  const available = logos.filter((logo): logo is LogoEntry & { src: string } => Boolean(logo.src));
+  const pending = logos.filter((logo) => !logo.src);
+
+  return (
+    <div className="space-y-4">
+      {available.length > 0 && (
+        <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ${columns} gap-2`}>
+          {available.map((logo) => <LogoCell key={logo.name} {...logo} />)}
+        </div>
+      )}
+
+      {pending.length > 0 && (
+        <div className="border-y border-[var(--border)] divide-y divide-[var(--border)]">
+          {pending.map((logo) => (
+            <div key={logo.name} className="py-3">
+              <div className="min-w-0">
+                <p className="font-body text-[0.78rem] font-semibold text-[var(--charcoal)] leading-tight">
+                  {logo.name}
+                </p>
+                {logo.role && (
+                  <p className="font-body text-[0.66rem] text-[var(--muted)] leading-tight mt-1">
+                    {logo.role}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
@@ -132,21 +164,21 @@ function OwnerCard({
       style={{ borderRadius: "2px", borderLeft: champion ? `3px solid ${accent}` : undefined }}
     >
       <div
-        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-[0.65rem] font-bold"
+        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-body text-white text-[0.65rem] font-bold"
         style={{ backgroundColor: accent }}
       >
         {initials}
       </div>
       <div className="min-w-0">
-        <p className="text-[0.72rem] font-semibold text-[var(--charcoal)] leading-tight truncate">
+        <p className="font-body text-[0.72rem] font-semibold text-[var(--charcoal)] leading-tight truncate">
           {team}
           {champion && (
-            <span className="ml-1.5 text-[0.58rem] font-medium px-1.5 py-0.5 text-white" style={{ backgroundColor: accent, borderRadius: "2px" }}>
+            <span className="ml-1.5 font-body text-[0.58rem] font-medium px-1.5 py-0.5 text-white" style={{ backgroundColor: accent, borderRadius: "2px" }}>
               Champion
             </span>
           )}
         </p>
-        <p className="text-[0.68rem] text-[var(--muted)] leading-tight mt-0.5">{owner}</p>
+        <p className="font-body text-[0.68rem] text-[var(--muted)] leading-tight mt-0.5">{owner}</p>
       </div>
     </div>
   );
@@ -174,8 +206,8 @@ function FormatCard({
       <p className="font-display italic text-[1.5rem] leading-none mb-2" style={{ color: accent + "30" }}>
         {num}
       </p>
-      <p className="text-[0.8125rem] font-semibold text-[var(--charcoal)] mb-1">{title}</p>
-      <p className="text-[0.775rem] text-[var(--charcoal-light)] leading-relaxed">{desc}</p>
+      <p className="font-body text-[0.8125rem] font-semibold text-[var(--charcoal)] mb-1">{title}</p>
+      <p className="font-body text-[0.775rem] text-[var(--charcoal-light)] leading-relaxed">{desc}</p>
     </div>
   );
 }
@@ -276,9 +308,7 @@ function SailGPPanel() {
 
       {/* Partners */}
       <SectionLabel>Sponsors, Partners &amp; Investors</SectionLabel>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-        {logos.map((l) => <LogoCell key={l.name} {...l} />)}
-      </div>
+      <PartnerAssetBlock logos={logos} />
 
       {/* Sustainability */}
       <SectionLabel>Sustainability Highlights</SectionLabel>
@@ -333,8 +363,8 @@ function E1Panel() {
 
   const logos = [
     { name: "E1 Series",      src: "/E1_Series_logo.png",                 alt: "E1 Series",              role: "Championship",            badgeColor: accent },
-    { name: "PIF",            src: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/PIF_logo.svg/400px-PIF_logo.svg.png", alt: "Public Investment Fund", role: "50% Owner via Electric 360", badgeColor: "#1a3a5c" },
-    { name: "UIM",            src: "https://www.uim.sport/wp-content/uploads/2022/01/UIM-logo.png", alt: "UIM", role: "Sanctioning Body", badgeColor: "#003380" },
+    { name: "PIF",            alt: "Public Investment Fund", role: "50% Owner via Electric 360", badgeColor: "#1a3a5c" },
+    { name: "UIM",            alt: "UIM", role: "Sanctioning Body", badgeColor: "#003380" },
     { name: "SWATI Spentose", src: "/SWATI%20Spentose.png",               alt: "SWATI Spentose",         role: "League-Level Investor",   badgeColor: "#3a6a9c" },
   ];
 
@@ -405,9 +435,7 @@ function E1Panel() {
 
       {/* Partners */}
       <SectionLabel>Investors &amp; Partners</SectionLabel>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-        {logos.map((l) => <LogoCell key={l.name} {...l} />)}
-      </div>
+      <PartnerAssetBlock logos={logos} columns="lg:grid-cols-4" />
       <p className="text-[0.7rem] text-[var(--muted)] mt-2 leading-relaxed">
         PIF holds a 50% ownership stake in E1 Series via the Electric 360 partnership —
         alongside Formula E and Extreme E. AUM: $1.15&nbsp;trillion (world&apos;s most active SWF 2025).
@@ -463,10 +491,10 @@ function ExtremeHPanel() {
   ];
 
   const logos = [
-    { name: "FIA Extreme H",           src: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/FIA_logo.svg/400px-FIA_logo.svg.png", alt: "FIA", role: "Championship / Sanctioning Body", badgeColor: "#cc0000" },
+    { name: "FIA Extreme H",           alt: "FIA", role: "Championship / Sanctioning Body", badgeColor: "#cc0000" },
     { name: "Spark Racing Technology", role: "Car Constructor (Pioneer 25)", badgeColor: "#1a1a1a" },
-    { name: "Yokohama Tyres",          src: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Yokohama_Rubber_logo.svg/400px-Yokohama_Rubber_logo.svg.png", alt: "Yokohama", role: "Official Tyre Supplier", badgeColor: "#003399" },
-    { name: "PIF",                     src: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/PIF_logo.svg/400px-PIF_logo.svg.png", alt: "PIF", role: "Backer / Qiddiya City Host", badgeColor: "#1a3a5c" },
+    { name: "Yokohama Tyres",          alt: "Yokohama", role: "Official Tyre Supplier", badgeColor: "#003399" },
+    { name: "PIF",                     alt: "PIF", role: "Backer / Qiddiya City Host", badgeColor: "#1a3a5c" },
     { name: "SWATI Spentose",          src: "/SWATI%20Spentose.png",          alt: "SWATI Spentose",  role: "Strategic Investor",          badgeColor: "#3a6a9c" },
   ];
 
@@ -568,9 +596,7 @@ function ExtremeHPanel() {
 
       {/* Partners */}
       <SectionLabel>Partners &amp; Backers</SectionLabel>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
-        {logos.map((l) => <LogoCell key={l.name} {...l} />)}
-      </div>
+      <PartnerAssetBlock logos={logos} columns="lg:grid-cols-5" />
 
       {/* Sustainability */}
       <SectionLabel>Sustainability Highlights</SectionLabel>
@@ -633,14 +659,15 @@ export default function SportsInitiatives() {
 
   return (
     <FadeUp>
+      <div className="font-body">
       {/* ── Section Header ── */}
       <div className="mb-7">
-        <p className="label text-[var(--muted)] mb-2">Sports &amp; Sustainability</p>
+        <p className="label font-body text-[var(--muted)] mb-2">Sports &amp; Sustainability</p>
         <h2 className="font-display text-[1.75rem] md:text-[2rem] text-[var(--charcoal)] leading-tight mb-3">
           Sports &amp; Sustainability Initiatives
         </h2>
         <RevealLine className="mb-5" />
-        <p className="text-[var(--charcoal-light)] text-[0.9375rem] max-w-2xl leading-[1.8]">
+        <p className="font-body text-[var(--charcoal-light)] text-[0.9375rem] max-w-2xl leading-[1.8]">
           Through technological innovation and eco-conscious competition, modern sport is leading
           the way in global sustainability. As a proactive stakeholder, SWATI Spentose has
           invested in these pioneering initiatives.
@@ -664,7 +691,7 @@ export default function SportsInitiatives() {
               role="tab"
               aria-selected={isActive}
               onClick={() => setActive(tab.key)}
-              className="relative flex-1 flex items-center gap-2.5 px-4 py-3 rounded-lg text-left outline-none focus-visible:ring-2 focus-visible:ring-offset-0 z-10 transition-colors duration-150"
+              className="relative flex-1 flex items-center gap-2.5 px-4 py-3 rounded-lg text-left outline-none focus-visible:ring-2 focus-visible:ring-offset-0 z-10 transition-colors duration-150 font-body"
               style={{
                 color: isActive ? "var(--charcoal)" : "var(--muted)",
               }}
@@ -694,11 +721,11 @@ export default function SportsInitiatives() {
 
               {/* Label stack */}
               <span className="relative z-10 min-w-0">
-                <span className="block text-[0.8125rem] font-semibold leading-tight truncate">
+                <span className="block font-body text-[0.8125rem] font-semibold leading-tight truncate">
                   {tab.label}
                 </span>
                 <span
-                  className="block text-[0.65rem] mt-[2px] truncate transition-opacity duration-150"
+                  className="block font-body text-[0.65rem] mt-[2px] truncate transition-opacity duration-150"
                   style={{ opacity: isActive ? 0.55 : 0.45 }}
                 >
                   {tab.sub}
@@ -728,12 +755,13 @@ export default function SportsInitiatives() {
 
       {/* ── Data sources footnote ── */}
       <p
-        className="label mt-5 leading-relaxed"
+        className="label font-body mt-5 leading-relaxed"
         style={{ color: "var(--muted)", opacity: 0.55, fontSize: "0.62rem" }}
       >
         Data sourced from: SailGP.com, E1Series.com, FIAExtremeH.com, SWATI Spentose Pvt. Ltd. deck 2026,
         BusinessWire, L&apos;Oréal Group press release, Sportico, Sustainability Magazine. Last updated: May 2026.
       </p>
+      </div>
     </FadeUp>
   );
 }
