@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const dmSerifDisplay = DM_Serif_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: "400",
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${dmSerifDisplay.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${plusJakarta.variable}`}>
       <body className="antialiased font-body bg-surface text-navy">
         <Navbar />
         <main>{children}</main>

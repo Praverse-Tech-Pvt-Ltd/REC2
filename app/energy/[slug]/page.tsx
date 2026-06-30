@@ -2,7 +2,7 @@ import PageLayout from "@/components/PageLayout";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-const VALID_SLUGS = ["solar", "hydrogen", "hybrid"];
+const VALID_SLUGS = ["solar", "hydrogen", "hybrid", "h2-hybrid"];
 
 export function generateStaticParams() {
   return VALID_SLUGS.map((slug) => ({ slug }));
@@ -10,9 +10,10 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const titles: Record<string, string> = {
-    solar:    "Solar Energy — REC 2",
-    hydrogen: "Hydrogen — REC 2",
-    hybrid:   "Hybrid Energy Systems — REC 2",
+    solar:      "Solar Energy — REC 2",
+    hydrogen:   "Hydrogen Energy — REC 2",
+    hybrid:     "Hybrid Energy Systems — REC 2",
+    "h2-hybrid":"H₂ Hybrid Systems — REC 2",
   };
   return { title: titles[params.slug] ?? "Energy — REC 2" };
 }

@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import SectorHero from "./SectorHero";
 import TeamCard from "./TeamCard";
-import FadeUp from "./FadeUp";
-import RevealLine from "./RevealLine";
 import ApplicationGrid from "./ApplicationGrid";
 import { PAGES, SECTOR_COLORS, type SectorKey } from "@/lib/data";
 
@@ -15,6 +14,20 @@ type Props = {
   children?: React.ReactNode;
 };
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const TICKER_ITEMS = [
+  ["Carbon Credits", "var(--energy)"], ["Innovation", "var(--recycle)"],
+  ["Sustainable Future", "var(--materials)"], ["Deep Tech", "var(--chips)"],
+  ["Hydrogen", "var(--robotics)"], ["Photonics", "var(--sports)"],
+  ["Biochips", "var(--energy)"], ["Rare Metals", "var(--recycle)"],
+  ["Automated Reactors", "var(--materials)"], ["Renewable Energy", "var(--chips)"],
+  ["Flow Chemistry", "var(--robotics)"], ["Solar Systems", "var(--sports)"],
+] as const;
+
 export default function PageLayout({ slug, sector, breadcrumb, children }: Props) {
   const page = PAGES[slug];
   if (!page) return <div className="pt-20 text-center p-8 text-[var(--muted)]">Page not found</div>;
@@ -23,131 +36,163 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
 
   return (
     <div className="min-h-screen bg-[var(--cream)]">
-      <SectorHero
-        title={page.title}
-        subtitle={page.subtitle}
-        sector={sector}
-        breadcrumb={breadcrumb}
-      />
+      <SectorHero title={page.title} subtitle={page.subtitle} sector={sector} breadcrumb={breadcrumb} />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 space-y-20">
+      {children}
 
-        {/* Special slot (e.g. H₂ Festival banner) */}
-        {children}
-
-        {/* Overview */}
-        <FadeUp>
-          <div className="grid md:grid-cols-[180px_1fr] gap-10">
-            <div className="pt-1">
-              <p className="label">Overview</p>
-              <RevealLine className="mt-4" />
-            </div>
-            <div style={{ borderLeft: `2px solid ${color}20` }}>
-              <div className="pl-5 space-y-5">
-                {page.overview.map((para, i) => (
-                  <p key={i} className="text-[var(--charcoal-light)] leading-[1.85] text-[0.9375rem]">
-                    {para}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </div>
-        </FadeUp>
-
-        {/* Why REC 2 */}
-        <FadeUp delay={0.04}>
-          <p className="label mb-5">Why REC 2 is investing here</p>
-          <RevealLine className="mb-8" />
-          <div className="grid sm:grid-cols-3 gap-5">
-            {page.whyRec2.map((point, i) => (
-              <div
+      {/* Overview */}
+      <section className="py-20 px-6 lg:px-[56px] border-b" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-[1100px] mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-20">
+          <motion.div
+            initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-36px" }}
+            variants={fadeUp} transition={{ duration: 0.72 }}
+            className="md:sticky md:top-24 self-start"
+          >
+            <p className="label mb-5">Overview</p>
+            <div className="w-8 h-0.5" style={{ backgroundColor: color }} />
+          </motion.div>
+          <div>
+            {page.overview.map((para, i) => (
+              <motion.p
                 key={i}
-                className="bg-[var(--sage-pale)] border border-[var(--border)] p-6"
-                style={{ borderRadius: "2px", borderLeft: `3px solid ${color}50` }}
+                initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-36px" }}
+                variants={fadeUp} transition={{ duration: 0.72, delay: i * 0.08 }}
+                className="text-[17px] leading-[1.88] font-light"
+                style={{ color: "var(--charcoal-light)", marginTop: i > 0 ? 28 : 0 }}
               >
-                <p className="font-display italic text-2xl mb-3 leading-none" style={{ color: color + "60" }}>
-                  0{i + 1}
-                </p>
-                <p className="text-sm text-[var(--charcoal-light)] leading-relaxed">{point}</p>
-              </div>
+                {para}
+              </motion.p>
             ))}
           </div>
-        </FadeUp>
+        </div>
+      </section>
 
-        {/* ── Key Applications — 21st.dev-inspired editorial grid ── */}
-        <FadeUp delay={0.04}>
-          <div className="flex items-end justify-between mb-5">
-            <p className="label">Key Applications</p>
-            <span className="label text-[var(--muted)] opacity-60">
-              {page.applications.length.toString().padStart(2, "0")} areas
-            </span>
+      {/* Why REC 2 */}
+      <section className="py-20 px-6 lg:px-[56px] border-b" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
+        <div className="max-w-[1100px] mx-auto">
+          <p className="label mb-12">Why REC 2 is Investing Here</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {page.whyRec2.map((point, i) => (
+              <motion.div
+                key={i}
+                initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-36px" }}
+                variants={fadeUp} transition={{ duration: 0.72, delay: i * 0.08 }}
+                className="why-card p-9 px-7 border"
+                style={{ backgroundColor: "var(--cream)", borderColor: "var(--border)" }}
+              >
+                <div className="font-display leading-none mb-6" style={{ fontSize: "52px", fontWeight: 300, color }}>
+                  0{i + 1}
+                </div>
+                <p className="text-[13px] leading-[1.82] font-light" style={{ color: "var(--charcoal-light)" }}>
+                  {point}
+                </p>
+              </motion.div>
+            ))}
           </div>
-          <ApplicationGrid
-            applications={page.applications}
-            sectorColor={color}
-          />
-        </FadeUp>
+        </div>
+      </section>
 
-        {/* Team */}
-        <FadeUp delay={0.04}>
-          <p className="label mb-5">Team</p>
-          <RevealLine className="mb-8" />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      {/* Key Applications */}
+      <section className="py-20 px-6 lg:px-[56px] border-b" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-[1100px] mx-auto">
+          <div className="flex items-baseline justify-between mb-11">
+            <p className="label">Key Applications</p>
+            <p className="label">{page.applications.length.toString().padStart(2, "0")} Areas</p>
+          </div>
+          <ApplicationGrid applications={page.applications} sectorColor={color} />
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="py-20 px-6 lg:px-[56px] border-t" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
+        <div className="max-w-[1100px] mx-auto">
+          <p className="label mb-12">Team</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
             {page.team.map((key, i) => (
               <TeamCard key={key} personKey={key} sector={sector} index={i} />
             ))}
           </div>
-        </FadeUp>
+        </div>
+      </section>
 
-        {/* Related Sectors */}
-        <FadeUp delay={0.04}>
-          <p className="label mb-5">Related Sectors</p>
-          <RevealLine className="mb-6" />
-          <div className="flex flex-wrap gap-2">
+      {/* Related */}
+      <section className="py-12 px-6 lg:px-[56px] border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-[1100px] mx-auto flex items-center gap-12 flex-wrap">
+          <p className="label flex-shrink-0">Related</p>
+          <div className="flex gap-8 flex-wrap">
             {page.related.map((rel) => (
               <Link
                 key={rel.href + rel.label}
                 href={rel.href}
-                className="text-[0.8125rem] font-medium px-5 py-2 border transition-all duration-200 rounded-full"
-                style={{ borderColor: color + "50", color }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.backgroundColor = color;
-                  el.style.color = "#fff";
-                  el.style.borderColor = color;
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.backgroundColor = "transparent";
-                  el.style.color = color;
-                  el.style.borderColor = color + "50";
-                }}
+                className="text-[13px] font-medium transition-opacity hover:opacity-60"
+                style={{ color }}
               >
                 {rel.label} →
               </Link>
             ))}
           </div>
-        </FadeUp>
-      </div>
+        </div>
+      </section>
+
+      {/* Ticker */}
+      <section className="py-[30px] overflow-hidden border-y" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
+        <div className="flex whitespace-nowrap" style={{ animation: "marquee 38s linear infinite" }}>
+          {[0, 1].map((rep) => (
+            <div key={rep} className="flex items-center flex-shrink-0" aria-hidden={rep === 1}>
+              {TICKER_ITEMS.map(([label, c], i) => (
+                <span key={i} className="text-[10px] tracking-[0.18em] uppercase font-medium px-7" style={{ color: "var(--muted)" }}>
+                  {label} <span style={{ color: c, fontSize: 12 }}>✦</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="bg-[var(--charcoal)] mt-8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <Link href="/" className="font-display text-white/90 italic text-lg">REC 2</Link>
-          <p className="label text-white/35">© 2026 · Renewable Energy · Carbon Credits · Innovation · Sustainable Future</p>
-          <div className="flex gap-4">
-            {[
-              { label: "Energy",    href: "/energy/hydrogen-hybrid" },
-              { label: "Materials", href: "/materials/metal-alloys" },
-              { label: "Chips",     href: "/chips/photonics" },
-              { label: "Robotics",  href: "/robotics/flow-chemistry" },
-              { label: "Sports",    href: "/sports/investments" },
-            ].map((s) => (
-              <Link key={s.label} href={s.href} className="label text-white/30 hover:text-white/60 transition-colors">
-                {s.label}
-              </Link>
-            ))}
+      <footer className="py-12 px-6 lg:px-[56px] pb-12" style={{ backgroundColor: "var(--cream-deep)" }}>
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-16 lg:[grid-template-columns:1.6fr_1fr_1fr]">
+          <div>
+            <div className="font-display font-semibold mb-4" style={{ fontSize: 26, letterSpacing: "0.05em", color: "var(--charcoal)" }}>REC 2</div>
+            <p className="text-[13px] leading-[1.8] font-light max-w-[260px]" style={{ color: "var(--muted)" }}>
+              Renewable Energy · Carbon Credits · Innovation · Sustainable Future
+            </p>
+            <a href="mailto:V@v-group.in" className="inline-block mt-6 text-[12px] font-medium" style={{ color: "var(--charcoal)" }}>
+              V@v-group.in
+            </a>
           </div>
+          <div>
+            <p className="label mb-6">Sectors</p>
+            <div className="flex flex-col gap-3.5">
+              {[
+                { label: "Energy", href: "/energy/solar" },
+                { label: "Recycle", href: "/recycle/battery-recycling" },
+                { label: "Materials", href: "/materials/metal-alloys" },
+                { label: "Chips", href: "/chips/photonics" },
+                { label: "Robotics", href: "/robotics/flow-chemistry" },
+                { label: "Sports", href: "/sports/investments" },
+              ].map((s) => (
+                <Link key={s.label} href={s.href} className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>
+                  {s.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="label mb-6">Connect</p>
+            <div className="flex flex-col gap-3.5">
+              <Link href="/contact" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>Contact</Link>
+              <Link href="/#mechatronics" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>About</Link>
+              <Link href="/" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>All Sectors</Link>
+            </div>
+          </div>
+        </div>
+        <div
+          className="max-w-[1200px] mx-auto mt-[52px] pt-7 flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-start sm:items-center border-t"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <span className="text-[10px]" style={{ color: "var(--faint)" }}>© 2026 REC 2. All rights reserved.</span>
+          <span className="text-[10px]" style={{ color: "var(--hairline-faint)" }}>Renewable Energy · Carbon Credits · Innovation</span>
         </div>
       </footer>
     </div>

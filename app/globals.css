@@ -4,34 +4,36 @@
 
 @layer base {
   :root {
-    /* Typography */
-    --font-display: "DM Serif Display", Georgia, serif;
-    --font-body:    "DM Sans", system-ui, sans-serif;
+    /* Typography — editorial Cormorant Garamond + Plus Jakarta Sans */
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-body:    "Plus Jakarta Sans", system-ui, sans-serif;
 
-    /* Premium clinical palette — cream warmth */
-    --cream:         #faf8f4;
-    --cream-deep:    #f2ede5;
-    --charcoal:      #1a1a1a;
-    --charcoal-mid:  #2d2d2d;
-    --charcoal-light:#5a5a5a;
-    --white:         #ffffff;
-    --muted:         #7a7878;
-    --border:        #e2ddd6;
-    --border-strong: #c4bdb4;
+    /* Warm off-white editorial palette */
+    --cream:         #FAFAF8;
+    --cream-deep:    #F4F3EF;
+    --charcoal:      #1A1A1A;
+    --charcoal-mid:  #2A2A28;
+    --charcoal-light:#3A3A38;
+    --white:         #FFFFFF;
+    --muted:         #6B6860;
+    --faint:         #9A9690;
+    --hairline-faint:#C5C2BA;
+    --border:        #E5E3DC;
+    --border-strong: #C5C2BA;
 
-    /* Sage accent — primary CTA + highlights */
-    --sage:          #5f8a62;
-    --sage-dark:     #3e6040;
-    --sage-pale:     #e6f0e4;
-    --sage-light:    #f0f6ef;
+    /* Primary accent (replaces "sage" usages) */
+    --sage:          #1A1A1A;
+    --sage-dark:     #000000;
+    --sage-pale:     #F4F3EF;
+    --sage-light:    #F4F3EF;
 
-    /* Sector accents — muted, clinical */
-    --energy:    #5f8a62;
-    --recycle:   #6b8a3e;
-    --materials: #7260a0;
-    --chips:     #9c6038;
-    --robotics:  #3a7d74;
-    --sports:    #3a6a9c;
+    /* Sector accents */
+    --energy:    #C17B2A;
+    --recycle:   #2A7A4A;
+    --materials: #2856A0;
+    --chips:     #1A8080;
+    --robotics:  #6B3FA0;
+    --sports:    #C43820;
 
     /* Legacy aliases for existing components */
     --navy:          var(--charcoal);
@@ -41,6 +43,8 @@
   }
 
   * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--border-strong) var(--cream); }
 
   body {
     background-color: var(--cream);
@@ -52,9 +56,20 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-weight: 300;
+    letter-spacing: -0.02em;
   }
+
+  /* ── Refined global scrollbar — thin hairline, matches editorial palette ── */
+  ::-webkit-scrollbar { width: 10px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 6px;
+    border: 2px solid var(--cream);
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--faint); }
 }
 
 @layer utilities {
@@ -70,66 +85,56 @@
   .rule        { border-top: 1px solid var(--border); }
   .rule-strong { border-top: 1px solid var(--border-strong); }
 
-  /* Label: small-caps uppercase, wide tracking */
+  /* Label: small uppercase, wide tracking — matches bundle's eyebrow style */
   .label {
     font-family: var(--font-body);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--faint);
   }
 
   .text-balance { text-wrap: balance; }
 
-  /* ── ReactBits: ShinyText — subtle shimmer pass over text ── */
-  .shiny-text {
-    background: linear-gradient(
-      120deg,
-      var(--charcoal) 30%,
-      #8a8a7a 45%,
-      var(--charcoal) 60%
-    );
-    background-size: 250% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shinePass 4s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
   }
 
-  .shiny-text-sage {
-    background: linear-gradient(
-      120deg,
-      var(--sage) 30%,
-      #a8c4a8 48%,
-      var(--sage) 62%
-    );
-    background-size: 250% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shinePass 3.5s linear infinite;
-  }
+  .nlink { transition: opacity 0.18s; }
+  .nlink:hover { opacity: 0.55; }
 
-  @keyframes shinePass {
-    0%   { background-position: 200% center; }
-    100% { background-position: -200% center; }
-  }
+  .why-card { transition: box-shadow 0.24s cubic-bezier(0.4,0,0.2,1); }
+  .why-card:hover { box-shadow: 0 8px 28px rgba(26,26,26,0.07); }
 
-  /* ── Scroll-reveal rule: draws in from left ── */
-  .reveal-rule {
-    transform-origin: left;
-    animation: ruleGrow 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
+  .app-link { transition: background 0.18s; }
+  .app-link:hover { background: rgba(26,26,26,0.04) !important; }
 
-  @keyframes ruleGrow {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
-  }
+  .sector-card { transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), box-shadow 0.32s cubic-bezier(0.4,0,0.2,1); }
+  .sector-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(26,26,26,0.09); }
 
-  /* ── Card shimmer border on hover ── */
-  @keyframes borderShimmer {
-    0%   { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
+  /* ── "The Sequence" horizontal scroller — slim pill-style scrollbar ── */
+  .seq-scroll::-webkit-scrollbar { height: 3px; }
+  .seq-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 3px; }
+  .seq-scroll::-webkit-scrollbar-thumb {
+    background: var(--charcoal);
+    border-radius: 3px;
+    opacity: 0.4;
+  }
+  .seq-scroll::-webkit-scrollbar-thumb:hover { background: var(--charcoal); }
+  .seq-scroll { scrollbar-width: thin; scrollbar-color: var(--charcoal) var(--border); }
+
+  /* ── Sector hero sub-nav tabs — hide scrollbar, swipe-only on mobile ── */
+  .tabs-scroll { -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .tabs-scroll::-webkit-scrollbar { display: none; }
+
+  /* ── Stats grid dividers — correct for both 2-col (mobile/tablet) and
+       4-col (desktop) layouts via nth-child, instead of unconditional inline style ── */
+  .stats-grid > div { border-left: 1px solid var(--border); }
+  .stats-grid > div:nth-child(2n+1) { border-left: none; }
+  @media (min-width: 1024px) {
+    .stats-grid > div { border-left: 1px solid var(--border); }
+    .stats-grid > div:first-child { border-left: none; }
   }
 }

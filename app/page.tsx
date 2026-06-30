@@ -1,22 +1,9 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import FadeUp from "@/components/FadeUp";
-import SplitText from "@/components/SplitText";
-import CountUp from "@/components/CountUp";
-import RevealLine from "@/components/RevealLine";
-import Image from "next/image";
-import SilkBackground from "@/components/SilkBackground";
-import AnimatedDotGrid from "@/components/AnimatedDotGrid";
-import CurvedLoop from "@/components/CurvedLoop";
-import MechatronicsSection from "@/components/MechatronicsSection";
-import {
-  SECTOR_COLORS,
-  SECTOR_DESCRIPTIONS,
-  SECTOR_NUMBERS,
-  type SectorKey,
-} from "@/lib/data";
+import { SECTOR_COLORS, SECTOR_DESCRIPTIONS, SECTOR_NUMBERS, type SectorKey } from "@/lib/data";
 
 const SECTORS: { key: SectorKey; label: string; href: string }[] = [
   { key: "energy",    label: "Energy",    href: "/energy/solar" },
@@ -27,264 +14,266 @@ const SECTORS: { key: SectorKey; label: string; href: string }[] = [
   { key: "sports",    label: "Sports",    href: "/sports/investments" },
 ];
 
-// Photos in /public — watermark lives bottom-right, so object-contain preserves it fully
-const SECTOR_IMAGES: Record<SectorKey, string> = {
-  energy:    "/solar.png",
-  recycle:   "/recycle.png",
-  materials: "/materials.png",
-  chips:     "/chips.png",
-  robotics:  "/robotics.png",
-  sports:    "/sports final.png",
+const TICKER_ITEMS = [
+  ["Carbon Credits", "var(--energy)"], ["Innovation", "var(--recycle)"],
+  ["Sustainable Future", "var(--materials)"], ["Deep Tech", "var(--chips)"],
+  ["Hydrogen", "var(--robotics)"], ["Photonics", "var(--sports)"],
+  ["Biochips", "var(--energy)"], ["Rare Metals", "var(--recycle)"],
+  ["Automated Reactors", "var(--materials)"], ["Renewable Energy", "var(--chips)"],
+  ["Flow Chemistry", "var(--robotics)"], ["Solar Systems", "var(--sports)"],
+] as const;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
 };
 
-const STATS = [
-  { n: 6,    suffix: "",  label: "Sectors" },
-  { n: 17,   suffix: "",  label: "Verticals" },
-  { n: 2030, suffix: "",  label: "Horizon" },
-  { n: 6,    suffix: "",  label: "Team Members" },
-];
+function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
+  const [val, setVal] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting && !started) setStarted(true); }),
+      { threshold: 0.25 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    const t0 = performance.now(), dur = 1900;
+    let raf: number;
+    const tick = (now: number) => {
+      const prog = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - prog, 3);
+      setVal(Math.round(target * eased));
+      if (prog < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [started, target]);
+
+  return (
+    <div ref={ref} className="font-display leading-none" style={{ fontSize: "clamp(40px,9vw,76px)", fontWeight: 300, letterSpacing: "-0.02em", color: "var(--charcoal)" }}>
+      {val.toLocaleString()}{suffix}
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-[var(--cream)]">
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden min-h-[92vh] flex flex-col justify-end bg-[var(--cream)]">
-
-        {/* Silk canvas background — ReactBits-inspired flowing ribbons */}
-        <div className="absolute inset-0 pointer-events-none">
-          <SilkBackground className="w-full h-full" opacity={0.9} speed={0.0006} />
-        </div>
-
-        {/* Subtle horizontal rule grid on top of silk */}
+      <section className="relative min-h-screen px-6 lg:px-[56px] pb-20 flex flex-col justify-center overflow-hidden">
         <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: "linear-gradient(var(--border-strong) 1px, transparent 1px)",
-            backgroundSize: "100% 80px",
+            backgroundImage: "linear-gradient(rgba(26,26,26,0.032) 1px, transparent 1px), linear-gradient(90deg, rgba(26,26,26,0.032) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
           }}
         />
-
-        {/* Ghost "R2" watermark */}
         <div
-          className="absolute right-[-0.04em] bottom-[-0.12em] font-display select-none pointer-events-none leading-none italic"
-          style={{ fontSize: "clamp(10rem,38vw,34rem)", color: "var(--charcoal)", opacity: 0.04 }}
+          className="absolute right-[-60px] top-1/2 -translate-y-1/2 font-display select-none pointer-events-none leading-none"
+          style={{ fontSize: "clamp(200px,28vw,400px)", fontWeight: 300, color: "var(--charcoal)", opacity: 0.032, letterSpacing: "-0.04em" }}
         >
           R2
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-20 pt-36 w-full">
+        <div className="max-w-[920px] relative z-10 pt-16">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72 }} className="flex items-center gap-3.5 mb-14">
+            <div className="w-8 h-px" style={{ backgroundColor: "var(--muted)" }} />
+            <span className="text-[10px] tracking-[0.22em] uppercase font-semibold" style={{ color: "var(--muted)" }}>01 — Innovation Platform</span>
+          </motion.div>
 
-          {/* Eyebrow — shiny label */}
-          <motion.p
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="label mb-8 shiny-text"
+          <motion.h1
+            initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.08 }}
+            className="font-display leading-[0.88] tracking-[-0.025em] mb-11"
+            style={{ fontSize: "clamp(72px,12.5vw,176px)", fontWeight: 300, color: "var(--charcoal)" }}
           >
+            REC 2
+          </motion.h1>
+
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.16 }} className="h-px mb-9" style={{ backgroundColor: "rgba(26,26,26,0.14)" }} />
+
+          <motion.p initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.24 }} className="text-[11px] tracking-[0.2em] uppercase font-semibold mb-9" style={{ color: "var(--muted)" }}>
             Renewable Energy · Carbon Credits · Innovation
           </motion.p>
 
-          {/* Title — SplitText character stagger */}
-          <h1 className="font-display italic text-[var(--charcoal)] leading-[0.92] tracking-[-0.02em] text-[clamp(4.5rem,14vw,11rem)] mb-10">
-            <SplitText text="REC 2" charDelay={0.055} initialDelay={0.1} />
-          </h1>
+          <motion.p initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.32 }} className="text-[18px] leading-[1.78] font-light max-w-[560px] mb-[52px]" style={{ color: "var(--charcoal-light)" }}>
+            A diverse innovation platform bridging sustainable technology, renewable energy, deep tech and the future of sport.
+          </motion.p>
 
-          {/* Animated thin rule */}
-          <motion.div
-            initial={{ scaleX: 0, originX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.6, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-8 h-px bg-[var(--border-strong)]"
-          />
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.4 }} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <Link href="/energy/hydrogen" className="text-[10px] tracking-[0.12em] uppercase font-bold px-[34px] py-[15px] text-center" style={{ backgroundColor: "var(--charcoal)", color: "var(--cream)", borderRadius: 2 }}>
+              Explore Platform →
+            </Link>
+            <Link href="/contact" className="text-[10px] tracking-[0.12em] uppercase font-bold px-[34px] py-[15px] text-center" style={{ border: "1.5px solid rgba(26,26,26,0.24)", borderRadius: 2, color: "var(--charcoal)" }}>
+              Contact Us
+            </Link>
+          </motion.div>
+        </div>
 
-          {/* Tagline + CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.75, duration: 0.5 }}
-            className="flex flex-col sm:flex-row sm:items-end justify-between gap-8"
-          >
-            <p className="text-[var(--charcoal-light)] text-base md:text-lg max-w-md leading-relaxed font-light">
-              A diverse innovation platform bridging sustainable technology, renewable
-              energy, deep tech and the future of sport.
+        {/* Sector legend */}
+        <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.48 }} className="hidden lg:flex absolute right-[56px] bottom-[100px] flex-col gap-2.5 items-end">
+          {SECTORS.map((s) => (
+            <div key={s.key} className="flex items-center gap-2.5">
+              <span className="text-[9px] tracking-[0.14em] uppercase font-medium" style={{ color: "var(--faint)" }}>{s.label}</span>
+              <div className="w-[22px] h-0.5 rounded-sm" style={{ backgroundColor: SECTOR_COLORS[s.key] }} />
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.48 }} className="absolute bottom-11 left-6 lg:left-[56px] flex items-center gap-2.5">
+          <div className="w-px h-9" style={{ backgroundColor: "rgba(26,26,26,0.18)" }} />
+          <span className="text-[9px] tracking-[0.2em] uppercase font-medium" style={{ color: "var(--faint)" }}>Scroll</span>
+        </motion.div>
+      </section>
+
+      {/* ── ABOUT STRIP ── */}
+      <section className="py-11 px-6 lg:px-[56px] border-y" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-[1200px] mx-auto flex flex-col sm:flex-row gap-10 sm:gap-20 items-start">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72 }} className="flex-shrink-0 pt-1">
+            <span className="label">About</span>
+          </motion.div>
+          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72, delay: 0.08 }} className="text-[15px] leading-[1.82] font-light max-w-[700px]" style={{ color: "var(--charcoal-light)" }}>
+            REC 2 is a diverse innovation platform — from rare metals to photonics, hydrogen to biochips. We bridge sustainable technology, deep science, and human progress across six interconnected sectors.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ── STATS ── */}
+      <section className="py-[68px] px-6 lg:px-[56px] border-b" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
+        <div className="stats-grid max-w-[1100px] mx-auto grid grid-cols-2 lg:grid-cols-4">
+          {[
+            { n: 6, label: "Sectors" },
+            { n: 14, label: "Verticals" },
+            { n: 2035, label: "Horizon" },
+            { n: 48, label: "Team Members" },
+          ].map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72, delay: i * 0.08 }}
+              className="text-center py-5 px-4"
+            >
+              <Counter target={s.n} />
+              <div className="text-[9px] tracking-[0.2em] uppercase font-bold mt-4" style={{ color: "var(--muted)" }}>{s.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CONVERGENCE (Mechatronics) ── */}
+      <section id="mechatronics" className="py-[116px] px-6 lg:px-[56px]" style={{ scrollMarginTop: 70 }}>
+        <div className="max-w-[1200px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-[88px] items-start">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72 }} className="lg:sticky lg:top-24">
+            <p className="label mb-6">The Convergence</p>
+            <h2 className="font-display leading-[1.1] tracking-[-0.01em]" style={{ fontSize: 50, fontWeight: 300, color: "var(--charcoal)" }}>
+              One discipline,<br /><em className="italic">six expressions</em>
+            </h2>
+          </motion.div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72, delay: 0.1 }}>
+            <p className="text-[17px] leading-[1.9] font-light" style={{ color: "var(--charcoal-light)" }}>
+              It starts with energy — sunlight and hydrogen turned into power that never sleeps. What that power eventually leaves behind, REC 2 recycles back into raw material, so nothing is spent twice.
             </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/energy/hydrogen-hybrid"
-                className="text-[0.8125rem] font-medium px-6 py-2.5 bg-[var(--sage)] text-white hover:bg-[var(--sage-dark)] transition-colors"
-                style={{ borderRadius: "2px" }}
-              >
-                Explore Platform →
-              </Link>
+            <p className="text-[17px] leading-[1.9] font-light mt-7" style={{ color: "var(--charcoal-light)" }}>
+              Those reclaimed elements, alongside rare earths and advanced alloys, become the materials precise enough for reactors and aircraft. Refined further, they become the substrate for chips — photonic and biological — that let machines see, sense and think.
+            </p>
+            <p className="text-[17px] leading-[1.9] font-light mt-7" style={{ color: "var(--charcoal-light)" }}>
+              Robotics takes that intelligence and gives it hands: reactors that synthesise, correct and act without waiting for instruction. And to prove it all works, REC 2 takes it racing — in sport, where hydrogen boats and electric cars run the same engineering in front of millions.
+            </p>
+            <div className="mt-[52px] pt-9 border-t" style={{ borderColor: "var(--border)" }}>
+              <p className="font-display" style={{ fontSize: 22, lineHeight: 1.55, color: "var(--charcoal)", fontWeight: 400 }}>
+                One discipline. Six expressions.<br /><em className="italic">This is mechatronics.</em>
+              </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── INTRO + STATS ── */}
-      <section className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 border-t border-[var(--border)]">
-        {/* 21st.dev-inspired animated dot grid — subtle right-side accent */}
-        <div className="absolute right-0 top-0 bottom-0 overflow-hidden hidden lg:block" style={{ width: "300px" }}>
-          <AnimatedDotGrid color="var(--sage)" gap={28} dotSize={2.5} rows={12} cols={11} />
-        </div>
-        <div className="grid md:grid-cols-[1fr_2fr] gap-12 items-start">
-          <FadeUp>
-            <p className="label text-[var(--muted)] mb-4">About</p>
-            <RevealLine />
-          </FadeUp>
-          <FadeUp delay={0.1}>
-            <p className="font-display text-[1.45rem] leading-[1.6] text-[var(--charcoal)] max-w-2xl">
-              REC 2 is a diverse innovation platform — from rare metals to photonics,
-              hydrogen to biochips. We bridge sustainable technology, deep science,
-              and human progress across five interconnected sectors.
-            </p>
 
-            {/* CountUp stats */}
-            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
-              {STATS.map(({ n, label }) => (
-                <div key={label}>
-                  <p className="font-display italic text-[2.5rem] text-[var(--charcoal)] leading-none mb-1.5">
-                    <CountUp to={n} duration={n > 100 ? 2.2 : 1.6} />
-                  </p>
-                  <p className="label text-[var(--muted)]">{label}</p>
-                </div>
+      {/* ── SECTORS GRID ── */}
+      <section className="py-[100px] px-6 lg:px-[56px]">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72 }} className="flex items-baseline justify-between mb-[60px]">
+            <div>
+              <p className="label mb-4">Focus Areas</p>
+              <h2 className="font-display leading-[1.1] tracking-[-0.015em]" style={{ fontSize: 52, fontWeight: 300, color: "var(--charcoal)" }}>Our Sectors</h2>
+            </div>
+            <p className="label">06 Verticals</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border" style={{ backgroundColor: "var(--border)", borderColor: "var(--border)" }}>
+            {SECTORS.map((s, i) => {
+              const color = SECTOR_COLORS[s.key];
+              return (
+                <motion.div
+                  key={s.key}
+                  initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={fadeUp} transition={{ duration: 0.72, delay: i * 0.06 }}
+                >
+                  <Link href={s.href} className="sector-card relative flex flex-col gap-4.5 p-9 px-9 pb-10 min-h-[320px]" style={{ backgroundColor: "var(--cream)" }}>
+                    <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ backgroundColor: color }} />
+                    <span className="text-[9px] tracking-[0.16em] font-bold" style={{ color }}>{SECTOR_NUMBERS[s.key]}</span>
+                    <h3 className="font-display leading-[1.05]" style={{ fontSize: 42, fontWeight: 300, color: "var(--charcoal)" }}>{s.label}</h3>
+                    <p className="text-[13px] leading-[1.78] font-light flex-1" style={{ color: "var(--muted)" }}>{SECTOR_DESCRIPTIONS[s.key]}</p>
+                    <div className="text-[9px] tracking-[0.14em] uppercase font-bold" style={{ color }}>Explore →</div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TICKER ── */}
+      <section className="py-[30px] overflow-hidden border-y" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
+        <div className="flex whitespace-nowrap" style={{ animation: "marquee 38s linear infinite" }}>
+          {[0, 1].map((rep) => (
+            <div key={rep} className="flex items-center flex-shrink-0" aria-hidden={rep === 1}>
+              {TICKER_ITEMS.map(([label, c], i) => (
+                <span key={i} className="text-[10px] tracking-[0.18em] uppercase font-medium px-7" style={{ color: "var(--muted)" }}>
+                  {label} <span style={{ color: c, fontSize: 12 }}>✦</span>
+                </span>
               ))}
             </div>
-          </FadeUp>
+          ))}
         </div>
-      </section>
-
-      {/* ── MECHATRONICS ── */}
-      <MechatronicsSection />
-
-      {/* ── SECTOR CARDS ── */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-24">
-        <FadeUp>
-          <div className="flex items-end justify-between mb-4">
-            <div>
-              <p className="label text-[var(--muted)] mb-2">Focus Areas</p>
-              <h2 className="font-display text-3xl text-[var(--charcoal)]">Our Sectors</h2>
-            </div>
-            <span className="hidden sm:block label text-[var(--muted)]">05 verticals</span>
-          </div>
-          <RevealLine className="mb-8" />
-        </FadeUp>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {SECTORS.map((sector, i) => {
-            const color = SECTOR_COLORS[sector.key];
-            const num   = SECTOR_NUMBERS[sector.key];
-            return (
-              <FadeUp key={sector.key} delay={i * 0.06}>
-                <Link href={sector.href} className="block h-full">
-                  <motion.div
-                    whileHover={{ y: -3, boxShadow: `0 10px 36px ${color}1a` }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="relative bg-[var(--white)] border border-[var(--border)] overflow-hidden cursor-pointer h-full group flex flex-col"
-                    style={{ borderRadius: "2px" }}
-                  >
-                    {/* Sector photo — object-contain keeps watermark fully visible */}
-                    <div
-                      className="relative w-full overflow-hidden border-b border-[var(--border)]"
-                      style={{ height: "172px", backgroundColor: color + "08" }}
-                    >
-                      <Image
-                        src={SECTOR_IMAGES[sector.key]}
-                        alt={`${sector.label} sector`}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      {/* Subtle sector number overlay — top-right */}
-                      <span
-                        className="absolute top-2.5 right-3 font-display italic leading-none select-none pointer-events-none z-10"
-                        style={{ fontSize: "1.8rem", color, opacity: 0.18 }}
-                      >
-                        {num}
-                      </span>
-                    </div>
-
-                    {/* Bottom accent line draws on hover */}
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-[2px]"
-                      style={{ backgroundColor: color }}
-                      initial={{ scaleX: 0, originX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    />
-
-                    <div className="relative z-10 p-5 flex flex-col flex-1">
-                      <p className="label mb-3" style={{ color }}>
-                        {num} — {sector.label}
-                      </p>
-                      <p className="font-display text-[0.975rem] text-[var(--charcoal)] leading-snug mb-4 flex-1">
-                        {SECTOR_DESCRIPTIONS[sector.key]}
-                      </p>
-                      <span
-                        className="inline-flex items-center gap-1 text-[0.8rem] font-medium group-hover:gap-2 transition-all duration-200"
-                        style={{ color }}
-                      >
-                        Explore →
-                      </span>
-                    </div>
-                  </motion.div>
-                </Link>
-              </FadeUp>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* ── CURVED LOOP — ReactBits CurvedLoop marquee ── */}
-      <section
-        className="overflow-hidden"
-        style={{ backgroundColor: "var(--charcoal)" }}
-      >
-        <CurvedLoop
-          marqueeText="Carbon Credits ✦ Innovation ✦ Sustainable Future ✦ Deep Tech ✦ Hydrogen ✦ Photonics ✦ Biochips ✦ Rare Metals ✦ Automated Reactors ✦ "
-          speed={1.4}
-          curveAmount={90}
-          direction="left"
-          interactive={true}
-          className="curved-loop-text"
-        />
-        {/* Scoped fill + font for the SVG text */}
-        <style>{`
-          .curved-loop-text {
-            font-size: 1.9rem;
-            font-family: var(--font-display);
-            font-weight: 400;
-            font-style: italic;
-            fill: rgba(255,255,255,0.22);
-            text-transform: none;
-            letter-spacing: 0.01em;
-          }
-          .curved-loop-text:hover {
-            fill: rgba(255,255,255,0.32);
-            transition: fill 0.3s ease;
-          }
-          @media (max-width: 640px) {
-            .curved-loop-text {
-              font-size: 2.8rem;
-            }
-          }
-        `}</style>
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-[var(--charcoal)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/[0.07]">
-          <span className="font-display italic text-white/70 text-lg">REC 2</span>
-          <p className="label text-white/25">
-            © 2026 · Renewable Energy · Carbon Credits · Innovation · Sustainable Future
-          </p>
-          <a
-            href="mailto:V@v-group.in"
-            className="label text-white/25 hover:text-white/55 transition-colors"
-          >
-            V@v-group.in
-          </a>
+      <footer className="py-12 px-6 lg:px-[56px] pb-12 border-t" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-16 lg:[grid-template-columns:1.6fr_1fr_1fr]">
+          <div>
+            <div className="font-display font-semibold mb-4" style={{ fontSize: 26, letterSpacing: "0.05em", color: "var(--charcoal)" }}>REC 2</div>
+            <p className="text-[13px] leading-[1.8] font-light max-w-[260px]" style={{ color: "var(--muted)" }}>
+              Renewable Energy · Carbon Credits · Innovation · Sustainable Future
+            </p>
+            <a href="mailto:V@v-group.in" className="inline-block mt-6 text-[12px] font-medium" style={{ color: "var(--charcoal)" }}>V@v-group.in</a>
+          </div>
+          <div>
+            <p className="label mb-6">Sectors</p>
+            <div className="flex flex-col gap-3.5">
+              {SECTORS.map((s) => (
+                <Link key={s.key} href={s.href} className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>{s.label}</Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="label mb-6">Connect</p>
+            <div className="flex flex-col gap-3.5">
+              <Link href="/contact" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>Contact</Link>
+              <Link href="/#mechatronics" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>About</Link>
+              <Link href="/#sectors" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>Sectors</Link>
+            </div>
+          </div>
+        </div>
+        <div className="max-w-[1200px] mx-auto mt-[52px] pt-7 flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-start sm:items-center border-t" style={{ borderColor: "var(--border)" }}>
+          <span className="text-[10px]" style={{ color: "var(--faint)" }}>© 2026 REC 2. All rights reserved.</span>
+          <span className="text-[10px]" style={{ color: "var(--hairline-faint)" }}>Renewable Energy · Carbon Credits · Innovation</span>
         </div>
       </footer>
     </div>
