@@ -127,20 +127,21 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Green hydrogen production, fuel cells and H₂ infrastructure",
     sector: "energy",
     overview: [
-      "Green hydrogen — produced by splitting water using renewable electricity — is emerging as the critical link between intermittent renewable generation and industrial decarbonisation. REC 2 invests across the hydrogen value chain, from electrolyser manufacturing and green hydrogen production to fuel cell systems and hydrogen distribution infrastructure.",
-      "Our hydrogen strategy focuses on markets where fossil fuel substitution delivers the highest carbon credit value and clearest economic returns: shipping, heavy industry, and remote power. REC 2's proprietary electrolyser efficiency optimisation layer improves hydrogen production costs by 14–22% compared to off-the-shelf systems.",
-      "The H₂ Festival, conceived by REC 2, brings together hydrogen technology companies, investors and regulators in an annual showcase event — creating a B2B pipeline for hydrogen partnerships. We leverage our sports investment arm to position hydrogen-powered racing as a live demonstration platform for hydrogen technology at scale.",
+      "Green hydrogen — produced by splitting water using renewable electricity, with only water vapour and heat as by-products — is the critical link between intermittent renewable generation and industrial decarbonisation. REC 2 is currently developing a green hydrogen project in Gujarat, with production designed to be integrated with on-site solar generation and battery energy storage. We are in active discussions to finalise implementing partners and offtakers, with the project planned for phased rollout rather than a single big-bang launch.",
+      "We do not manufacture our own electrolysers today, so we are building this vertical the honest way: through partnership. REC 2 is in discussions with FCTecNrgy Pvt. Ltd. (FCT) — a Gurgaon-based manufacturer and, through its joint venture with Germany's SFC Energy AG, India's first company to commercialise hydrogen and methanol fuel cells at scale, with over 3,000 deployments across defence, oil & gas and disaster management. Two pathways are under evaluation with FCT: supplying hydrogen fuel-cell backup power to replace diesel gensets at data centres, and entering the electrolyser OEM/technology-supply market — manufacturing or supplying the core hardware of the green hydrogen economy rather than only trading in it.",
+      "India's hydrogen landscape is being built by three forces at once: the National Green Hydrogen Mission (₹19,744 crore through FY 2029-30, targeting 5 MMTPA of green hydrogen and ~125 GW of renewable capacity by 2030), the SIGHT production and electrolyser-manufacturing incentive scheme (₹17,490 crore), and a wave of private capital from Reliance, Adani, JSW, ACME, Avaada and ReNew. As of early 2026 the pipeline spans MoU-stage announcements, projects under active construction, and a smaller set that are commissioned and producing today — commissioned green hydrogen capacity nationally stands at roughly 8,000 TPA against the 2030 target, so most of the sector's value creation still sits ahead of us, not behind it.",
+      "The scale being committed nationally is real: Reliance's Jamnagar giga complex is targeting 3 MTPA of green hydrogen by 2032, NTPC's Pudimadaka hub represents a ₹1.85 lakh crore (~$22bn) single-site commitment, and Adani-TotalEnergies have committed $50bn over a decade at Mundra/Kutch. JSW's Vijayanagar plant, commissioned November 2025 to feed its DRI steelmaking process, is the first project formally delivered under the SIGHT scheme — a template for how REC 2 expects its own offtake-anchored hydrogen projects to be structured. State policy adds a further layer: the Uttar Pradesh Green Hydrogen Policy 2024 offers up to ₹50 crore in capital subsidy for electrolyser-OEM workstreams and a 10-year exemption on electricity duty and transmission charges for green data-centre power — precisely the two pathways REC 2 is evaluating with FCT. The H₂ Festival, conceived by REC 2, brings together hydrogen technology companies, investors and regulators in an annual showcase event, and we leverage our sports investment arm to position hydrogen-powered racing as a live demonstration platform for the technology at scale.",
     ],
     whyRec2: [
-      "Green hydrogen production costs are expected to reach $1/kg by 2030 in key markets. REC 2 is positioned at the lowest-cost production nodes — solar-rich regions with direct access to industrial off-takers.",
-      "H₂ Festival creates an annual proprietary B2B pipeline. No other hydrogen investment platform combines technology investment with event-driven corporate deal-flow at this scale.",
-      "Maritime decarbonisation mandates from IMO 2030 create a captive demand pipeline for hydrogen propulsion. REC 2's maritime hydrogen infrastructure investments directly serve this regulatory-driven demand curve.",
+      "Fuel cells convert hydrogen directly into electricity at 40-60% efficiency (up to 60%+ for PEM systems) with zero emissions beyond water vapour — a real efficiency and emissions edge over combustion that REC 2's Gujarat project and FCT partnership are built to capture, not merely claim.",
+      "Partnering with an operationally proven manufacturer like FCT — 3,000+ fuel-cell deployments already in the field, not a lab concept — lets REC 2 move to bankable pilots faster while staying honest about what is ours and what is a partnership.",
+      "With commissioned Indian green hydrogen capacity at only ~8,000 TPA against a 5 MMTPA 2030 target, and India's data-centre capacity alone set to triple to 4 GW by 2030, the addressable market for hydrogen backup power and electrolyser supply is still almost entirely unclaimed.",
     ],
     applications: [
       { icon: "⚡", label: "Green H₂ Production" },
-      { icon: "🔋", label: "Electrolyser Systems" },
-      { icon: "🏭", label: "Fuel Cell Power" },
-      { icon: "🚢", label: "H₂ Maritime" },
+      { icon: "🔋", label: "Electrolyser OEM" },
+      { icon: "🏭", label: "Fuel Cell Backup Power" },
+      { icon: "🖥️", label: "Data Centre Microgrids" },
       { icon: "✈️", label: "H₂ Festival" },
       { icon: "🌱", label: "Industrial H₂" },
     ],
@@ -157,14 +158,14 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Integrated solar-hydrogen-storage microgrids and virtual power plants",
     sector: "energy",
     overview: [
-      "Hybrid energy systems — combining solar photovoltaic, hydrogen storage and battery banks — deliver the reliable, dispatchable clean power that neither technology can provide alone. REC 2 designs and finances hybrid microgrids that provide 24/7 clean power to industrial sites, island communities and remote operations without any fossil fuel input.",
-      "Our hybrid strategy emphasises AI-driven dispatch optimisation: predictive algorithms balance solar generation, hydrogen production and discharge, and battery cycling to minimise levelised cost of electricity while maximising grid stability. REC 2's digital twin platform models each hybrid system before construction, reducing cost overruns and accelerating project finance.",
-      "Carbon credit generation from hybrid systems is particularly attractive: by displacing diesel and heavy fuel oil in island and remote markets, hybrid projects can generate Gold Standard carbon credits with premium pricing. REC 2 structures carbon credit agreements with off-takers at project initiation, providing a bankable revenue stream for DFI and institutional investors.",
+      "Hybrid energy systems — combining solar photovoltaic, hydrogen storage and battery banks — deliver the reliable, dispatchable clean power that neither technology can provide alone. Hybrid is one of the most active technology races in clean energy today, with developers worldwide racing to combine generation and storage into a single dispatchable asset.",
+      "REC 2 is implementing its own hybrid roadmap in that context: designing and planning hybrid microgrids intended to provide 24/7 clean power to industrial sites, island communities and remote operations without any fossil fuel input. Our approach emphasises AI-driven dispatch optimisation — predictive algorithms to balance solar generation, hydrogen production and discharge, and battery cycling — which we are building toward rather than claiming as delivered.",
+      "Carbon credit generation from hybrid systems is particularly attractive: by displacing diesel and heavy fuel oil in island and remote markets, hybrid projects can generate Gold Standard carbon credits with premium pricing. As our hybrid projects move from planning into deployment, REC 2 intends to structure carbon credit agreements with off-takers at project initiation, providing a bankable revenue stream for DFI and institutional investors.",
     ],
     whyRec2: [
       "Island and remote markets with high diesel costs represent a $400B annual fuel spend. Hybrid systems undercut diesel LCOE by 40–60% today — and the gap widens as solar and electrolyser costs fall further.",
-      "REC 2's AI dispatch layer reduces hybrid system LCOE by a further 15% versus passive switching systems. This cost advantage is proprietary and replicable across any hybrid configuration at any scale.",
-      "Gold Standard carbon credits from diesel displacement command $25–80/tonne premiums over standard credits. REC 2's hybrid project pipeline generates high-quality credits that directly enhance investor returns.",
+      "REC 2 is implementing an AI dispatch approach designed to reduce hybrid system LCOE versus passive switching systems — a capability we are actively building, not one we are claiming today.",
+      "Gold Standard carbon credits from diesel displacement command $25–80/tonne premiums over standard credits. As our hybrid project pipeline matures, it is designed to generate high-quality credits that directly enhance investor returns.",
     ],
     applications: [
       { icon: "🌐", label: "Hybrid Microgrids" },
@@ -187,9 +188,9 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Hydrogen-hybrid solutions bridging industry, mobility and sport",
     sector: "energy",
     overview: [
-      "H₂ Hybrid Systems represent the convergence of hydrogen energy production and hybrid power management — delivering zero-emission power for the most demanding industrial, maritime and motorsport applications. REC 2's H₂ Hybrid platform integrates green hydrogen fuel cells with solar-charged battery systems for uninterrupted, dispatchable clean power at any scale.",
-      "In motorsport, H₂ Hybrid powertrains combine hydrogen combustion with hybrid electric recovery to achieve performance parity with conventional engines while eliminating carbon emissions. REC 2 partners with racing teams and series organisers to develop H₂ Hybrid powertrain architectures — using competition as a real-world durability testbed for technology destined for commercial vehicles and vessels.",
-      "For heavy industry and maritime, H₂ Hybrid Systems provide a bridge solution: plants and vessels operate on hydrogen when production is available and switch seamlessly to battery-backed power during supply interruptions. REC 2 provides the integration software, project finance, and carbon credit origination across the full H₂ Hybrid value chain.",
+      "H₂ Hybrid Systems represent the convergence of hydrogen energy production and hybrid power management — delivering zero-emission power for the most demanding industrial, maritime and motorsport applications. Around the world, projects are trialling green hydrogen fuel cells paired with solar-charged batteries, and exploring related pathways such as the conversion of iron for hydrogen-based reduction and storage. REC 2 is mapping this landscape closely as we shape our own H₂ Hybrid roadmap.",
+      "In motorsport, H₂ Hybrid powertrains combine hydrogen combustion with hybrid electric recovery to achieve performance parity with conventional engines while eliminating carbon emissions. REC 2 is planning to partner with racing teams and series organisers to develop H₂ Hybrid powertrain architectures — using competition as a real-world durability testbed for technology destined for commercial vehicles and vessels.",
+      "For heavy industry and maritime, H₂ Hybrid Systems are envisioned as a bridge solution: plants and vessels operating on hydrogen when production is available and switching seamlessly to battery-backed power during supply interruptions. REC 2 intends to provide the integration software, project finance, and carbon credit origination across the full H₂ Hybrid value chain as this technology matures.",
     ],
     whyRec2: [
       "Motorsport is a $5B annual technology procurement market. H₂ Hybrid systems validated in competition enter commercial licensing agreements 3–5 years faster than lab-developed alternatives.",
@@ -219,8 +220,8 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Critical material recovery from end-of-life lithium-ion batteries",
     sector: "recycle",
     overview: [
-      "The global electric vehicle revolution is creating an imminent wave of end-of-life lithium-ion batteries — an estimated 12 million tonnes by 2030. REC 2's battery recycling operations recover lithium, cobalt, nickel, manganese and graphite from spent cells using advanced hydrometallurgical and direct recycling processes that achieve higher purity than conventional pyrometallurgical methods.",
-      "Our battery recycling strategy is vertically integrated with our materials and energy verticals: recovered lithium and cobalt feed directly into battery supply chains, while recovered nickel and manganese supply our rare metals trading operations. Second-life battery programmes — refurbishing cells that retain 70–80% capacity — extend the economic life of packs before final recycling.",
+      "The global electric vehicle revolution is creating an imminent wave of end-of-life lithium-ion batteries — an estimated 12 million tonnes by 2030. The technology frontier here is moving fast: operators in Germany and across Europe are advancing hydrolysis-based processes that dissolve and mechanically separate cell components to recover clean metal fractions at high purity, and specialists such as Li-Cycle and Redwood Materials have shown what recovery rates of 95%+ are possible at scale. REC 2 is studying this landscape closely as we shape our own battery recycling capability.",
+      "Our battery recycling strategy is designed to be vertically integrated with our materials and energy verticals: recovered lithium and cobalt would feed directly into battery supply chains, while recovered nickel and manganese would supply our rare metals trading operations. Second-life battery programmes — refurbishing cells that retain 70–80% capacity — are part of our vision to extend the economic life of packs before final recycling.",
       "Carbon credit generation from battery recycling is a growing but underutilised revenue stream. REC 2 structures certified Scope 3 emission reduction credits from each recycling operation, verified against baseline scenarios of virgin material extraction. These credits are sold to battery manufacturers, automakers and technology companies seeking to meet supply chain decarbonisation commitments.",
     ],
     whyRec2: [
@@ -249,8 +250,8 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "End-of-life panel recovery and critical material reclamation",
     sector: "recycle",
     overview: [
-      "Solar panels installed during the first renewable energy boom of 2000–2015 are now approaching end of life — generating an estimated 80 million tonnes of panel waste by 2050. REC 2 invests in solar panel recycling infrastructure that recovers high-purity silicon, silver, glass and aluminium from decommissioned photovoltaic modules, closing the loop on the solar supply chain.",
-      "Silver recovery is the key economic driver: each tonne of decommissioned panels yields approximately 50g of silver — a metal in critical demand for next-generation electronics and solar cells. REC 2's thermal and chemical recovery processes achieve silver purity levels suitable for direct re-use in panel manufacturing, creating a genuinely circular supply chain.",
+      "Solar panels installed during the first renewable energy boom of 2000–2015 are now approaching end of life — generating an estimated 80 million tonnes of panel waste by 2050. Companies like SolarCycle in Texas have already demonstrated that panels can be broken down without the high heat traditional recyclers rely on, separating glass, silicon and silver into clean, reusable fractions at world-leading recovery rates. REC 2 invests in solar panel recycling infrastructure aimed at that same standard — recovering high-purity silicon, silver, glass and aluminium from decommissioned photovoltaic modules, closing the loop on the solar supply chain.",
+      "Silver recovery is the key economic driver: each tonne of decommissioned panels yields approximately 50g of silver — a metal in critical demand for next-generation electronics and solar cells. REC 2's planned thermal and chemical recovery processes target silver purity levels suitable for direct re-use in panel manufacturing, creating a genuinely circular supply chain.",
       "REC 2 establishes certified collection networks, partnering with utility operators, government bodies and project developers to create end-of-life obligations and guaranteed feedstock volumes. Carbon credits from certified panel recycling operations provide an additional revenue layer on top of recovered material sales.",
     ],
     whyRec2: [
@@ -304,6 +305,36 @@ export const PAGES: Record<string, PageData> = {
     ],
   },
 
+  "recycle/nuclear-recycling": {
+    title: "Nuclear Recycling",
+    subtitle: "Recovering value from spent nuclear fuel and reactor materials",
+    sector: "recycle",
+    overview: [
+      "Spent nuclear fuel still contains more than 90% of its original energy content, along with recoverable zirconium, stainless steel and high-value isotopes used in medicine and industry. As the global nuclear renaissance accelerates — driven in large part by the small modular reactor build-out — the volume of spent fuel and end-of-life reactor material requiring responsible management is set to grow sharply.",
+      "This is a vision REC 2 is building deliberately rather than one it is announcing as complete. We have not developed proprietary reprocessing or vitrification technology of our own, and we do not claim to. Our approach is to map the field, understand where genuine value can be recovered safely and under full regulatory oversight, and identify the specialists who already hold that capability.",
+      "REC 2 is actively looking for partners — research institutions, licensed reprocessing operators and materials-recovery technology developers — who can help us build a credible, safety-first nuclear recycling proposition alongside our existing work in metal alloys and small modular reactors. This is a long-horizon, heavily regulated space, and we intend to approach it that way: through collaboration, not overreach.",
+    ],
+    whyRec2: [
+      "Global installed nuclear capacity is expanding for the first time in decades, driven by SMR programmes across the UK, Canada, the US and Poland — creating a parallel, longer-term need for responsible spent-fuel and end-of-life material management.",
+      "REC 2's existing footprint in metal alloys and small modular reactors gives us a natural, credible entry point to engage specialist nuclear recycling partners, rather than approaching the sector cold.",
+      "We are positioning early and honestly — as a platform seeking the right technology and research partners, not as a claimant to capability we have not yet built.",
+    ],
+    applications: [
+      { icon: "☢️", label: "Spent Fuel Management" },
+      { icon: "🔩", label: "Zirconium & Steel Recovery" },
+      { icon: "🧪", label: "Isotope Recovery" },
+      { icon: "🛡️", label: "Regulatory Compliance" },
+      { icon: "🤝", label: "Partner & Research Network" },
+      { icon: "⚛️", label: "SMR Lifecycle Support" },
+    ],
+    team: ["vishal", "mukesh", "rushabh"],
+    related: [
+      { label: "Battery Recycling", href: "/recycle/battery-recycling" },
+      { label: "ASWM", href: "/recycle/aswm" },
+      { label: "Small Modular Reactors", href: "/materials/smr" },
+    ],
+  },
+
   // ── LEGACY REDIRECT ENTRIES (kept for any deep-links) ────────────────
 
   "energy/hydrogen-hybrid": {
@@ -341,8 +372,8 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Advanced high-performance alloys for aerospace, nuclear and defence",
     sector: "materials",
     overview: [
-      "Advanced metal alloys form the physical backbone of the energy transition and deep-tech economy. REC 2 invests in the development, processing and supply of high-performance titanium, nickel and aluminium alloys — materials engineered to withstand extreme temperatures, pressures and corrosive environments where standard engineering grades fail.",
-      "Our alloy strategy focuses on three demand drivers: the civil aerospace recovery, the global nuclear renaissance, and the rapid expansion of defence procurement. REC 2 works with advanced manufacturing partners to process alloy stock into near-net-shape components using powder metallurgy and additive manufacturing — reducing waste and delivering parts directly to tier-1 OEMs.",
+      "Advanced metal alloys form the physical backbone of the energy transition and deep-tech economy. REC 2's ambition is to develop, process and supply high-performance titanium, nickel and aluminium alloys — materials engineered to withstand extreme temperatures, pressures and corrosive environments where standard engineering grades fail — for defence and precision engineering applications.",
+      "Our alloy strategy focuses on three demand drivers: the civil aerospace recovery, the global nuclear renaissance, and the rapid expansion of defence procurement. We are in discussions with an Italian polytechnic institute whose metallurgy research programme aligns closely with this goal, with a view to jointly developing special alloys and solving specific material-performance problems raised by defence and engineering partners — work we want to do, structured as a genuine research collaboration rather than a claim of existing capability.",
       "The vertical integration between REC 2's rare metals, alloy manufacturing and recycling operations creates a closed-loop materials economy. Scrap from alloy manufacturing feeds back into our recycling streams, while recovered rare earths from battery and solar recycling supply our alloy development programmes — each vertical strengthening the others.",
     ],
     whyRec2: [
@@ -371,7 +402,8 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Critical mineral supply chains for the energy and technology transition",
     sector: "materials",
     overview: [
-      "Rare earth elements and critical minerals — lithium, cobalt, nickel, neodymium, dysprosium and the full suite of technology metals — underpin every major pillar of the energy and technology transition. REC 2 invests in the mining, processing and refining of these strategic materials, with a focus on supply chain sovereignty for markets that cannot afford geopolitical exposure in critical mineral sourcing.",
+      "Rare earth elements and critical minerals — lithium, cobalt, nickel, neodymium, dysprosium, tungsten and the full suite of technology metals — underpin every major pillar of the energy and technology transition. It helps to be precise about the categories: rare earth elements are the 17 periodic-table elements (the lanthanides, plus scandium and yttrium) prized for magnetism and optical properties; critical minerals are a broader, policy-defined list of materials — including tungsten, cobalt and lithium — flagged by governments as essential and at supply risk, whether or not they are geologically rare. REC 2's educational and investment thesis treats these as related but distinct clusters.",
+      "REC 2 invests in the mining, processing and refining of these strategic materials, with a focus on supply chain sovereignty for markets that cannot afford geopolitical exposure in critical mineral sourcing.",
       "Our rare metals strategy is built around three integrated capabilities: primary production partnerships with mining operators in politically stable jurisdictions, secondary recovery through our battery and solar recycling operations, and specialty processing to refine ore concentrates into battery-grade, magnet-grade and semiconductor-grade outputs that command premium market pricing over raw ore equivalents.",
       "China currently controls 60–85% of global rare earth production and processing, creating acute supply chain vulnerabilities for Western nations and their allies. REC 2 works with allied governments and mining companies to develop alternative supply chains across Africa, Australia, Canada and Central Asia — a mission with both commercial and strategic national importance.",
     ],
@@ -432,7 +464,7 @@ export const PAGES: Record<string, PageData> = {
     sector: "chips",
     overview: [
       "Photonic integrated circuits use light rather than electrons to process and transmit information, enabling speeds and energy efficiencies that silicon electronics cannot match. REC 2 is investing in photonic chip design, fabrication and integration — targeting applications in AI accelerators, quantum computing interfaces, LiDAR systems and ultra-fast optical communications.",
-      "The convergence of photonics with AI hardware is creating a new paradigm in computing. Optical neural networks can perform matrix multiplications — the fundamental operation in deep learning — at the speed of light with near-zero energy cost. REC 2's photonics portfolio is built around this convergence, targeting the data centre, defence and automotive markets.",
+      "The convergence of photonics with AI hardware is creating a new paradigm in computing. Optical neural networks can perform matrix multiplications — the fundamental operation in deep learning — at the speed of light with near-zero energy cost. Data centre demand is scaling faster than conventional electronic interconnects and cooling infrastructure can keep up with, and REC 2's photonics thesis is built around bringing solutions to data centres that are struggling to meet that bar — targeting the data centre, defence and automotive markets.",
       "Defence applications are particularly compelling: photonic chips enable laser-based directed energy weapons, hypersonic vehicle guidance systems, and quantum key distribution networks that are immune to classical computing attacks. REC 2's dual-use approach maximises the strategic and commercial value of photonic technology investments.",
     ],
     whyRec2: [
@@ -461,14 +493,14 @@ export const PAGES: Record<string, PageData> = {
     subtitle: "Diagnostics and biosensing at the nanoscale",
     sector: "chips",
     overview: [
-      "Biochips integrate biological molecules with microelectronic substrates to create miniaturised platforms for diagnostics, drug discovery and environmental monitoring. REC 2 invests in the full biochip ecosystem — from lab-on-chip devices for point-of-care diagnostics to DNA sequencing chips and organ-on-chip systems that replace animal testing in pharmaceutical development.",
-      "The COVID-19 pandemic demonstrated the global demand for rapid, portable, accurate diagnostics. Biochips are the enabling technology for the next generation of pandemic preparedness: multiplexed assays that detect hundreds of pathogens simultaneously, wearable biosensors for continuous health monitoring, and implantable chips for chronic disease management.",
-      "From a defence perspective, biochips are critical for chemical and biological threat detection, field-deployable medical diagnostics, and the development of medical countermeasures. REC 2's biochip investments are structured to serve both civilian healthcare and defence readiness markets.",
+      "Biochips integrate biological molecules with microelectronic substrates to create miniaturised platforms for diagnostics, drug discovery and organ modelling. REC 2's primary focus in this vertical is organ-on-chip systems — microfluidic devices that replicate the function of human organs and reduce reliance on animal testing in pharmaceutical development.",
+      "Our particular interest is the bladder: bladder disease research is comparatively underserved by existing organ-on-chip platforms, and we see a genuine gap for a dedicated model. REC 2 is looking for research and technology partners to develop organ-on-chip solutions specifically for bladder disease, rather than claiming to have built this capability ourselves.",
+      "From a defence perspective, biochips are also relevant for field-deployable diagnostics and chemical and biological threat detection. REC 2's biochip investments are structured to serve both civilian healthcare and defence readiness markets, with organ-on-chip work as the anchor programme.",
     ],
     whyRec2: [
-      "Biochip market is projected to exceed $30B by 2030, with the point-of-care diagnostics segment growing fastest as healthcare decentralises.",
-      "Defence and homeland security demand for portable biological threat detection creates guaranteed government procurement for best-in-class biochip technologies.",
-      "REC 2's chemistry and materials expertise accelerates biochip surface functionalisation — the critical bottleneck in device sensitivity and specificity.",
+      "Biochip market is projected to exceed $30B by 2030, with organ-on-chip and point-of-care diagnostics among the fastest-growing segments as pharma seeks alternatives to animal testing.",
+      "A dedicated bladder-disease organ-on-chip model addresses a clear gap in the current research landscape, giving REC 2 a differentiated entry point rather than competing head-on in crowded diagnostic categories.",
+      "REC 2's chemistry and materials expertise is well suited to biochip surface functionalisation — the critical bottleneck in device sensitivity and specificity — once the right research partner is in place.",
     ],
     applications: [
       { icon: "🧬", label: "DNA Sequencing" },
@@ -492,7 +524,7 @@ export const PAGES: Record<string, PageData> = {
     sector: "robotics",
     overview: [
       "Flow chemistry replaces batch reactors with continuous tubular systems where reagents flow through precisely controlled microreactors, mixing, reacting and separating in a seamless automated process. REC 2 is investing in flow chemistry systems that dramatically accelerate pharmaceutical synthesis, specialty chemical production and green chemistry — reducing waste, improving safety and enabling chemistries impossible in batch mode.",
-      "The advantages of flow chemistry are profound: reactions can be run at extreme temperatures and pressures safely, hazardous intermediates are consumed immediately rather than accumulated, and scale-up from laboratory to production is achieved simply by running reactors in parallel ('numbering up'). REC 2 sees flow chemistry as foundational to the future of chemical manufacturing.",
+      "This is why the chemical industry worldwide is shifting toward flow: reactions can be run at extreme temperatures and pressures safely, hazardous intermediates are consumed immediately rather than accumulated, and scale-up from laboratory to production is achieved simply by running reactors in parallel ('numbering up') rather than rebuilding a plant. Automated reactors are what make this shift practical at industrial scale — they hold the tight temperature, pressure and residence-time control that flow chemistry depends on far more precisely than manual operation ever could. REC 2 sees flow chemistry, backed by automated reactor systems, as foundational to the future of chemical manufacturing.",
       "Defence applications include the on-demand synthesis of propellants, explosives and chemical countermeasures — eliminating the need for large munitions stockpiles and enabling just-in-time production near the point of use. Our flow chemistry investments serve both the commercial specialty chemicals market and defence procurement.",
     ],
     whyRec2: [
@@ -639,6 +671,7 @@ export const NAV_ITEMS = [
       { label: "Battery Recycling", href: "/recycle/battery-recycling" },
       { label: "Solar Recycling", href: "/recycle/solar-recycling" },
       { label: "ASWM", href: "/recycle/aswm" },
+      { label: "Nuclear Recycling", href: "/recycle/nuclear-recycling" },
     ],
   },
   {

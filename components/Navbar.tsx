@@ -10,6 +10,7 @@ import { NAV_ITEMS } from "@/lib/data";
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [hovered, setHovered] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -35,23 +36,42 @@ export default function Navbar() {
       </Link>
 
       {/* Desktop sector nav — lg+ only; tablet portrait gets hamburger like mobile */}
-      <div className="hidden lg:flex items-center gap-1.5">
-        <Link
-          href="/#mechatronics"
-          className="nlink text-[10px] tracking-[0.13em] uppercase font-medium text-[var(--muted)] px-2.5 py-1.5"
-        >
-          Mechatronics
-        </Link>
+      <div className="hidden lg:flex items-center gap-1.5" onMouseLeave={() => setHovered(null)}>
+        <div className="relative" onMouseEnter={() => setHovered("Mechatronics")}>
+          <Link
+            href="/mechatronics"
+            className="relative z-10 nlink text-[10px] tracking-[0.13em] uppercase font-medium text-[var(--muted)] px-2.5 py-1.5"
+          >
+            Mechatronics
+          </Link>
+          {hovered === "Mechatronics" && (
+            <motion.div
+              layoutId="nav-hover-underline"
+              className="absolute left-2.5 right-2.5 bottom-0 h-[2px]"
+              style={{ backgroundColor: "var(--charcoal)" }}
+              transition={{ type: "spring", stiffness: 420, damping: 32 }}
+            />
+          )}
+        </div>
         <div className="w-px h-3.5" style={{ backgroundColor: "var(--border)" }} />
         {NAV_ITEMS.map((nav) => (
-          <Link
-            key={nav.label}
-            href={nav.href}
-            className="nlink text-[10px] tracking-[0.13em] uppercase font-bold px-2.5 py-1.5"
-            style={{ color: nav.color }}
-          >
-            {nav.label}
-          </Link>
+          <div key={nav.label} className="relative" onMouseEnter={() => setHovered(nav.label)}>
+            <Link
+              href={nav.href}
+              className="relative z-10 nlink text-[10px] tracking-[0.13em] uppercase font-bold px-2.5 py-1.5"
+              style={{ color: nav.color }}
+            >
+              {nav.label}
+            </Link>
+            {hovered === nav.label && (
+              <motion.div
+                layoutId="nav-hover-underline"
+                className="absolute left-2.5 right-2.5 bottom-0 h-[2px]"
+                style={{ backgroundColor: nav.color }}
+                transition={{ type: "spring", stiffness: 420, damping: 32 }}
+              />
+            )}
+          </div>
         ))}
       </div>
 
@@ -86,7 +106,7 @@ export default function Navbar() {
           >
             <div className="px-6 py-4 space-y-0.5">
               <Link
-                href="/#mechatronics"
+                href="/mechatronics"
                 className="block py-3 text-[0.875rem] font-medium text-[var(--charcoal)] border-b"
                 style={{ borderColor: "var(--border)" }}
               >

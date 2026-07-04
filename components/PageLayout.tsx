@@ -36,6 +36,8 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
 
   return (
     <div className="min-h-screen bg-[var(--cream)]">
+      {/* Sticky sector-colour accent — pinned just under the navbar, reinforces which world you're in */}
+      <div className="sticky top-16 z-40 h-[3px]" style={{ backgroundColor: color }} />
       <SectorHero title={page.title} subtitle={page.subtitle} sector={sector} breadcrumb={breadcrumb} />
 
       {children}
@@ -68,8 +70,15 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
       </section>
 
       {/* Why REC 2 */}
-      <section className="py-20 px-6 lg:px-[56px] border-b" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
-        <div className="max-w-[1100px] mx-auto">
+      <section
+        className="relative py-20 px-6 lg:px-[56px] border-b overflow-hidden"
+        style={{
+          backgroundColor: "var(--cream-deep)",
+          borderColor: "var(--border)",
+          backgroundImage: `radial-gradient(circle at 12% 20%, ${color}14, transparent 45%), radial-gradient(circle at 88% 80%, ${color}0d, transparent 45%)`,
+        }}
+      >
+        <div className="relative max-w-[1100px] mx-auto">
           <p className="label mb-12">Why REC 2 is Investing Here</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {page.whyRec2.map((point, i) => (
@@ -93,8 +102,14 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
       </section>
 
       {/* Key Applications */}
-      <section className="py-20 px-6 lg:px-[56px] border-b" style={{ borderColor: "var(--border)" }}>
-        <div className="max-w-[1100px] mx-auto">
+      <section
+        className="relative py-20 px-6 lg:px-[56px] border-b overflow-hidden"
+        style={{
+          borderColor: "var(--border)",
+          backgroundImage: `radial-gradient(circle at 92% 15%, ${color}0f, transparent 40%)`,
+        }}
+      >
+        <div className="relative max-w-[1100px] mx-auto">
           <div className="flex items-baseline justify-between mb-11">
             <p className="label">Key Applications</p>
             <p className="label">{page.applications.length.toString().padStart(2, "0")} Areas</p>
@@ -182,7 +197,7 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
             <p className="label mb-6">Connect</p>
             <div className="flex flex-col gap-3.5">
               <Link href="/contact" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>Contact</Link>
-              <Link href="/#mechatronics" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>About</Link>
+              <Link href="/mechatronics" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>About</Link>
               <Link href="/" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>All Sectors</Link>
             </div>
           </div>

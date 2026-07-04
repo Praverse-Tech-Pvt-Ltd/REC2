@@ -282,6 +282,15 @@ function SailGPPanel() {
         </a>
       </div>
 
+      {/* TODO: replace with the real SailGP highlights reel URL before launch */}
+      <a
+        href="#"
+        className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium mt-2"
+        style={{ color: accent, opacity: 0.7 }}
+      >
+        ▶ Watch race highlights (add video link)
+      </a>
+
       <Divider />
 
       {/* Description */}
@@ -404,6 +413,15 @@ function E1Panel() {
           E1Series.com →
         </a>
       </div>
+
+      {/* TODO: replace with the real E1 Series highlights reel URL before launch */}
+      <a
+        href="#"
+        className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium mt-2"
+        style={{ color: accent, opacity: 0.7 }}
+      >
+        ▶ Watch race highlights (add video link)
+      </a>
 
       <Divider />
 
@@ -530,6 +548,15 @@ function ExtremeHPanel() {
           FIAExtremeH.com →
         </a>
       </div>
+
+      {/* TODO: replace with the real Extreme H highlights reel URL before launch */}
+      <a
+        href="#"
+        className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium mt-2"
+        style={{ color: accent, opacity: 0.7 }}
+      >
+        ▶ Watch race highlights (add video link)
+      </a>
 
       <Divider />
 

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SECTOR_NUMBERS, SECTOR_COLORS, NAV_ITEMS, type SectorKey } from "@/lib/data";
+import AmbientBackground from "./AmbientBackground";
 
 type Props = {
   title: string;
@@ -28,6 +29,8 @@ export default function SectorHero({ title, subtitle, sector, breadcrumb }: Prop
       className="relative overflow-hidden pt-[120px] pb-16 px-6 lg:px-[56px] border-b"
       style={{ borderColor: "var(--border)" }}
     >
+      <AmbientBackground colors={[color]} />
+
       {/* Ghost sector number */}
       <div
         className="absolute right-[-20px] top-1/2 -translate-y-1/2 font-display select-none pointer-events-none leading-none"

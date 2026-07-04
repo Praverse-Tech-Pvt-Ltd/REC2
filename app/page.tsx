@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { SECTOR_COLORS, SECTOR_DESCRIPTIONS, SECTOR_NUMBERS, type SectorKey } from "@/lib/data";
+import SectorCard from "@/components/SectorCard";
+import AmbientBackground from "@/components/AmbientBackground";
 
 const SECTORS: { key: SectorKey; label: string; href: string; image: string; alt: string }[] = [
   { key: "energy",    label: "Energy",    href: "/energy/solar",              image: "/solar.png",        alt: "Solar energy infrastructure" },
@@ -64,11 +66,17 @@ function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
 }
 
 export default function HomePage() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const watermarkY = useTransform(heroProgress, [0, 1], [0, 140]);
+  const watermarkOpacity = useTransform(heroProgress, [0, 1], [0.032, 0]);
+
   return (
     <div className="min-h-screen bg-[var(--cream)]">
 
       {/* ── HERO ── */}
-      <section className="relative min-h-screen px-6 lg:px-[56px] pb-20 flex flex-col justify-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen px-6 lg:px-[56px] pb-20 flex flex-col justify-center overflow-hidden">
+        <AmbientBackground colors={Object.values(SECTOR_COLORS)} />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -76,12 +84,12 @@ export default function HomePage() {
             backgroundSize: "80px 80px",
           }}
         />
-        <div
+        <motion.div
           className="absolute right-[-60px] top-1/2 -translate-y-1/2 font-display select-none pointer-events-none leading-none"
-          style={{ fontSize: "clamp(200px,28vw,400px)", fontWeight: 300, color: "var(--charcoal)", opacity: 0.032, letterSpacing: "-0.04em" }}
+          style={{ fontSize: "clamp(200px,28vw,400px)", fontWeight: 300, color: "var(--charcoal)", letterSpacing: "-0.04em", y: watermarkY, opacity: watermarkOpacity }}
         >
           R2
-        </div>
+        </motion.div>
 
         <div className="max-w-[920px] relative z-10 pt-16">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72 }} className="flex items-center gap-3.5 mb-14">
@@ -135,7 +143,13 @@ export default function HomePage() {
       </section>
 
       {/* ── ABOUT STRIP ── */}
-      <section className="py-11 px-6 lg:px-[56px] border-y" style={{ borderColor: "var(--border)" }}>
+      <section
+        className="py-11 px-6 lg:px-[56px] border-y"
+        style={{
+          borderColor: "var(--border)",
+          backgroundImage: `radial-gradient(circle at 4% 50%, ${SECTOR_COLORS.energy}10, transparent 35%)`,
+        }}
+      >
         <div className="max-w-[1200px] mx-auto flex flex-col sm:flex-row gap-10 sm:gap-20 items-start">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72 }} className="flex-shrink-0 pt-1">
             <span className="label">About</span>
@@ -147,7 +161,14 @@ export default function HomePage() {
       </section>
 
       {/* ── STATS ── */}
-      <section className="py-[68px] px-6 lg:px-[56px] border-b" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>
+      <section
+        className="py-[68px] px-6 lg:px-[56px] border-b"
+        style={{
+          backgroundColor: "var(--cream-deep)",
+          borderColor: "var(--border)",
+          backgroundImage: `radial-gradient(circle at 15% 15%, ${SECTOR_COLORS.materials}0d, transparent 40%), radial-gradient(circle at 85% 85%, ${SECTOR_COLORS.sports}0d, transparent 40%)`,
+        }}
+      >
         <div className="stats-grid max-w-[1100px] mx-auto grid grid-cols-2 lg:grid-cols-4">
           {[
             { n: 6, label: "Sectors" },
@@ -168,8 +189,9 @@ export default function HomePage() {
       </section>
 
       {/* ── CONVERGENCE (Mechatronics) ── */}
-      <section id="mechatronics" className="py-[116px] px-6 lg:px-[56px]" style={{ scrollMarginTop: 70 }}>
-        <div className="max-w-[1200px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-[88px] items-start">
+      <section id="mechatronics" className="relative overflow-hidden py-[116px] px-6 lg:px-[56px]" style={{ scrollMarginTop: 70 }}>
+        <AmbientBackground colors={["var(--sage)"]} count={3} grain={false} />
+        <div className="relative max-w-[1200px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-[88px] items-start">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72 }} className="lg:sticky lg:top-24">
             <p className="label mb-6">The Convergence</p>
             <h2 className="font-display leading-[1.1] tracking-[-0.01em]" style={{ fontSize: 50, fontWeight: 300, color: "var(--charcoal)" }}>
@@ -178,18 +200,15 @@ export default function HomePage() {
           </motion.div>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72, delay: 0.1 }}>
             <p className="text-[17px] leading-[1.9] font-light" style={{ color: "var(--charcoal-light)" }}>
-              It starts with energy — sunlight and hydrogen turned into power that never sleeps. What that power eventually leaves behind, REC 2 recycles back into raw material, so nothing is spent twice.
+              It starts with energy, is recycled back into material, refined into the substrate for chips, given hands by robotics, and proven on the racetrack in front of millions. Six sectors, one convergence.
             </p>
-            <p className="text-[17px] leading-[1.9] font-light mt-7" style={{ color: "var(--charcoal-light)" }}>
-              Those reclaimed elements, alongside rare earths and advanced alloys, become the materials precise enough for reactors and aircraft. Refined further, they become the substrate for chips — photonic and biological — that let machines see, sense and think.
-            </p>
-            <p className="text-[17px] leading-[1.9] font-light mt-7" style={{ color: "var(--charcoal-light)" }}>
-              Robotics takes that intelligence and gives it hands: reactors that synthesise, correct and act without waiting for instruction. And to prove it all works, REC 2 takes it racing — in sport, where hydrogen boats and electric cars run the same engineering in front of millions.
-            </p>
-            <div className="mt-[52px] pt-9 border-t" style={{ borderColor: "var(--border)" }}>
-              <p className="font-display" style={{ fontSize: 22, lineHeight: 1.55, color: "var(--charcoal)", fontWeight: 400 }}>
+            <div className="mt-[40px] pt-9 border-t" style={{ borderColor: "var(--border)" }}>
+              <p className="font-display mb-6" style={{ fontSize: 22, lineHeight: 1.55, color: "var(--charcoal)", fontWeight: 400 }}>
                 One discipline. Six expressions.<br /><em className="italic">This is mechatronics.</em>
               </p>
+              <Link href="/mechatronics" className="inline-block text-[10px] tracking-[0.12em] uppercase font-bold px-[28px] py-[13px]" style={{ backgroundColor: "var(--charcoal)", color: "var(--cream)", borderRadius: 2 }}>
+                Explore Mechatronics →
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -197,7 +216,10 @@ export default function HomePage() {
 
 
       {/* ── SECTORS GRID ── */}
-      <section className="py-[100px] px-6 lg:px-[56px]">
+      <section
+        className="py-[100px] px-6 lg:px-[56px]"
+        style={{ backgroundImage: `radial-gradient(circle at 96% 4%, ${SECTOR_COLORS.chips}0d, transparent 32%)` }}
+      >
         <div className="max-w-[1400px] mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72 }} className="flex items-baseline justify-between mb-[60px]">
             <div>
@@ -208,33 +230,19 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border" style={{ backgroundColor: "var(--border)", borderColor: "var(--border)" }}>
-            {SECTORS.map((s, i) => {
-              const color = SECTOR_COLORS[s.key];
-              return (
-                <motion.div
-                  key={s.key}
-                  initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-40px" }} variants={fadeUp} transition={{ duration: 0.72, delay: i * 0.06 }}
-                >
-                  <Link href={s.href} className="sector-card group relative flex h-full min-h-[430px] flex-col overflow-hidden" style={{ backgroundColor: "var(--cream)" }}>
-                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--cream-deep)]">
-                      <img
-                        src={s.image}
-                        alt={s.alt}
-                        className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.035]"
-                      />
-                      <div className="absolute inset-0 transition-colors duration-300 group-hover:bg-transparent" style={{ backgroundColor: "rgba(250,250,248,0.12)" }} />
-                      <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ backgroundColor: color }} />
-                    </div>
-                    <div className="flex flex-1 flex-col gap-4.5 p-7 sm:p-8">
-                    <span className="text-[9px] tracking-[0.16em] font-bold" style={{ color }}>{SECTOR_NUMBERS[s.key]}</span>
-                    <h3 className="font-display leading-[1.05]" style={{ fontSize: 42, fontWeight: 300, color: "var(--charcoal)" }}>{s.label}</h3>
-                    <p className="text-[13px] leading-[1.78] font-light flex-1" style={{ color: "var(--muted)" }}>{SECTOR_DESCRIPTIONS[s.key]}</p>
-                    <div className="text-[9px] tracking-[0.14em] uppercase font-bold" style={{ color }}>Explore →</div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
+            {SECTORS.map((s, i) => (
+              <SectorCard
+                key={s.key}
+                href={s.href}
+                image={s.image}
+                alt={s.alt}
+                color={SECTOR_COLORS[s.key]}
+                number={SECTOR_NUMBERS[s.key]}
+                label={s.label}
+                description={SECTOR_DESCRIPTIONS[s.key]}
+                delay={i * 0.06}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -276,7 +284,7 @@ export default function HomePage() {
             <p className="label mb-6">Connect</p>
             <div className="flex flex-col gap-3.5">
               <Link href="/contact" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>Contact</Link>
-              <Link href="/#mechatronics" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>About</Link>
+              <Link href="/mechatronics" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>About</Link>
               <Link href="/#sectors" className="nlink text-[13px] font-light" style={{ color: "var(--muted)" }}>Sectors</Link>
             </div>
           </div>

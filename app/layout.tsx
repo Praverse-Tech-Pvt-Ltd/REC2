@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import ScrollProgress from "@/components/ScrollProgress";
+import PageTransition from "@/components/PageTransition";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -28,8 +30,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${plusJakarta.variable}`}>
       <body className="antialiased font-body bg-surface text-navy">
+        <ScrollProgress />
         <Navbar />
-        <main>{children}</main>
+        <main>
+          <PageTransition>{children}</PageTransition>
+        </main>
       </body>
     </html>
   );
