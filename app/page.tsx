@@ -94,15 +94,15 @@ export default function HomePage() {
         <div className="max-w-[920px] relative z-10 pt-16">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72 }} className="flex items-center gap-3.5 mb-14">
             <div className="w-8 h-px" style={{ backgroundColor: "var(--muted)" }} />
-            <span className="text-[10px] tracking-[0.22em] uppercase font-semibold" style={{ color: "var(--muted)" }}>01 — Innovation Platform</span>
+            <span className="text-[10px] tracking-[0.22em] uppercase font-semibold" style={{ color: "var(--muted)" }}>REC 2 — Innovation Platform</span>
           </motion.div>
 
           <motion.h1
             initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.08 }}
             className="font-display leading-[0.88] tracking-[-0.025em] mb-11"
-            style={{ fontSize: "clamp(72px,12.5vw,176px)", fontWeight: 300, color: "var(--charcoal)" }}
+            style={{ fontSize: "clamp(56px,10vw,152px)", fontWeight: 300, color: "var(--charcoal)" }}
           >
-            REC 2
+            Mechatronics
           </motion.h1>
 
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.16 }} className="h-px mb-9" style={{ backgroundColor: "rgba(26,26,26,0.14)" }} />
@@ -111,8 +111,8 @@ export default function HomePage() {
             Renewable Energy · Carbon Credits · Innovation
           </motion.p>
 
-          <motion.p initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.32 }} className="text-[18px] leading-[1.78] font-light max-w-[560px] mb-[52px]" style={{ color: "var(--charcoal-light)" }}>
-            A diverse innovation platform bridging sustainable technology, renewable energy, deep tech and the future of sport.
+          <motion.p initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.32 }} className="text-[18px] leading-[1.78] font-light max-w-[600px] mb-[52px]" style={{ color: "var(--charcoal-light)" }}>
+            Mechatronics is the discipline underneath every REC 2 vertical — the engineering layer where energy systems, materials science, sensing and robotics stop being separate fields and start being one integrated machine. It&apos;s not a seventh sector alongside the other six; it&apos;s the connective logic that makes the six work as a single platform.
           </motion.p>
 
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.72, delay: 0.4 }} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
@@ -206,8 +206,8 @@ export default function HomePage() {
               <p className="font-display mb-6" style={{ fontSize: 22, lineHeight: 1.55, color: "var(--charcoal)", fontWeight: 400 }}>
                 One discipline. Six expressions.<br /><em className="italic">This is mechatronics.</em>
               </p>
-              <Link href="/mechatronics" className="inline-block text-[10px] tracking-[0.12em] uppercase font-bold px-[28px] py-[13px]" style={{ backgroundColor: "var(--charcoal)", color: "var(--cream)", borderRadius: 2 }}>
-                Explore Mechatronics →
+              <Link href="#sectors" className="inline-block text-[10px] tracking-[0.12em] uppercase font-bold px-[28px] py-[13px]" style={{ backgroundColor: "var(--charcoal)", color: "var(--cream)", borderRadius: 2 }}>
+                Explore the Sectors →
               </Link>
             </div>
           </motion.div>
@@ -217,8 +217,9 @@ export default function HomePage() {
 
       {/* ── SECTORS GRID ── */}
       <section
+        id="sectors"
         className="py-[100px] px-6 lg:px-[56px]"
-        style={{ backgroundImage: `radial-gradient(circle at 96% 4%, ${SECTOR_COLORS.chips}0d, transparent 32%)` }}
+        style={{ backgroundImage: `radial-gradient(circle at 96% 4%, ${SECTOR_COLORS.chips}0d, transparent 32%)`, scrollMarginTop: 70 }}
       >
         <div className="max-w-[1400px] mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ duration: 0.72 }} className="flex items-baseline justify-between mb-[60px]">
