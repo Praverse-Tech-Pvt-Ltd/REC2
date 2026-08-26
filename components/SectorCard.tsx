@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
@@ -61,10 +63,12 @@ export default function SectorCard({ href, image, alt, color, number, label, des
             style={{ background: `radial-gradient(circle at ${spot.x}% ${spot.y}%, ${color}26, transparent 62%)` }}
           />
           <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--cream-deep)]">
-            <img
+            <Image
               src={image}
               alt={alt}
-              className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.035]"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.035]"
             />
             <div className="absolute inset-0 transition-colors duration-300 group-hover:bg-transparent" style={{ backgroundColor: "rgba(250,250,248,0.12)" }} />
             <div className="absolute left-0 right-0 top-0 h-[3px]" style={{ backgroundColor: color }} />

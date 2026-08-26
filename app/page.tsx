@@ -8,12 +8,12 @@ import SectorCard from "@/components/SectorCard";
 import AmbientBackground from "@/components/AmbientBackground";
 
 const SECTORS: { key: SectorKey; label: string; href: string; image: string; alt: string }[] = [
-  { key: "energy",    label: "Energy",    href: "/energy/solar",              image: "/solar.png",        alt: "Solar energy infrastructure" },
-  { key: "recycle",   label: "Recycle",   href: "/recycle/battery-recycling", image: "/recycle.png",      alt: "Industrial recycling systems" },
-  { key: "materials", label: "Materials", href: "/materials/metal-alloys",    image: "/materials.png",    alt: "Advanced materials and alloys" },
-  { key: "chips",     label: "Chips",     href: "/chips/photonics",           image: "/chips.png",        alt: "Semiconductor and photonics technology" },
-  { key: "robotics",  label: "Robotics",  href: "/robotics/flow-chemistry",   image: "/robotics.png",     alt: "Robotics and automated reactor systems" },
-  { key: "sports",    label: "Sports",    href: "/sports/investments",        image: "/sports final.png", alt: "Sustainable motorsport technology" },
+  { key: "energy",    label: "Energy",    href: "/energy/solar",              image: "/solar.webp",        alt: "Solar energy infrastructure" },
+  { key: "recycle",   label: "Recycle",   href: "/recycle/battery-recycling", image: "/recycle.webp",      alt: "Industrial recycling systems" },
+  { key: "materials", label: "Materials", href: "/materials/metal-alloys",    image: "/materials.webp",    alt: "Advanced materials and alloys" },
+  { key: "chips",     label: "Chips",     href: "/chips/photonics",           image: "/chips.webp",        alt: "Semiconductor and photonics technology" },
+  { key: "robotics",  label: "Robotics",  href: "/robotics/flow-chemistry",   image: "/robotics.webp",     alt: "Robotics and automated reactor systems" },
+  { key: "sports",    label: "Sports",    href: "/sports/investments",        image: "/sports-final.webp", alt: "Sustainable motorsport technology" },
 ];
 
 const TICKER_ITEMS = [
