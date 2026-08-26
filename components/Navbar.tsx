@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { NAV_ITEMS } from "@/lib/data";
+import { NAV_ITEMS, CSR_NAV } from "@/lib/data";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -73,6 +73,23 @@ export default function Navbar() {
             )}
           </div>
         ))}
+        <div className="relative" onMouseEnter={() => setHovered(CSR_NAV.label)}>
+          <Link
+            href={CSR_NAV.href}
+            className="relative z-10 nlink text-[10px] tracking-[0.13em] uppercase font-bold px-2.5 py-1.5"
+            style={{ color: CSR_NAV.color }}
+          >
+            {CSR_NAV.label}
+          </Link>
+          {hovered === CSR_NAV.label && (
+            <motion.div
+              layoutId="nav-hover-underline"
+              className="absolute left-2.5 right-2.5 bottom-0 h-[2px]"
+              style={{ backgroundColor: CSR_NAV.color }}
+              transition={{ type: "spring", stiffness: 420, damping: 32 }}
+            />
+          )}
+        </div>
       </div>
 
       {/* Contact button */}
@@ -152,6 +169,15 @@ export default function Navbar() {
                   </div>
                 );
               })}
+
+              <Link
+                href={CSR_NAV.href}
+                className="block py-3 text-[0.875rem] font-bold"
+                style={{ color: CSR_NAV.color }}
+              >
+                {CSR_NAV.label}
+              </Link>
+
               <div className="pt-3 pb-1">
                 <Link
                   href="/contact"

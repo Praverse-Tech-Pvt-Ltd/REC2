@@ -1,6 +1,6 @@
 export type Person = {
   name: string;
-  email: string;
+  email?: string;
   role: string;
   initials: string;
 };
@@ -11,7 +11,8 @@ export type SectorKey =
   | "materials"
   | "chips"
   | "robotics"
-  | "sports";
+  | "sports"
+  | "csr";
 
 export const SECTOR_COLORS: Record<SectorKey, string> = {
   energy: "#C17B2A",
@@ -20,6 +21,7 @@ export const SECTOR_COLORS: Record<SectorKey, string> = {
   chips: "#1A8080",
   robotics: "#6B3FA0",
   sports: "#C43820",
+  csr: "#9C3F63",
 };
 
 export const SECTOR_GRADIENTS: Record<SectorKey, string> = {
@@ -29,6 +31,7 @@ export const SECTOR_GRADIENTS: Record<SectorKey, string> = {
   chips: "from-orange-950 to-orange-700",
   robotics: "from-teal-950 to-teal-700",
   sports: "from-blue-950 to-blue-800",
+  csr: "from-rose-950 to-rose-800",
 };
 
 export const PEOPLE: Record<string, Person> = {
@@ -67,6 +70,11 @@ export const PEOPLE: Record<string, Person> = {
     email: "rushabh@prithvistrategic.com",
     role: "Strategic Advisor – Materials",
     initials: "RJ",
+  },
+  lynette: {
+    name: "Lynette Menezes",
+    role: "Founder — Love Paws",
+    initials: "LM",
   },
   pratham: {
     name: "Pratham Shrivastav",
@@ -713,6 +721,25 @@ export const NAV_ITEMS = [
   },
 ];
 
+/**
+ * CSR is a single page rather than a sector, and it carries the Love Paws
+ * Foundation case instead of PageLayout's standard body, so it keeps its own
+ * small content block here.
+ */
+export const CSR_PAGE = {
+  title: "Corporate Social Responsibility",
+  subtitle: "The social licence that makes deep-tech industry durable",
+  team: ["lynette", "pratham"],
+  overview: [
+    "REC 2 builds where the technology arrives before the infrastructure — solar farms on agricultural land, recycling plants at the edge of industrial towns, materials facilities in districts with thin technical education. In every one of them the same discipline decides whether the project survives its first five years: draw a boundary, measure a baseline inside it, and pay against a verified outcome rather than a reported effort. That discipline is what we mean by corporate responsibility. It is not a line item in the annual report.",
+    "Love Paws Foundation is where we put that discipline to work outside our own fence line. India runs stray animal sterilisation programmes without a count, without a threshold and without proof — roughly 6.2 crore free-roaming dogs against an official census of 1.53 crore, 47.5 lakh reported dog bites in 2025, and no national dashboard that can name a single locality as finished. Money is not the binding constraint. The missing piece is the one that would sink any of our own plants: nobody owns a boundary, and nothing is verified.",
+    "So Love Paws proposes the opposite of a charity campaign. A defined zone. A measured population as the denominator. Every animal traceable from catch to release on a record that cannot be faked, and payment released only when the chain is complete. It is our own operating logic pointed at a public health failure. What follows is the full argument, the evidence behind it, and the ask.",
+  ],
+};
+
+/** Single page, no sub-sections — rendered beside NAV_ITEMS, not inside it. */
+export const CSR_NAV = { label: "CSR", color: "#9C3F63", href: "/csr" };
+
 export const SECTOR_DESCRIPTIONS: Record<SectorKey, string> = {
   energy:
     "Solar, hydrogen and hybrid systems — clean energy production at every scale.",
@@ -726,6 +753,8 @@ export const SECTOR_DESCRIPTIONS: Record<SectorKey, string> = {
     "Automated chemical synthesis and industrial robotics — factories that think.",
   sports:
     "Sustainable sports investments and global partnerships — where elite performance meets innovation.",
+  csr:
+    "Local capability, environmental restitution and audited impact — the social licence deep-tech industry runs on.",
 };
 
 export const SECTOR_NUMBERS: Record<SectorKey, string> = {
@@ -735,6 +764,7 @@ export const SECTOR_NUMBERS: Record<SectorKey, string> = {
   chips: "04",
   robotics: "05",
   sports: "06",
+  csr: "07",
 };
 
 export const SECTOR_ICONS: Record<SectorKey, string> = {
@@ -744,4 +774,5 @@ export const SECTOR_ICONS: Record<SectorKey, string> = {
   chips: "◉",
   robotics: "⬡",
   sports: "△",
+  csr: "❖",
 };

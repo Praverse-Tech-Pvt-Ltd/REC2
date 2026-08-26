@@ -7,9 +7,11 @@ type Props = {
   personKey: string;
   sector: SectorKey;
   index?: number;
+  /** Page-specific title, for people who hold a different role on this page. */
+  roleOverride?: string;
 };
 
-export default function TeamCard({ personKey, index = 0 }: Props) {
+export default function TeamCard({ personKey, index = 0, roleOverride }: Props) {
   const person = PEOPLE[personKey];
   if (!person) return null;
 
@@ -29,10 +31,12 @@ export default function TeamCard({ personKey, index = 0 }: Props) {
         {person.initials}
       </div>
       <div className="text-[16px] font-medium text-[var(--charcoal)] mb-1">{person.name}</div>
-      <div className="label mb-3.5">{person.role}</div>
-      <a href={`mailto:${person.email}`} className="text-[12px]" style={{ color: "var(--muted)" }}>
-        {person.email}
-      </a>
+      <div className="label mb-3.5">{roleOverride ?? person.role}</div>
+      {person.email && (
+        <a href={`mailto:${person.email}`} className="text-[12px]" style={{ color: "var(--muted)" }}>
+          {person.email}
+        </a>
+      )}
     </motion.div>
   );
 }
