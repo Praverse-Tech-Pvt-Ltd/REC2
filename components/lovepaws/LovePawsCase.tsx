@@ -218,26 +218,26 @@ const LEDGER: { fig: string; lab: string; note: string; src: number[]; hot?: boo
     fig: "6.2 cr",
     lab: "Free-roaming dogs in India, independent estimate",
     note: "The last official exercise was the 2019 Livestock Census, widely treated as an undercount.",
-    src: [5],
+    src: [4],
   },
   {
     fig: "47,48,478",
     lab: "Reported dog bite cases in 2025",
     note: "Up roughly 10 lakh on 2024, when 37,17,336 cases were recorded by the NCDC.",
-    src: [2, 1],
+    src: [1],
     hot: true,
   },
   {
     fig: "5,726",
     lab: "Estimated human rabies deaths a year, ICMR",
     note: "An older WHO framing put India at roughly 36 per cent of a global toll near 59,000, implying a far higher number. The two estimates use different methods and should not be read together.",
-    src: [3, 4],
+    src: [2, 3],
   },
   {
     fig: "8",
     lab: "Animal Birth Control centres serving all of Mumbai",
     note: "Against a city population counted at 90,757 dogs and over 1.28 lakh bites in 2024.",
-    src: [6, 7],
+    src: [5, 6],
   },
 ];
 
@@ -332,7 +332,7 @@ const PRECEDENTS = [
   {
     place: "Jaipur",
     sub: "Help in Suffering / since 1994",
-    src: [13],
+    src: [12],
     stat: "7.2 → 2.2",
     statLab: "Dog bites per 1,000 people",
     body: [
@@ -343,7 +343,7 @@ const PRECEDENTS = [
   {
     place: "Sikkim",
     sub: "SARAH programme / since 2006",
-    src: [14],
+    src: [13],
     stat: "4 → 0",
     statLab: "Human rabies deaths a year",
     body: [
@@ -354,7 +354,7 @@ const PRECEDENTS = [
   {
     place: "Ahmedabad",
     sub: "Municipal ABC programme",
-    src: [10],
+    src: [9],
     stat: "89%",
     statLab: "Sterilisation coverage reached",
     body: [
@@ -449,12 +449,11 @@ const SHAPE = [
 ];
 
 const SOURCES = [
-  { label: "NCDC dog bite and rabies figures for 2024, as given to Parliament", tag: "NCDC", href: "https://www.dailypioneer.com/2025/india/over-37-lakh-dog-bite-cases--54-human-rabies-deaths-in-2024--govt.html" },
   { label: "2025 dog bite total, compiled from IDSP data under RTI", tag: "IDSP · RTI", href: "https://straydogmenace.com/2026/02/13/exclusive-india-4748478-dog-bite-cases-2025-10-lakh-rise-7-58-crore-since-2010/" },
   { label: "ICMR-funded Lancet estimate of annual rabies deaths", tag: "ICMR · Lancet", href: "https://www.theweek.in/news/health/2025/10/22/from-dog-bites-to-deaths-understanding-rabies-prevention-in-india.html" },
   { label: "WHO rabies fact sheet — 99% dog-mediated, ~59,000 deaths globally", tag: "WHO", href: "https://www.who.int/news-room/fact-sheets/detail/rabies" },
   { label: "Livestock Census counts and independent population estimates", tag: "Livestock Census", href: "https://visionias.in/blog/current-affairs/stray-dogs-management-in-india-balancing-public-safety-with-animal-welfare" },
-  { label: "Mumbai dog population and centre capacity", tag: "BMC survey", href: "https://www.deccanherald.com/amp/story/india%2Fmaharashtra%2Fover-90000-stray-dogs-in-mumbai-but-only-8-shelters-for-them-bmc-officials-3791354" },
+  { label: "Mumbai dog population and centre capacity", tag: "BMC survey", href: "https://www.deccanherald.com/india/maharashtra/over-90000-stray-dogs-in-mumbai-but-only-8-shelters-for-them-bmc-officials-3791354" },
   { label: "Mumbai dog bite cases, 2024", tag: "Maharashtra govt", href: "https://www.freepressjournal.in/mumbai/mumbai-records-over-128-lakh-stray-dog-bites-in-2024-authorities-ramp-up-control-measures" },
   { label: "BMC allocation — ₹23 crore over three years, 1,35,000 sterilisations", tag: "BMC budget", href: "https://www.freepressjournal.in/mumbai/mumbai-bmc-plans-sterilisation-of-45000-stray-dogs-annually-allocates-23-crore-for-control-drive" },
   { label: "Revised central funding — ₹800 per dog, ₹2 crore infrastructure grant", tag: "DAHD", href: "https://www.devdiscourse.com/article/headlines/3530458-govt-ups-funding-for-stray-dog-sterilisation-to-rs-800-per-animal-rs-2-cr-for-vet-hospitals" },
@@ -631,7 +630,7 @@ export default function LovePawsCase() {
           lede="Population stabilisation requires sustained sterilisation coverage of about 70 per cent of the dogs inside a defined area. The Centre's own advisory to states says the same. Below that line, the survivors breed back faster than the programme cuts."
         />
         <FadeUp>
-          <Src n={[19, 11]} className="mt-8" />
+          <Src n={[18, 10]} className="mt-8" />
         </FadeUp>
         <div className="mt-12">
           <CoverageThreshold color="#9C3F63" />
@@ -681,9 +680,9 @@ export default function LovePawsCase() {
         </FadeUp>
 
         {[
-          { k: "₹800", h: "Central support per dog", b: "The revised 2025 scheme, up from ₹445. This is what the Centre contributes, not what the work costs.", c: [9] },
-          { k: "₹960", h: "Ahmedabad, delivered", b: "1,88,828 sterilisations against ₹18.11 crore. Close to the surgical cost alone, on a programme now reporting about 89 per cent coverage.", c: [10] },
-          { k: "₹1,704", h: "Mumbai, implied by budget", b: "₹23 crore committed over three years against 1,35,000 sterilisations. Still well above Ahmedabad’s delivered figure — roughly what the work costs once catching, transport, recovery and release are counted rather than surgery alone.", c: [8] },
+          { k: "₹800", h: "Central support per dog", b: "The revised 2025 scheme, up from ₹445. This is what the Centre contributes, not what the work costs.", c: [8] },
+          { k: "₹960", h: "Ahmedabad, delivered", b: "1,88,828 sterilisations against ₹18.11 crore. Close to the surgical cost alone, on a programme now reporting about 89 per cent coverage.", c: [9] },
+          { k: "₹1,704", h: "Mumbai, implied by budget", b: "₹23 crore committed over three years against 1,35,000 sterilisations. Still well above Ahmedabad’s delivered figure — roughly what the work costs once catching, transport, recovery and release are counted rather than surgery alone.", c: [7] },
         ].map((r, i) => (
           <FadeUp key={r.k} delay={i * 0.05}>
             <div
@@ -909,7 +908,7 @@ export default function LovePawsCase() {
             <div>
               <Body>
                 Dogs are the source of about 99 per cent of human rabies cases.{" "}
-                <Src n={[4]} />{" "}
+                <Src n={[3]} />{" "}
                 Sterilisation is the long game: it
                 shrinks the reservoir over years, and it is the only thing that ends the cycle rather than managing
                 it. Vaccination is the fast one. Push coverage past 70 per cent inside a zone and human deaths from
@@ -963,7 +962,7 @@ export default function LovePawsCase() {
         </div>
 
         <FadeUp>
-          <Src n={[11, 12]} className="mt-9" />
+          <Src n={[10, 11]} className="mt-9" />
         </FadeUp>
 
         <FadeUp>
@@ -1051,7 +1050,7 @@ export default function LovePawsCase() {
         </div>
 
         <FadeUp>
-          <Src n={[18, 17, 9, 15, 16]} className="mt-9" />
+          <Src n={[17, 16, 8, 14, 15]} className="mt-9" />
         </FadeUp>
 
         <Verdict figure="37,17,336 → 47,48,478" caption="Reported dog bites, 2024 to 2025">
