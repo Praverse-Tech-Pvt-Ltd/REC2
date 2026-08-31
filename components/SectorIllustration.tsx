@@ -198,31 +198,6 @@ const ILLUS: Record<SectorKey, (color: string) => React.ReactNode> = {
     </svg>
   ),
 
-  csr: (c) => (
-    <svg viewBox="0 0 240 148" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Shared arc binding the figures — community */}
-      <path d="M 30 76 Q 120 10 210 76" stroke={c} strokeWidth="0.7" strokeDasharray="3 4" fill="none" opacity="0.35" />
-      {/* Ground */}
-      <path d="M 14 138 Q 60 132 120 134 Q 180 136 226 130" stroke={c} strokeWidth="1.2" strokeLinecap="round" fill="none" opacity="0.4" />
-      {/* Figure — left */}
-      <circle cx="36" cy="86" r="7" stroke={c} strokeWidth="1.5" fill={c + "10"} />
-      <path d="M 24 112 Q 26 97 36 97 Q 46 97 48 112" stroke={c} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-      {/* Figure — right */}
-      <circle cx="204" cy="86" r="7" stroke={c} strokeWidth="1.5" fill={c + "10"} />
-      <path d="M 192 112 Q 194 97 204 97 Q 214 97 216 112" stroke={c} strokeWidth="1.5" strokeLinecap="round" fill="none" />
-      {/* Cupped hands */}
-      <path d="M 64 90 Q 56 116 84 128 Q 120 140 156 128 Q 184 116 176 90" stroke={c} strokeWidth="1.8" fill={c + "10"} strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M 64 90 Q 71 81 81 86" stroke={c} strokeWidth="1.4" strokeLinecap="round" fill="none" />
-      <path d="M 176 90 Q 169 81 159 86" stroke={c} strokeWidth="1.4" strokeLinecap="round" fill="none" />
-      <line x1="88" y1="121" x2="98" y2="113" stroke={c} strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-      <line x1="152" y1="121" x2="142" y2="113" stroke={c} strokeWidth="1" strokeLinecap="round" opacity="0.6" />
-      {/* Sapling */}
-      <line x1="120" y1="114" x2="120" y2="56" stroke={c} strokeWidth="1.8" strokeLinecap="round" />
-      <path d="M 120 78 Q 100 72 96 54 Q 116 58 120 78 Z" stroke={c} strokeWidth="1.4" fill={c + "18"} strokeLinejoin="round" />
-      <path d="M 120 68 Q 140 62 144 44 Q 124 48 120 68 Z" stroke={c} strokeWidth="1.4" fill={c + "18"} strokeLinejoin="round" />
-      <path d="M 120 56 Q 112 46 120 38 Q 128 46 120 56 Z" stroke={c} strokeWidth="1.4" fill={c + "12"} strokeLinejoin="round" />
-    </svg>
-  ),
 };
 
 export default function SectorIllustration({ sector, color, className }: Props) {
