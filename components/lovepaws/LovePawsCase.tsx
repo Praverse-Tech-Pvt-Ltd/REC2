@@ -116,10 +116,11 @@ function Src({ n, className = "" }: { n: number | number[]; className?: string }
             target="_blank"
             rel="noopener noreferrer"
             className="src-tag"
-            title={src.label}
+            title={`Reference ${i}: ${src.label}`}
+            aria-label={`Reference ${i}: ${src.label}`}
           >
             {src.tag}
-            <span aria-hidden="true" style={{ opacity: 0.55, marginLeft: 3 }}>&#8599;</span>
+            <span aria-hidden="true" style={{ opacity: 0.8, marginLeft: 3 }}>&#8599;</span>
           </a>
         );
       })}
