@@ -86,6 +86,14 @@ export type PageData = {
   team: string[];
   related: { label: string; href: string }[];
   partners?: string[];
+  /** Overrides `title` in the <title> tag (the layout template appends " — REC 2"). */
+  seoTitle?: string;
+  /** Overrides the description derived from the first overview paragraph. */
+  seoDescription?: string;
+  /** How the vertical makes money — rendered as a visible section, readable without JS. */
+  revenueModel?: { heading: string; intro: string; streams: { label: string; detail: string }[] };
+  /** Plain-language Q&A — rendered visibly and emitted as FAQPage structured data. */
+  faq?: { q: string; a: string }[];
 };
 
 export const PAGES: Record<string, PageData> = {
@@ -94,8 +102,65 @@ export const PAGES: Record<string, PageData> = {
 
   "energy/solar": {
     title: "Solar Energy",
+    seoTitle: "Solar Energy & Carbon Credits",
+    seoDescription:
+      "REC 2 invests across the solar value chain — utility-scale farms, rooftop, agrivoltaics and AI grid management — and earns from clean power sales plus carbon credits from certified renewable projects.",
     subtitle: "Photovoltaic power and intelligent green grids",
     sector: "energy",
+    revenueModel: {
+      heading: "How REC 2 earns from solar",
+      intro:
+        "A REC 2 solar project is paid for its power and for the carbon it avoids. Carbon credits from certified renewable projects sit on top of energy revenue rather than replacing it.",
+      streams: [
+        {
+          label: "Clean power sales",
+          detail:
+            "Utility-scale farms, distributed rooftop networks and agrivoltaic sites sell electricity to grid operators and off-takers.",
+        },
+        {
+          label: "Carbon credits",
+          detail:
+            "Certified renewable projects generate carbon credits, which add 15–25% IRR on top of energy revenues across the solar portfolio.",
+        },
+        {
+          label: "Smarter dispatch",
+          detail:
+            "AI dispatch and grid digital twin capabilities lift solar revenue by 12–18% by selling power when it is worth most.",
+        },
+        {
+          label: "Cheaper capital",
+          detail:
+            "Community ownership models reduce opposition risk and unlock concessional capital from development finance institutions (DFIs).",
+        },
+        {
+          label: "Peer-to-peer trading",
+          detail: "Distributed rooftop generation can be traded between neighbours instead of only sold back to the grid.",
+        },
+        {
+          label: "End-of-life value",
+          detail:
+            "Decommissioned panels are routed into REC 2's solar recycling vertical, recovering silver, silicon, glass and aluminium.",
+        },
+      ],
+    },
+    faq: [
+      {
+        q: "What does REC 2 do in solar energy?",
+        a: "REC 2 invests across the solar value chain: high-efficiency panel manufacturing, utility-scale solar farms, distributed rooftop networks, agrivoltaics and AI-driven grid management, with a focus on South Asia, the Middle East and Africa.",
+      },
+      {
+        q: "How do carbon credits fit into REC 2's solar revenue?",
+        a: "Certified renewable solar projects generate carbon credits. REC 2 treats them as an additional revenue stream on top of electricity sales, adding 15–25% IRR to project returns.",
+      },
+      {
+        q: "Who does REC 2 partner with on solar projects?",
+        a: "Developers, grid operators, development finance institutions (DFIs) and off-takers, plus local communities through community ownership models.",
+      },
+      {
+        q: "What is REC 2, and is it the same as REC Limited, REC Group or REC Enerji?",
+        a: "REC 2 (rec2.in) is an innovation platform spanning renewable energy, carbon credits, recycling, advanced materials, chips, robotics and sustainable sport. It is a separate organisation from REC Limited, REC Group and REC Enerji.",
+      },
+    ],
     overview: [
       "Solar photovoltaic technology is now the world's cheapest source of electricity. REC 2 invests across the full solar value chain — from high-efficiency panel manufacturing and utility-scale farms to distributed rooftop networks and agrivoltaic systems that combine food production with clean energy generation on the same land.",
       "Our solar strategy encompasses next-generation cell technologies including perovskite-silicon tandems pushing efficiencies beyond 30%, bifacial panels for higher yield, and AI-driven grid management systems. Renewable solar goes beyond the panel — REC 2 builds the intelligent grid infrastructure, virtual power plants, and community ownership models that make solar truly transformative.",

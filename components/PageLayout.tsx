@@ -6,6 +6,7 @@ import SectorHero from "./SectorHero";
 import TeamCard from "./TeamCard";
 import ApplicationGrid from "./ApplicationGrid";
 import { PAGES, SECTOR_COLORS, type SectorKey } from "@/lib/data";
+import { SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 type Props = {
   slug: string;
@@ -33,9 +34,49 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
   if (!page) return <div className="pt-20 text-center p-8 text-[var(--muted)]">Page not found</div>;
 
   const color = SECTOR_COLORS[sector];
+  const url = absoluteUrl(`/${slug}`);
+
+  // Structured data so search engines and AI answer engines read the page as
+  // facts rather than guessing from layout.
+  const jsonLd: Record<string, unknown>[] = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      url,
+      name: `${page.seoTitle ?? page.title} — ${SITE_NAME}`,
+      description: page.seoDescription ?? page.overview[0],
+      inLanguage: "en",
+      isPartOf: { "@id": `${absoluteUrl("/")}#website` },
+      about: page.applications.map((a) => a.label),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+        { "@type": "ListItem", position: 2, name: breadcrumb[0]?.label ?? sector, item: absoluteUrl(breadcrumb[0]?.href ?? "/") },
+        { "@type": "ListItem", position: 3, name: page.title, item: url },
+      ],
+    },
+  ];
+  if (page.faq?.length) {
+    jsonLd.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: page.faq.map(({ q, a }) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
+    });
+  }
 
   return (
     <div className="min-h-screen bg-[var(--cream)]">
+      {jsonLd.map((data, i) => (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
+      ))}
       {/* Sticky sector-colour accent — pinned just under the navbar, reinforces which world you're in */}
       <div className="sticky top-16 z-40 h-[3px]" style={{ backgroundColor: color }} />
       <SectorHero title={page.title} subtitle={page.subtitle} sector={sector} breadcrumb={breadcrumb} />
@@ -68,6 +109,32 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
           </div>
         </div>
       </section>
+
+      {/* Revenue model — plain markup (no scroll-reveal) so it is readable with JS off */}
+      {page.revenueModel && (
+        <section className="py-20 px-6 lg:px-[56px] border-b" style={{ borderColor: "var(--border)" }}>
+          <div className="max-w-[1100px] mx-auto">
+            <p className="label mb-5">Revenue Model</p>
+            <h2 className="font-display text-[clamp(28px,4vw,44px)] font-light leading-[1.1] mb-5" style={{ color: "var(--charcoal)" }}>
+              {page.revenueModel.heading}
+            </h2>
+            <p className="text-[17px] leading-[1.88] font-light max-w-[760px] mb-12" style={{ color: "var(--charcoal-light)" }}>
+              {page.revenueModel.intro}
+            </p>
+            <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0">
+              {page.revenueModel.streams.map((stream, i) => (
+                <li key={stream.label} className="p-7 border" style={{ backgroundColor: "var(--cream)", borderColor: "var(--border)" }}>
+                  <div className="font-display leading-none mb-4" style={{ fontSize: 40, fontWeight: 300, color }}>
+                    0{i + 1}
+                  </div>
+                  <h3 className="text-[15px] font-semibold mb-2" style={{ color: "var(--charcoal)" }}>{stream.label}</h3>
+                  <p className="text-[13px] leading-[1.82] font-light" style={{ color: "var(--charcoal-light)" }}>{stream.detail}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      )}
 
       {/* Why REC 2 */}
       <section
@@ -117,6 +184,26 @@ export default function PageLayout({ slug, sector, breadcrumb, children }: Props
           <ApplicationGrid applications={page.applications} sectorColor={color} />
         </div>
       </section>
+
+      {/* FAQ — mirrors the FAQPage structured data above */}
+      {page.faq && (
+        <section className="py-20 px-6 lg:px-[56px] border-b" style={{ borderColor: "var(--border)" }}>
+          <div className="max-w-[1100px] mx-auto grid md:grid-cols-[200px_1fr] gap-8 md:gap-20">
+            <div className="self-start">
+              <p className="label mb-5">Questions</p>
+              <div className="w-8 h-0.5" style={{ backgroundColor: color }} />
+            </div>
+            <dl className="flex flex-col gap-9">
+              {page.faq.map(({ q, a }) => (
+                <div key={q}>
+                  <dt className="text-[17px] font-semibold mb-2" style={{ color: "var(--charcoal)" }}>{q}</dt>
+                  <dd className="text-[15px] leading-[1.82] font-light" style={{ color: "var(--charcoal-light)" }}>{a}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )}
 
       {/* Team */}
       <section className="py-20 px-6 lg:px-[56px] border-t" style={{ backgroundColor: "var(--cream-deep)", borderColor: "var(--border)" }}>

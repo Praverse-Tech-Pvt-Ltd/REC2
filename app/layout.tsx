@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import PageTransition from "@/components/PageTransition";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/seo";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -20,16 +21,8 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-/**
- * NEXT_PUBLIC_SITE_URL should be set to the production origin on the host.
- * Without it, metadataBase falls back to localhost and every Open Graph URL
- * in a shared link points at the developer's machine.
- */
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-
 const TITLE = "REC 2 — Renewable Energy · Carbon Credits · Innovation";
-const DESCRIPTION =
-  "REC 2 is a diverse innovation platform bridging sustainable technology, renewable energy, deep tech and the future of sport.";
+const DESCRIPTION = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -50,7 +43,6 @@ export const metadata: Metadata = {
     "sustainable sport",
     "mechatronics",
   ],
-  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "REC 2",
@@ -71,10 +63,41 @@ export const metadata: Metadata = {
   },
 };
 
+const SITE_JSON_LD = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.png`,
+    description: SITE_DESCRIPTION,
+    email: "V@v-group.in",
+    knowsAbout: ["solar energy", "carbon credits", "hydrogen", "battery recycling", "advanced materials", "photonics", "biochips", "flow chemistry", "sustainable sport"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    inLanguage: "en",
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  },
+];
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${cormorant.variable} ${plusJakarta.variable}`}>
       <body className="antialiased font-body bg-surface text-navy">
+        {SITE_JSON_LD.map((data, i) => (
+          <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+        ))}
+        {/* Scroll-reveal sections start at opacity 0 until JS runs; show them for readers and bots without JS. */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <ScrollProgress />
         <Navbar />
         <main>

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { NAV_ITEMS } from "@/lib/data";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { absoluteUrl } from "@/lib/seo";
 
 /**
  * Built from NAV_ITEMS so new sector pages appear here automatically rather
@@ -12,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sectorPaths = NAV_ITEMS.flatMap((nav) => nav.items.map((item) => item.href));
 
   return [...staticPaths, ...sectorPaths].map((path) => ({
-    url: new URL(path, SITE_URL).toString(),
+    url: absoluteUrl(path),
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: path === "/" ? 1 : 0.7,

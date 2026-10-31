@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Defence — REC 2",
+  title: "Defence",
   description: "Defence is the connective tissue binding all REC 2 verticals.",
+  alternates: { canonical: "/defence" },
 };
 
 const APPLICATIONS = [

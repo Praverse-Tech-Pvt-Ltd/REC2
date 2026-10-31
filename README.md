@@ -26,13 +26,13 @@ Then open http://localhost:3000.
 
 | Path | What it is |
 |---|---|
-| `app/page.tsx` | Home — hero, sector grid, mechatronics. `/mechatronics` re-exports it. |
+| `app/page.tsx` | Home — metadata wrapper around `components/HomePage.tsx`. `/mechatronics` renders the same component. |
 | `app/[sector]/[slug]/page.tsx` | Sector pages, driven by `PAGES` in `lib/data.ts` via `PageLayout` |
-| `app/csr/page.tsx` | CSR — custom composition carrying the Love Paws Foundation case |
 | `app/defence`, `app/contact` | Standalone pages |
-| `lib/data.ts` | Site content: sectors, people, nav, page copy |
+| `lib/data.ts` | Site content: sectors, people, nav, page copy. Optional `seoTitle`, `seoDescription`, `revenueModel` and `faq` per page feed metadata, visible sections and JSON-LD. |
+| `lib/seo.ts` | `SITE_URL` (defaults to https://rec2.in), `pageMetadata()` — per-page title, description and canonical |
+| `app/llms.txt`, `app/robots.ts`, `app/sitemap.ts` | Crawler / AI-agent entry points, generated from `lib/data.ts` |
 | `components/PageLayout.tsx` | Standard sector page shell |
-| `components/lovepaws/` | The CSR case and its interactive coverage model |
 
 Most content edits are `lib/data.ts` rather than JSX. Adding a sub-page means adding a `PAGES` entry plus a `NAV_ITEMS` item; the sitemap picks it up automatically.
 
